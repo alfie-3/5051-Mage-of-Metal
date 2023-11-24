@@ -51,8 +51,8 @@ public class WiiRemoteTest : MonoBehaviour {
 
         float[,] ir = wiiMote.Ir.GetProbableSensorBarIR();
         for (int i = 0; i < 2; i++) {
-            float x = (float)ir[i, 0] / 1920;
-            float y = (float)ir[i, 1] / 1080;
+            float x = (float)ir[i, 0] / 1023f;
+            float y = (float)ir[i, 1] / 767f;
             if (x == -1 || y == -1) {
                 ir_dots[i].anchorMin = new Vector2(0, 0);
                 ir_dots[i].anchorMax = new Vector2(0, 0);
