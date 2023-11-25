@@ -10,6 +10,8 @@ public class WiiRemoteTest : MonoBehaviour {
     public RectTransform[] ir_dots;
     public RectTransform[] ir_bb;
 
+    private Vector3 wmpOffset = Vector3.zero;
+
     // Start is called before the first frame update
     void Start() {
         FindWiiMotes();
@@ -34,9 +36,10 @@ public class WiiRemoteTest : MonoBehaviour {
             wiimotes[i].ReadWiimoteData();
 
             DetectWiimoteButtons(i);
-        }
 
-        DetectWiimoteIR(0);
+
+            DetectWiimoteIR(0);
+        }
     }
 
     private void DetectWiimoteButtons(int index) {
@@ -77,7 +80,7 @@ public class WiiRemoteTest : MonoBehaviour {
         ir_pointer.anchorMin = new Vector2(pointer[0], pointer[1]);
         ir_pointer.anchorMax = new Vector2(pointer[0], pointer[1]);
 
-        Debug.Log($"{new Vector2(pointer[0], pointer[1])}");
+        //Debug.Log($"{new Vector2(pointer[0], pointer[1])}");
     }
 
     private void EnableLED(int num) {
