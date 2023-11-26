@@ -1,0 +1,34 @@
+{
+    "name": "Controls",
+    "maps": [
+        {
+            "name": "GuitarControls",
+            "id": "80e62223-fda8-45da-be4b-1d76195e8d24",
+            "actions": [
+                {
+                    "name": "ScreenPoint",
+                    "type": "PassThrough",
+                    "id": "0fbf1c68-37ea-4933-b735-2bd5cdabf96f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6829ba78-7e0f-414c-9aa6-54a59977ef04",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScreenPoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
