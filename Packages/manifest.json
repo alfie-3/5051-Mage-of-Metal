@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "be.jellever.wiimoteapi": "file:G:/Users/trued/Downloads/Unity-Wiimote-master/Unity-Wiimote-master",
     "com.unity.collab-proxy": "2.0.7",
     "com.unity.ide.rider": "3.0.24",
     "com.unity.ide.visualstudio": "2.0.18",

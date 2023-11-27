@@ -10,6 +10,9 @@ public class WiiRemoteTest : MonoBehaviour {
     public RectTransform[] ir_dots;
     public RectTransform[] ir_bb;
 
+    [SerializeField] private InputDataType inputType;
+    [SerializeField] private IRDataType dataType;
+
     // Start is called before the first frame update
     void Start() {
         FindWiiMotes();
@@ -22,8 +25,8 @@ public class WiiRemoteTest : MonoBehaviour {
 
         for (int i = 0; i < wiimotes.Count; i++) {
             EnableLED(i);
-            wiimotes[i].SendDataReportMode(InputDataType.REPORT_EXT21);
-            wiimotes[i].SetupIRCamera(IRDataType.BASIC);
+            wiimotes[i].SendDataReportMode(inputType);
+            wiimotes[i].SetupIRCamera(dataType);
         }
 
         Debug.Log($"{wiimotes.Count} wiimotes detected");
@@ -34,9 +37,10 @@ public class WiiRemoteTest : MonoBehaviour {
             wiimotes[i].ReadWiimoteData();
 
             DetectWiimoteButtons(i);
-        }
 
-        DetectWiimoteIR(0);
+
+            DetectWiimoteIR(0);
+        }
     }
 
     private void DetectWiimoteButtons(int index) {
@@ -74,10 +78,12 @@ public class WiiRemoteTest : MonoBehaviour {
 
         float[] pointer = wiiMote.Ir.GetPointingPosition();
 
-        ir_pointer.anchorMin = new Vector2(pointer[0], pointer[1]);
-        ir_pointer.anchorMax = new Vector2(pointer[0], pointer[1]);
+        Vector2 pointerPos = new Vector2(pointer[0], pointer[1]);
 
-        Debug.Log($"{new Vector2(pointer[0], pointer[1])}");
+        if (pointer[0] != -1 && pointer[1] != -1) {
+            ir_pointer.anchorMin = pointerPos;
+            ir_pointer.anchorMax = pointerPos;
+        }
     }
 
     private void EnableLED(int num) {
