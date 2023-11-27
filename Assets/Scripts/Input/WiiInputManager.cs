@@ -13,6 +13,6 @@ public class WiiInputManager : MonoBehaviour
     }
 
     public Wiimote getGuitarWiiMote() {
-
+        return null;
     }
 }
