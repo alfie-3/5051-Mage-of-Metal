@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
-public class GuitarRemoteInput : MonoBehaviour
+public class GuitarRemoteInput
 {
    public Wiimote WiiMote { get; private set; }
 

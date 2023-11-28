@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
-public class SensorRemoteInput : MonoBehaviour
+public class SensorRemoteInput
 {
     public Wiimote WiiMote { get; private set; }
+
+    Vector2[] ir_dots = new Vector2[6];
+    Vector2[] ir_bb = new Vector2[5];
 
     public SensorRemoteInput(Wiimote _wiiMote) {
         WiiMote = _wiiMote;
     }
 
     public Vector2 IRPointScreenPos() {
-        Vector2[] ir_dots = new Vector2[4];
-        Vector2[] ir_bb = new Vector2[4];
+        WiiMote.ReadWiimoteData();
 
         if (ir_dots.Length < 4)
             return new Vector2(-1, -1);
