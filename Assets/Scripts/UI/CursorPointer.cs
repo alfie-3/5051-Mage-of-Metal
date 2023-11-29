@@ -91,7 +91,7 @@ public class CursorPointer : MonoBehaviour
         if (damageable != null)
         {
             Debug.Log("Attack");
-            damageable.Damage(1);
+            damageable.Damage(3);
         }
         else
         {
