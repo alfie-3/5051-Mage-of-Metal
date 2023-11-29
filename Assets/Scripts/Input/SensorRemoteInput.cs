@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
-public class SensorRemoteInput
+public class SensorRemoteInput : IHasRemote
 {
     public Wiimote WiiMote { get; private set; }
+
+    public bool HasRemote => WiiMote != null;   
 
     Vector2[] ir_dots = new Vector2[6];
     Vector2[] ir_bb = new Vector2[5];
 
-    public SensorRemoteInput(Wiimote _wiiMote) {
+    public SensorRemoteInput(Wiimote _wiiMote = null) {
+        WiiMote = _wiiMote;
+    }
+
+    public void SetWiiMote(Wiimote _wiiMote)
+    {
         WiiMote = _wiiMote;
     }
 
