@@ -16,7 +16,6 @@ public class CursorPointer : MonoBehaviour
     {
         WiiInputManager.GuitarWiiMote.Strummed += Attack;
     }
-
     private void OnDisable()
     {
         WiiInputManager.GuitarWiiMote.Strummed -= Attack;
@@ -28,6 +27,7 @@ public class CursorPointer : MonoBehaviour
         UpdateCursorColor();
     }
 
+    //Changes cursor colour to see if the raycasting works and add some visual feedback
     private void UpdateCursorColor()
     {
         IDamage enemy = CheckForEnemy();
@@ -41,6 +41,8 @@ public class CursorPointer : MonoBehaviour
 
     private void UpdateCursorPos()
     {
+        //If the wii remote can't be found or the IR bar cant be found it defaults to mouse mode.
+        //Sets the position of the cursor to where the wii remote is pointing.
         if (WiiInputManager.CursorWiiMote.HasRemote)
         {
             ir_pointer.transform.SetParent(transform.GetChild(0));
@@ -58,6 +60,8 @@ public class CursorPointer : MonoBehaviour
             }
         }
 
+        //Hacky but the canvas used for the IR cursor is bigger than the screen and 4:3 because that works better for pointing
+        //But when the mouse takes over it doesnt map properly so I have to change it back to the root canvas
         ir_pointer.transform.SetParent(transform);
 
         Vector2 mappedCusor = new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height);
@@ -68,6 +72,7 @@ public class CursorPointer : MonoBehaviour
         ir_pointer.anchoredPosition = Vector2.zero;
     }
 
+    //Checks for enemy by raycasting below the cursor to the world.
     public IDamage CheckForEnemy()
     {
         Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position);
@@ -84,6 +89,7 @@ public class CursorPointer : MonoBehaviour
         return null;
     }
 
+    //Basic attack, to have rune breaking stuff added to
     private void Attack()
     {
         IDamage damageable = CheckForEnemy();

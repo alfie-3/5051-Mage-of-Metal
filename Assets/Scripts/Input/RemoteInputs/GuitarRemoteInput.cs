@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
-public class GuitarRemoteInput : IHasRemote
+//Specific to the wii remote with the guitar extension
+public class GuitarRemoteInput : RemoteInput
 {
-   public Wiimote WiiMote { get; private set; }
-
-    public bool HasRemote => WiiMote != null;
-
     //Strumming
     public event Action Strummed = delegate { };
     bool strum;
@@ -18,18 +15,14 @@ public class GuitarRemoteInput : IHasRemote
         WiiMote = _wiiMote;
     }
 
-    public void SetWiiMote(Wiimote _wiiMote)
+    public override void CheckInputs()
     {
-        WiiMote = _wiiMote;
-    }
-
-    public void CheckInputs()
-    {
-        if (WiiMote == null) return;
+        base.CheckInputs();
 
         CheckStrummedThisFrame();
     }
 
+    //Gets if the requested colour fret is being held down on this frame
     public bool ColorPressedThisFrame(GUITAR_COLORS color) {
         if (WiiMote.current_ext == ExtensionController.GUITAR) {
             switch (color) {
@@ -51,6 +44,7 @@ public class GuitarRemoteInput : IHasRemote
         return false;
     }
 
+    //Checks to see if this guitar was strummed this frame, is triggered once and reset by releasing the strum to resting position
     public void CheckStrummedThisFrame()
     {
         WiiMote.ReadWiimoteData();
@@ -70,6 +64,7 @@ public class GuitarRemoteInput : IHasRemote
         return;
     }
 
+    //Gets 0 - 1 on the whammy bar, whammy unpushed is 0 and when pushed down is 1 but detects anything between
     public float GetWhammy() => WiiMote.Guitar.GetWhammy01();
 
     public bool GetPlus() => WiiMote.Guitar.plus;

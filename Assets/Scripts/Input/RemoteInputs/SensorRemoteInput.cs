@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
-public class SensorRemoteInput : IHasRemote
+//Specific to wii remotes intended to use the IR sensor
+public class SensorRemoteInput : RemoteInput
 {
-    public Wiimote WiiMote { get; private set; }
-
-    public bool HasRemote => WiiMote != null;   
-
     Vector2[] ir_dots = new Vector2[6];
     Vector2[] ir_bb = new Vector2[5];
 
@@ -16,11 +13,10 @@ public class SensorRemoteInput : IHasRemote
         WiiMote = _wiiMote;
     }
 
-    public void SetWiiMote(Wiimote _wiiMote)
-    {
-        WiiMote = _wiiMote;
-    }
-
+    //Absolutely black magic, idk what this shit does
+    //If anyone wants to fuck around with it to make it more accurate be my guest.
+    //It works tho so maybe just leave it alone!
+    //Returns current location of the cursor on the screen mapped to 0-1
     public Vector2 IRPointScreenPos() {
         WiiMote.ReadWiimoteData();
 
