@@ -99,7 +99,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaxDistance: 9.21
+    - _MaxDistance: 23.63
     - _Metallic: 0
     - _MinDistance: 1.5
     - _MinOutlineThicknessMultiplier: 0.19
