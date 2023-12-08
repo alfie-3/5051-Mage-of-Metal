@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Outline
+  m_Name: Tree Outline
   m_Shader: {fileID: -6465566751694194690, guid: 004a4feb884124b4f96182ced86d588b,
     type: 3}
   m_Parent: {fileID: 0}
@@ -99,9 +99,10 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaxDistance: 0.27
+    - _MaxDistance: -0.94
     - _Metallic: 0
-    - _MinDistance: 2.48
+    - _MinDistance: 2.99
+    - _MinOutlineThicknessMultiplier: 2.65
     - _OcclusionStrength: 1
     - _Outline_Thickness: 0.01
     - _Parallax: 0.005
