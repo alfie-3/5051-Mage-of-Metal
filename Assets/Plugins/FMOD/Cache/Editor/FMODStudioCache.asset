@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8363663134978309584
+--- !u!114 &-6397785877536231294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15,36 +15,12 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638376411559040931
+  lastModified: 638376438563718178
   FileSizes:
   - Name: 
     Value: 776
   Exists: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: -8363663134978309584}
-  - {fileID: 1494547627557494210}
-  EditorEvents:
-  - {fileID: 8187015058871143853}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: 1494547627557494210}
-  StringsBanks:
-  - {fileID: -8363663134978309584}
-  cacheTime: 638376411559040931
-  cacheVersion: 131608
---- !u!114 &1494547627557494210
+--- !u!114 &-2759157346151736238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,10 +35,34 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638376411559031145
+  lastModified: 638376438563708174
   FileSizes: []
   Exists: 1
---- !u!114 &2587772398324605745
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -6397785877536231294}
+  - {fileID: -2759157346151736238}
+  EditorEvents:
+  - {fileID: 1329567768693450205}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -2759157346151736238}
+  StringsBanks:
+  - {fileID: -6397785877536231294}
+  cacheTime: 638376438563718178
+  cacheVersion: 131608
+--- !u!114 &1329567768693450205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,72 +81,7 @@ MonoBehaviour:
     Data3: -179329381
     Data4: 1189851692
   Banks:
-  - {fileID: 3599079065799161245}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 77270
---- !u!114 &3599079065799161245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/FMODBanks/Desktop/Master.bank
-  Name: Desktop/Master
-  StudioPath: bank:/Master
-  lastModified: 638366254538735378
-  FileSizes: []
-  Exists: 1
---- !u!114 &5879209920505040522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/FMODBanks/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638366254538765313
-  FileSizes:
-  - Name: 
-    Value: 776
-  Exists: 1
---- !u!114 &8187015058871143853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Instrumental-holiday-music
-  m_EditorClassIdentifier: 
-  Path: event:/Instrumental-holiday-music
-  Guid:
-    Data1: 887163875
-    Data2: 1317157295
-    Data3: -179329381
-    Data4: 1189851692
-  Banks:
-  - {fileID: 1494547627557494210}
+  - {fileID: -2759157346151736238}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
