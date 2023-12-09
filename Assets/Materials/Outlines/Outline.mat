@@ -100,7 +100,7 @@ Material:
     - _GlossyReflections: 0
     - _MaxCamDist: 346.63
     - _MaxDistance: 23.63
-    - _MaxOutlineWidth: 0.01
+    - _MaxOutlineWidth: 0.02
     - _MaxOutlineWidthCamDist: 400
     - _MaxOutlineZ: -0.00044
     - _MaxWCamDist: 500
