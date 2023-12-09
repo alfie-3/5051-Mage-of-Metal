@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Outline
-  m_Shader: {fileID: -6465566751694194690, guid: 004a4feb884124b4f96182ced86d588b,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: a583f4cb152cc18468f6abe7978962a1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -99,11 +98,21 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _MaxCamDist: 346.63
     - _MaxDistance: 23.63
+    - _MaxOutlineWidth: 0.01
+    - _MaxOutlineWidthCamDist: 400
+    - _MaxOutlineZ: -0.00044
+    - _MaxWCamDist: 500
+    - _MaxZCamDist: 98.3
     - _Metallic: 0
     - _MinDistance: 1.5
     - _MinOutlineThicknessMultiplier: 0.19
+    - _MinOutlineWidth: 0.004
+    - _MinOutlineZ: -0.00421
     - _OcclusionStrength: 1
+    - _OutlineWidth: 0.02
+    - _OutlineZ: -0.00019
     - _Outline_Thickness: 0.03
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -121,6 +130,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColour: {r: 0, g: 0, b: 0, a: 1}
     - _Outline_Colour: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

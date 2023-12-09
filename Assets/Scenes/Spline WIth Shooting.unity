@@ -786,7 +786,12 @@ PrefabInstance:
     - target: {fileID: 931035180576429125, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: m_MaxSpeed
-      value: 2.6334395
+      value: 3.696818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2880871527608372577, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 9004723099025206711, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
@@ -836,6 +841,11 @@ PrefabInstance:
     - target: {fileID: 9004723099025206711, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127486162970866510, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
+      propertyPath: m_CameraType
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2057,6 +2067,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84e6e328b9099c4e88e28e93ff0874d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  terrain: {fileID: 0}
+  terrainDetails: []
 --- !u!1001 &746363625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2141,7 +2153,7 @@ PrefabInstance:
     - target: {fileID: 365086970433223342, guid: 7045a3583e5e277408a57f7f115798db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.0721264
+      value: 6.153
       objectReference: {fileID: 0}
     - target: {fileID: 365086970433223342, guid: 7045a3583e5e277408a57f7f115798db,
         type: 3}
@@ -3529,7 +3541,7 @@ PrefabInstance:
     - target: {fileID: 365086970433223342, guid: 7045a3583e5e277408a57f7f115798db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.75
+      value: 5.991
       objectReference: {fileID: 0}
     - target: {fileID: 365086970433223342, guid: 7045a3583e5e277408a57f7f115798db,
         type: 3}
