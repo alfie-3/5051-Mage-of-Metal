@@ -56,7 +56,7 @@ Shader "Unlit/OutlineShader"
             uniform float _OutlineWidth;
 
             sampler2D _MainTex;
-            sampler2D _CameraDepthTexture;
+            float4 _MainTex_ST;
 
             uniform float _MinOutlineZ;
             uniform float _MaxOutlineZ;
