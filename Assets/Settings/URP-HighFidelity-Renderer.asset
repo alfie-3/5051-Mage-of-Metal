@@ -1,28 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8258061261474360978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43b92ac1a37675b4b9285bce722089a1, type: 3}
-  m_Name: CustomRendererFeature
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  settings:
-    showInSceneView: 1
-    _event: 450
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 1
-    overrideMaterial: {fileID: 0}
-    overrideMaterialPass: 0
-    colorTargetDestinationID: 
-    blitMaterial: {fileID: 2100000, guid: 235f3b402728d2140a2cd08bc6fc51e4, type: 2}
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,9 +53,9 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  - {fileID: -8258061261474360978}
   - {fileID: 527817728376900508}
-  m_RendererFeatureMap: adc0de57c6d2eee56e1168280979658d9c0b0f6e6d2f5307
+  - {fileID: 3025009286017094675}
+  m_RendererFeatureMap: adc0de57c6d2eee59c0b0f6e6d2f530713944e1febfdfa29
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -134,3 +111,26 @@ MonoBehaviour:
   m_Name: DepthNormalsFeature
   m_EditorClassIdentifier: 
   m_Active: 1
+--- !u!114 &3025009286017094675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b92ac1a37675b4b9285bce722089a1, type: 3}
+  m_Name: CustomRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    showInSceneView: 1
+    _event: 450
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1
+    overrideMaterial: {fileID: 0}
+    overrideMaterialPass: 0
+    colorTargetDestinationID: 
+    blitMaterial: {fileID: 2100000, guid: 235f3b402728d2140a2cd08bc6fc51e4, type: 2}

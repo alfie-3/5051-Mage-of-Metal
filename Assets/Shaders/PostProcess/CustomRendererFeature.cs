@@ -87,7 +87,22 @@ public class CustomRendererFeature : ScriptableRendererFeature
                     RTHandle camTarget = renderingData.cameraData.renderer.cameraColorTargetHandle;
                     if (camTarget != null && rtTempColor != null)
                     {
-                        Blitter.BlitCameraTexture(cmd, camTarget, rtTempColor, settings.blitMaterial, 0);
+                        var stack = VolumeManager.instance.stack;
+                        var customEffect = stack.GetComponent<CustomPostOutline>();
+
+                        if (customEffect.IsActive())
+                        {
+                            settings.blitMaterial.SetFloat("_OutlineThickness", customEffect.outlineThickness.value);
+                            settings.blitMaterial.SetFloat("_OutlineDepthMultiplier", customEffect.outlineDepthMultiplier.value);
+                            settings.blitMaterial.SetFloat("_OutlineDepthBias", customEffect.outlineDepthBias.value);
+                            settings.blitMaterial.SetFloat("_OutlineNormalMultiplier", customEffect.outlineNormalMultiplier.value);
+                            settings.blitMaterial.SetFloat("_OutlineNormalBias", customEffect.outlineNormalBias.value);
+
+                            settings.blitMaterial.SetColor("_OutlineColor", customEffect.outlineColor.value);
+
+                            Blitter.BlitCameraTexture(cmd, camTarget, rtTempColor, settings.blitMaterial, 0);
+                        }
+
                         Blitter.BlitCameraTexture(cmd, rtTempColor, camTarget);
                     }
                 }

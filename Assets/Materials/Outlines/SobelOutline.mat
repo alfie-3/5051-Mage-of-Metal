@@ -121,8 +121,8 @@ Material:
     - _OutlineDepthClamp: -1.7
     - _OutlineDepthMultiplier: 3000
     - _OutlineNormalBias: 2.3
-    - _OutlineNormalMultiplier: 1.77
-    - _OutlineThickness: 1.45
+    - _OutlineNormalMultiplier: 2
+    - _OutlineThickness: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1

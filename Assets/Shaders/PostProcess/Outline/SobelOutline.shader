@@ -39,14 +39,14 @@ Shader "PostProcessing/SobelOutline"
 			texture2D _CameraDepthNormalsTexture;
 			SamplerState sampler_CameraDepthNormalsTexture;
 
-			uniform float _OutlineThickness;
-			uniform float _OutlineDepthMultiplier;
-			uniform float _OutlineDepthBias;
-			uniform float _OutlineDepthClamp;
-			uniform float _OutlineNormalBias;
-			uniform float _OutlineNormalMultiplier;
+			float _OutlineThickness;
+			float _OutlineDepthMultiplier;
+			float _OutlineDepthBias;
+			float _OutlineDepthClamp;
+			float _OutlineNormalBias;
+			float _OutlineNormalMultiplier;
 
-			uniform float4 _OutlineColor;
+			float4 _OutlineColor;
 
 			TEXTURE2D(_CameraOpaqueTexture);
             SAMPLER(sampler_CameraOpaqueTexture);
