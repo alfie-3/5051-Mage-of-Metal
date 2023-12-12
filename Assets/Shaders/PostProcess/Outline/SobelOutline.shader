@@ -4,8 +4,9 @@ Shader "PostProcessing/SobelOutline"
 	{
 		_OutlineThickness ("Outline Thickness", float) = 1
 		_OutlineDepthMultiplier ("Outline Depth Multiplier", float) = 1
-		_OutlineNormalMultiplier ("Outline Normal Multiplier", float) = 1
 		_OutlineDepthBias ("Outline Depth Bias", float) = 1
+		_OutlineDepthClamp ("Outline Depth Clamp", float) = 1
+		_OutlineNormalMultiplier ("Outline Normal Multiplier", float) = 1
 		_OutlineNormalBias ("Outline Normal Bias", float) = 1
 
 		_OutlineColor ("Outline Colour", Color) = (1, 1, 1, 1)
@@ -41,6 +42,7 @@ Shader "PostProcessing/SobelOutline"
 			uniform float _OutlineThickness;
 			uniform float _OutlineDepthMultiplier;
 			uniform float _OutlineDepthBias;
+			uniform float _OutlineDepthClamp;
 			uniform float _OutlineNormalBias;
 			uniform float _OutlineNormalMultiplier;
 
@@ -64,11 +66,11 @@ Shader "PostProcessing/SobelOutline"
 
 			float SobelSampleDepth(Texture2D t, SamplerState s, float2 uv, float3 offset)
 			{
-				float pixelCenter = LinearEyeDepth(t.Sample(s, uv).r, _ZBufferParams);
-				float pixelLeft   = LinearEyeDepth(t.Sample(s, uv - offset.xz).r, _ZBufferParams);
-				float pixelRight  = LinearEyeDepth(t.Sample(s, uv + offset.xz).r, _ZBufferParams);
-				float pixelUp     = LinearEyeDepth(t.Sample(s, uv + offset.zy).r, _ZBufferParams);
-				float pixelDown   = LinearEyeDepth(t.Sample(s, uv - offset.zy).r, _ZBufferParams);
+				float pixelCenter = LinearEyeDepth(t.Sample(s, uv).r, _ZBufferParams.z);
+				float pixelLeft   = LinearEyeDepth(t.Sample(s, uv - offset.xz).r, _ZBufferParams.z);
+				float pixelRight  = LinearEyeDepth(t.Sample(s, uv + offset.xz).r, _ZBufferParams.z);
+				float pixelUp     = LinearEyeDepth(t.Sample(s, uv + offset.zy).r, _ZBufferParams.z);
+				float pixelDown   = LinearEyeDepth(t.Sample(s, uv - offset.zy).r, _ZBufferParams.z);
 
 				return SobelDepth(pixelCenter, pixelLeft, pixelRight, pixelUp, pixelDown);
 			}
@@ -89,23 +91,23 @@ Shader "PostProcessing/SobelOutline"
 
             float4 frag (Varyings i) : SV_Target 
             {
-				// Sample the scene and our depth buffer
+				// Sample the scene buffer
 				float3 offset     = float3((1.0 / _ScreenParams.x), (1.0 / _ScreenParams.y), 0.0) * _OutlineThickness;
 				float3 sceneColor = SAMPLE_TEXTURE2D(_CameraOpaqueTexture, sampler_CameraOpaqueTexture, i.texcoord).rgb;
-				float  sobelDepth = SobelSampleDepth(_CameraDepthTexture, sampler_CameraDepthTexture, i.texcoord.xy, offset);
 
+				//Sample Depth Buffer
+				float  sobelDepth = SobelSampleDepth(_CameraDepthTexture, sampler_CameraDepthTexture, i.texcoord.xy, offset);
 				sobelDepth = pow(abs(saturate(sobelDepth) * _OutlineDepthMultiplier), _OutlineDepthBias);
 
 				// Sample the normal buffer and build a composite scalar value
 				float3 sobelNormalVec = SobelSample(_CameraDepthNormalsTexture, sampler_CameraDepthNormalsTexture, i.texcoord.xy, offset).rgb;
 				float sobelNormal = sobelNormalVec.x + sobelNormalVec.y + sobelNormalVec.z;
-
 				sobelNormal = pow(abs(sobelNormal * _OutlineNormalMultiplier), _OutlineNormalBias);
 
 				float sobelOutline = saturate(max(sobelDepth, sobelNormal));
 
 				float3 outlineColor = lerp(sceneColor, _OutlineColor.rgb, _OutlineColor.a);
-			    const float3 color = lerp(sceneColor, outlineColor, sobelOutline);
+			    float3 color = lerp(sceneColor, outlineColor, sobelOutline);
 
 				return float4(color, 1.0);
             }

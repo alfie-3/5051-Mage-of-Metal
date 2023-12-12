@@ -117,11 +117,12 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutlineDepthBias: 8.2
-    - _OutlineDepthMultiplier: 0.9
+    - _OutlineDepthBias: 0.9
+    - _OutlineDepthClamp: -1.7
+    - _OutlineDepthMultiplier: 3000
     - _OutlineNormalBias: 15.49
-    - _OutlineNormalMultiplier: 2.35
-    - _OutlineThickness: 1
+    - _OutlineNormalMultiplier: 1.9
+    - _OutlineThickness: 1.45
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
