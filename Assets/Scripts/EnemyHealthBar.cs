@@ -8,22 +8,25 @@ public class EnemyHealthBar : MonoBehaviour {
     [SerializeField] private Slider bar;
     [SerializeField] private Image barImage;
     //[SerializeField] private GameObject barObject;
-    [SerializeField] private GameObject Enemy; 
+    private GameObject Enemy; 
     [SerializeField] private Vector3 Offset;
 
     private Camera cam;
     private RectTransform rectTransform;
 
 
-    public EnemyBehaviour enemyScript;
+    private EnemyBehaviour enemyScript;
 
     private void Start() {
         //activate healthbar
         gameObject.SetActive(true);
 
+        Enemy = gameObject.transform.parent.parent.gameObject;
+        enemyScript = Enemy.GetComponent<EnemyBehaviour>();
         rectTransform = GetComponent<RectTransform>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         bar.maxValue = enemyScript.EnemyHP;
+        
     }
 
     // Update is called once per frame
