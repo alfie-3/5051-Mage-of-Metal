@@ -30,7 +30,7 @@ MonoBehaviour:
   active: 1
   outlineThickness:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.5
   outlineDepthMultiplier:
     m_OverrideState: 0
     m_Value: 3000
@@ -44,7 +44,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 2.3
   outlineColor:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &5996657529111559953
 MonoBehaviour:
