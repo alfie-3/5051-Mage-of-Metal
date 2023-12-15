@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //script requirements:
-//have set array of runes that need to be played
-//runes displayed in order of first enemy to last
+//have set array of runes that need to be played - done
+//runes displayed in order of first enemy to last - done
 //not in this script but - enemies need to appear before their rune needs to be played
 //rune has limited amount of time to be played
 //this script needs to have access to order of enemies spawning
 
+//what needs to be done:
+//each rune needs to be delegated to an enemy in order
+//runes need to fade with time - timer variable
+// 
 public class RuneManager : MonoBehaviour
 {
     List<Sprite> Runes = new List<Sprite>();
@@ -53,9 +57,6 @@ public class RuneManager : MonoBehaviour
                     Debug.Log("Incorrect Input");
                     break;
             }
-
-
-
 
         }
 
