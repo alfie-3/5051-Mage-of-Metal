@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyRune : MonoBehaviour
 {
-    [SerializeField] private Vector3 Offset;
+    public Vector3 Offset;
 
     private Camera cam;
     private RectTransform rectTransform;

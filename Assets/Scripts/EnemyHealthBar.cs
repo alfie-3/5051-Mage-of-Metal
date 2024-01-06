@@ -9,7 +9,7 @@ public class EnemyHealthBar : MonoBehaviour {
     [SerializeField] private Image barImage;
     //[SerializeField] private GameObject barObject;
     private GameObject Enemy; 
-    [SerializeField] private Vector3 Offset;
+    public Vector3 Offset;
 
     private Camera cam;
     private RectTransform rectTransform;
