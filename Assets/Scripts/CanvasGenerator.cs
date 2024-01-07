@@ -18,7 +18,7 @@ using UnityEngine;
 //check enemy name, depending on name set different offset
 
 
-public class EnemyManager : MonoBehaviour
+public class CanvasGenerator : MonoBehaviour
 {
     [SerializeField] GameObject EnemyCanvas;
     void Awake()
