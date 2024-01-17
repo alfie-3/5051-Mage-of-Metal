@@ -19,6 +19,8 @@ public class GuitarRemoteInput : RemoteInput
     {
         base.CheckInputs();
 
+        if (WiiMote == null) return;
+
         CheckStrummedThisFrame();
     }
 

@@ -21,7 +21,7 @@ public class EnemyRune : MonoBehaviour
         GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
         managerScript = managerObject.GetComponent<RuneManager>();
         runeTimer = managerScript.runeTimer;
-        CentrePoint = GameObject.FindGameObjectWithTag("Centre");
+        CentrePoint = GameObject.FindGameObjectWithTag("Centre").transform;
     }
 
     // Start is called before the first frame update
