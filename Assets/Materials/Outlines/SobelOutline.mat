@@ -122,7 +122,7 @@ Material:
     - _OutlineDepthMultiplier: 3000
     - _OutlineNormalBias: 2.3
     - _OutlineNormalMultiplier: 1.77
-    - _OutlineThickness: 0
+    - _OutlineThickness: 0.5
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
