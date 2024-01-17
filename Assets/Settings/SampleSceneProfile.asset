@@ -65,15 +65,15 @@ MonoBehaviour:
     m_Value: 1
   outlineDepthMultiplier:
     m_OverrideState: 1
-    m_Value: 3000
+    m_Value: 3000.8
   outlineDepthBias:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1.5
   outlineNormalMultiplier:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 2.12
   outlineNormalBias:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 2.3
   outlineColor:
     m_OverrideState: 0

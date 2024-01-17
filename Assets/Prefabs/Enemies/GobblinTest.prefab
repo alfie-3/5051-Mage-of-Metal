@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 365086970433223342}
   - component: {fileID: 6594453975256836145}
   - component: {fileID: 5318202595034375976}
+  - component: {fileID: 6043201043664328370}
   m_Layer: 0
   m_Name: GobblinTest
   m_TagString: Enemy
@@ -100,10 +101,31 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.25
+  m_Radius: 1.1
   m_Height: 0.75
   m_Direction: 1
-  m_Center: {x: 0, y: 0.67, z: 0}
+  m_Center: {x: 0, y: 0.86, z: 0}
+--- !u!95 &6043201043664328370
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562985597246443796}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: a0ba92318c9135a4687f3fe999bd7eb5, type: 3}
+  m_Controller: {fileID: 9100000, guid: 00be1eef05763ce409239efed95e54e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1112781886026192484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145,22 +167,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a0ba92318c9135a4687f3fe999bd7eb5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0ba92318c9135a4687f3fe999bd7eb5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0ba92318c9135a4687f3fe999bd7eb5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000057601163
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0ba92318c9135a4687f3fe999bd7eb5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000057601163
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0ba92318c9135a4687f3fe999bd7eb5,
         type: 3}
@@ -197,6 +219,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gobblo
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: a0ba92318c9135a4687f3fe999bd7eb5,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 74ca4409a4e85da49a18e28f43e94014, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
