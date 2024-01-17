@@ -23,6 +23,7 @@ public class CanvasGenerator : MonoBehaviour
     [SerializeField] GameObject EnemyCanvas;
     void Awake()
     {
+        //give each enemy a canvas prefab - canvas already has healthbar and rune on it
         GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject Enemy in Enemies)
         {

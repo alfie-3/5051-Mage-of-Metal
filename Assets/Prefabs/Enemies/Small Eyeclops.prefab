@@ -124,6 +124,8 @@ MonoBehaviour:
   EnemyHP: 10
   EnemyMaxHP: 10
   Offset: {x: 0, y: 0, z: 0}
+  UIInfo: Make sure to link UILocation game object into the field below
+  UILocation: {fileID: 3748317840680969244}
 --- !u!136 &9100982912852106409
 CapsuleCollider:
   m_ObjectHideFlags: 0

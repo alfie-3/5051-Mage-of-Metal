@@ -22,6 +22,8 @@ public class EnemyHealthBar : MonoBehaviour {
     private void Start() {
         //activate healthbar
         gameObject.SetActive(true);
+        
+        //make sure hierarchy is correct before setting enemy
         if(gameObject.transform.parent.parent.tag == "Enemy")
         {
             Enemy = gameObject.transform.parent.parent.gameObject;

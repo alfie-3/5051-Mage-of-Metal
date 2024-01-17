@@ -5,7 +5,7 @@ using UnityEngine;
 //what needs to be done:
 //rune manager instantiates runes when they need to be 
 //at the moment runes will appear in order of array and not on beat
-//only current note is playable - make variable of current rune - assign new on last one being destroyed
+//only current note is playable
 //once note played removed from list
 
 
@@ -13,7 +13,6 @@ using UnityEngine;
 public class RuneManager : MonoBehaviour
 {
     List<GameObject> Runes = new List<GameObject>();
-    public float runeTimer = 3.0f;
     [Header("Rune Order")]
     [TextArea]
     public string Rune_Instructions = "Type in the Runes Text box the order of which the runes should appear, B (Blue), O ( Orange), Y (Yellow), G (Green), R (Red) ";
@@ -30,11 +29,10 @@ public class RuneManager : MonoBehaviour
     [SerializeField] GameObject GreenRune;
     [SerializeField] GameObject RedRune; 
 
-
+    public float runeTimer = 3.0f;
 
     void Awake()
     {
-        Transform RuneSpawn = GameObject.FindGameObjectWithTag("RuneSpawn").transform;
         for(int i = 0; i < RunesText.Length; i++)
         {
             char CurrentRune = RunesText[i];

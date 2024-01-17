@@ -8,18 +8,13 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     public int EnemyHP = 10;
     public int EnemyMaxHP = 10;
     public Vector3 Offset;
-    private Transform UILocation;
+    [TextArea]
+    public string UIInfo = "Make sure UILocation game object is linked in the field below";
 
-    void Awake() {
-         //get Offset location
-        foreach(Transform transform in gameObject.transform)
-        {
-            if (transform.tag == "UIReference")
-            {
-                UILocation = transform;
-            }
-        }
-        
+    [SerializeField] private Transform UILocation;
+
+    void Awake() 
+    {
         Offset = UILocation.localPosition * 80;
     }
     void Start() {

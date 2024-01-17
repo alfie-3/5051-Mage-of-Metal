@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -614,6 +614,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3480262780353842112, guid: a20e2090bc7b3134ab7846abaada6953,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -707,6 +712,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6594453975256836145, guid: c81436ae97414e8439817afd5a74f6e0,
+        type: 3}
+      propertyPath: UILocation
+      value: 
+      objectReference: {fileID: 1399902863}
     - target: {fileID: 8874884561246967148, guid: c81436ae97414e8439817afd5a74f6e0,
         type: 3}
       propertyPath: Offset.y
@@ -728,6 +738,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c81436ae97414e8439817afd5a74f6e0, type: 3}
+--- !u!4 &1399902863 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5979004823322221893, guid: c81436ae97414e8439817afd5a74f6e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1399902862}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1543098716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,6 +1038,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2925760958741588230, guid: 6aacb14b42a30da40b15895fd845ce74,
+        type: 3}
+      propertyPath: UILocation
+      value: 
+      objectReference: {fileID: 2749496153406854802}
     - target: {fileID: 5628510504027079244, guid: 6aacb14b42a30da40b15895fd845ce74,
         type: 3}
       propertyPath: m_Name
@@ -1032,6 +1053,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6aacb14b42a30da40b15895fd845ce74, type: 3}
+--- !u!4 &2749496153406854802 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3748317840680969244, guid: 6aacb14b42a30da40b15895fd845ce74,
+    type: 3}
+  m_PrefabInstance: {fileID: 2749496153406854801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6896951794379963929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1040,6 +1067,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1292351832169729392, guid: 780ddd84328416f4ea49c9f8299969da,
+        type: 3}
+      propertyPath: UILocation
+      value: 
+      objectReference: {fileID: 6896951794379963930}
     - target: {fileID: 4024849901491464432, guid: 780ddd84328416f4ea49c9f8299969da,
         type: 3}
       propertyPath: m_Name
@@ -1100,6 +1132,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 780ddd84328416f4ea49c9f8299969da, type: 3}
+--- !u!4 &6896951794379963930 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8634191471356807748, guid: 780ddd84328416f4ea49c9f8299969da,
+    type: 3}
+  m_PrefabInstance: {fileID: 6896951794379963929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9190398363623332056
 PrefabInstance:
   m_ObjectHideFlags: 0

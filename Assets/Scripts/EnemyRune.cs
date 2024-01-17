@@ -5,32 +5,48 @@ using UnityEngine;
 
 public class EnemyRune : MonoBehaviour
 {
-    private Vector3 Offset;
 
+    // this needs to lerp towards the centre point 
+    // also fade in time - timer
+    // if player plays certain key they disappear
+ 
+
+    public RuneManager managerScript; 
     private Camera cam;
-    private RectTransform rectTransform;
+    private float runeTimer;
+    private Transform CentrePoint;
 
-    private GameObject Enemy;
-
-    private EnemyBehaviour enemyScript;
+    void Awake()
+    {
+        GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
+        managerScript = managerObject.GetComponent<RuneManager>();
+        runeTimer = managerScript.runeTimer;
+        CentrePoint = GameObject.FindGameObjectWithTag("Centre");
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //this only works if the hierarchy makes the enemy object the 2nd parent above
-        Enemy = gameObject.transform.parent.parent.gameObject;
-        enemyScript = Enemy.GetComponent<EnemyBehaviour>();
-        Offset = enemyScript.Offset;
-        rectTransform = GetComponent<RectTransform>();
+
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 screenPosition = cam.WorldToScreenPoint(Enemy.transform.position)+ Offset;
+        RuneLifespan();
 
-        // Set the UI object's position to the screen coordinates
-        rectTransform.position = screenPosition;
     }
+
+    void RuneLifespan()
+    {
+        runeTimer -= Time.deltaTime;
+
+        if(runeTimer <= 0.0f)
+        {
+            Destroy(gameObject);
+            //on destroy assign new rune to be focus rune in runemanager    
+        }
+    }
+
 }
