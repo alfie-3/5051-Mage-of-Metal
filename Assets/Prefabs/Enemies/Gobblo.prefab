@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2727838035476871662}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9999825, z: -0, w: 0.0059254155}
-  m_LocalPosition: {x: 0, y: 0.97, z: 0}
+  m_LocalPosition: {x: 0, y: 1.242, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -155,6 +155,8 @@ MonoBehaviour:
   EnemyHP: 10
   EnemyMaxHP: 10
   Offset: {x: 0, y: 0, z: 0}
+  UIInfo: Make sure to link UILocation game object into the field below
+  UILocation: {fileID: 8634191471356807748}
 --- !u!136 &2524195112442614933
 CapsuleCollider:
   m_ObjectHideFlags: 0

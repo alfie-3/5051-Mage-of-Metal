@@ -78,7 +78,7 @@ public class CursorPointer : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position);
         RaycastHit hitInfo = new();
 
-        if (Physics.Raycast(ray, out hitInfo))
+        if (Physics.Raycast(ray, out hitInfo, 30))
         {
             if (hitInfo.transform.TryGetComponent(out IDamage damageable))
             {

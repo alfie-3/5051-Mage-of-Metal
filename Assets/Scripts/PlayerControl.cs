@@ -24,7 +24,6 @@ public class PlayerControl : MonoBehaviour
         screenPoint = screenPointInput.ReadValue<Vector2>();
         screenPoint.x = ((screenPoint.x * 2 / screenWidth) - 1) * lookPower;
         screenPoint.y = ((screenPoint.y * 2 / screenHeight) - 1) * lookPower;
-        Debug.Log(screenPoint);
         gameObject.transform.localEulerAngles = new Vector3(-screenPoint.y, screenPoint.x, 0);
     }
 }

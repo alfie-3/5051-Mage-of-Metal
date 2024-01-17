@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - UIReference
+  - Manager
+  - Centre
+  - RuneSpawn
   layers:
   - Default
   - TransparentFX
