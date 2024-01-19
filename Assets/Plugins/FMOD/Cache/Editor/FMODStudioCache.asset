@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638410842611671282
+  lastModified: 638410432174378543
   FileSizes:
   - Name: 
     Value: 1020
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638410842611661291
+  lastModified: 638410432174358591
   FileSizes: []
   Exists: 1
 --- !u!114 &-4086606447808561957
@@ -90,7 +90,7 @@ MonoBehaviour:
   - {fileID: -4234454804968402356}
   StringsBanks:
   - {fileID: -7067886867853178366}
-  cacheTime: 638410842611671282
+  cacheTime: 638412770423984711
   cacheVersion: 131608
 --- !u!114 &635613063070166417
 MonoBehaviour:
@@ -107,7 +107,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank B.bank
   Name: Bank B
   StudioPath: bank:/Music/Bank B
-  lastModified: 638410842611601343
+  lastModified: 638412770423737912
   FileSizes: []
   Exists: 1
 --- !u!114 &3568968472121339264
@@ -138,7 +138,7 @@ MonoBehaviour:
   - {fileID: 5393328273258006741}
   MinDistance: 1
   MaxDistance: 20
-  Length: 67000
+  Length: 29500
 --- !u!114 &5393328273258006741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +178,6 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Weather/Bank A
-  lastModified: 638410842611581281
+  lastModified: 638412770423984711
   FileSizes: []
   Exists: 1
