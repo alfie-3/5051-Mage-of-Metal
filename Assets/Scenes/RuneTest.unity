@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -254,6 +254,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Eyeclops
       objectReference: {fileID: 0}
+    - target: {fileID: 4562985597246443796, guid: c81436ae97414e8439817afd5a74f6e0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -270,7 +275,7 @@ GameObject:
   - component: {fileID: 557604319}
   m_Layer: 5
   m_Name: RuneSpawnPoint
-  m_TagString: RuneSpawn
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,7 +296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 299}
+  m_AnchoredPosition: {x: 0, y: 209.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &754259587
@@ -457,7 +462,10 @@ MonoBehaviour:
   GreenRune: {fileID: 8318440137405486948, guid: 734ea401ec3ae0d4087019d85e3cf4b6,
     type: 3}
   RedRune: {fileID: 7422829870640007398, guid: 9c62221e9a351f046a635c0cd1471ff3, type: 3}
-  runeTimer: 3
+  RuneSpawnpoint: {fileID: 557604319}
+  HUDCanvas: {fileID: 1287117420}
+  SpeedOfRune: 20
+  runeTimer: 5
 --- !u!4 &864326189
 Transform:
   m_ObjectHideFlags: 0
@@ -662,12 +670,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498536782}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26637715, y: 0.6915813, z: -0.309099, w: 0.59600025}
-  m_LocalPosition: {x: -10.4369335, y: 6.2709556, z: -7.935903}
+  m_LocalRotation: {x: 0.045482747, y: 0.7257789, z: -0.04818639, w: 0.68472946}
+  m_LocalPosition: {x: -0.36020517, y: 0.651839, z: 0.04248619}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1870246939}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1498536786
 MonoBehaviour:
@@ -868,6 +876,7 @@ GameObject:
   - component: {fileID: 1870246938}
   - component: {fileID: 1870246937}
   - component: {fileID: 1870246936}
+  - component: {fileID: 1870246940}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Player
@@ -960,9 +969,25 @@ Transform:
   m_LocalPosition: {x: -7.704, y: 1.704, z: -8.789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1498536785}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1870246940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870246935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06860e02e954d06468211d26761c3811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  lookSpeed: 2
+  lookXLimit: 45
 --- !u!1 &2020231645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,7 +1178,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1498536785}
   - {fileID: 2020231647}
   - {fileID: 754259591}
   - {fileID: 446074604}

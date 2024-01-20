@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //what needs to be done:
-//rune manager instantiates runes when they need to be 
 //at the moment runes will appear in order of array and not on beat
 //only current note is playable
-//once note played removed from list
+//way to check what button player presses against current rune
 
 
 
@@ -29,6 +28,10 @@ public class RuneManager : MonoBehaviour
     [SerializeField] GameObject GreenRune;
     [SerializeField] GameObject RedRune; 
 
+
+    [SerializeField] Transform RuneSpawnpoint;
+    [SerializeField] GameObject HUDCanvas;
+    public float SpeedOfRune = 1.0f;
     public float runeTimer = 3.0f;
 
     void Awake()
@@ -56,15 +59,12 @@ public class RuneManager : MonoBehaviour
                     Debug.Log("Incorrect Input");
                     break;
             }
-
         }
-
     }
-
 
     void Start()
     {
-        
+        UpdateRune();
     }
 
     // Update is called once per frame
@@ -72,4 +72,17 @@ public class RuneManager : MonoBehaviour
     {
         
     }
+
+    
+    public void UpdateRune()
+    {
+        if(Runes.Count > 0)
+        {
+            Instantiate(Runes[0],RuneSpawnpoint.position, Quaternion.identity, HUDCanvas.transform);
+            Runes.RemoveAt(0);
+        }
+        
+
+    }
+
 }

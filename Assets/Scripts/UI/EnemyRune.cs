@@ -36,6 +36,8 @@ public class EnemyRune : MonoBehaviour
     {
         RuneLifespan();
 
+        var step =  managerScript.SpeedOfRune * Time.deltaTime; // calculate distance to move
+        transform.position = Vector3.MoveTowards(transform.position, CentrePoint.position, step);
     }
 
     void RuneLifespan()
@@ -45,7 +47,7 @@ public class EnemyRune : MonoBehaviour
         if(runeTimer <= 0.0f)
         {
             Destroy(gameObject);
-            //on destroy assign new rune to be focus rune in runemanager    
+            managerScript.UpdateRune();
         }
     }
 

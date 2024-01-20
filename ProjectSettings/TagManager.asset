@@ -8,7 +8,6 @@ TagManager:
   - UIReference
   - Manager
   - Centre
-  - RuneSpawn
   layers:
   - Default
   - TransparentFX
