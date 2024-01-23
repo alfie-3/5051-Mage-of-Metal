@@ -47,7 +47,7 @@ public class EnemyRune : MonoBehaviour
         if(runeTimer <= 0.0f)
         {
             Destroy(gameObject);
-            managerScript.UpdateRune();
+            managerScript.UpdateRune(); 
         }
     }
 

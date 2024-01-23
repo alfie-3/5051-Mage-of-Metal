@@ -38,6 +38,8 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         gameObject.SetActive(false);
     }
 
+
+
     /*
     IEnumerator DieEnemy() {
         while (EnemyHP != 0)
