@@ -102,7 +102,7 @@ Shader "PostProcessing/SobelOutline"
 				// Sample the normal buffer and build a composite scalar value
 				float3 sobelNormalVec = SobelSample(_CameraDepthNormalsTexture, sampler_CameraDepthNormalsTexture, i.texcoord.xy, offset).rgb;
 				float sobelNormal = sobelNormalVec.x + sobelNormalVec.y + sobelNormalVec.z;
-				sobelNormal = pow(abs(sobelNormal * _OutlineNormalMultiplier), _OutlineNormalBias);
+				sobelNormal = pow(abs(sobelNormal * lerp(1, 1, _CameraDepthNormalsTexture.Sample(sampler_CameraDepthNormalsTexture, i.texcoord.xy))), _OutlineNormalBias);
 
 				float sobelOutline = saturate(max(sobelDepth, sobelNormal));
 

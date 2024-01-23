@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
+[ExecuteInEditMode]
 public class PixelatedCamera : MonoBehaviour
 {
     public enum PixelScreenMode { Resize, Scale }
@@ -24,8 +27,8 @@ public class PixelatedCamera : MonoBehaviour
     [Header("Screen scaling settings")]
     public PixelScreenMode mode;
     public ScreenSize targetScreenSize = new ScreenSize { width = 256, height = 144 };  // Only used with PixelScreenMode.Resize
-    public uint screenScaleFactor = 1;  // Only used with PixelScreenMode.Scale
 
+    public uint screenScaleFactor = 1;  // Only used with PixelScreenMode.Scale
 
     [Header("Display")]
     public RawImage display;
@@ -34,6 +37,7 @@ public class PixelatedCamera : MonoBehaviour
     {
         // Try to set as main pixel camera
         if (main == null) main = this;
+
     }
 
     private void Start()

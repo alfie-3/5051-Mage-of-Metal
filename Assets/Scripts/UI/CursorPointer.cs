@@ -6,6 +6,11 @@ public class CursorPointer : MonoBehaviour
     [SerializeField] RectTransform ir_pointer;
 
     Image image;
+    [Space]
+    [SerializeField] LayerMask layerMask;
+    [Space]
+    [SerializeField] Color idleColour;
+    [SerializeField] Color activeColour;
 
     private void Awake()
     {
@@ -33,10 +38,10 @@ public class CursorPointer : MonoBehaviour
         IDamage enemy = CheckForEnemy();
 
         if (enemy != null)
-            image.color = Color.green;
+            image.color = activeColour;
 
         else
-            image.color = Color.red;
+            image.color = idleColour;
     }
 
     private void UpdateCursorPos()
@@ -75,11 +80,14 @@ public class CursorPointer : MonoBehaviour
     //Checks for enemy by raycasting below the cursor to the world.
     public IDamage CheckForEnemy()
     {
-        Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position);
+        Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
         RaycastHit hitInfo = new();
 
-        if (Physics.Raycast(ray, out hitInfo, 30))
+        Debug.DrawRay(ray.origin, ray.direction * 50);
+
+        if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
         {
+            Debug.Log(hitInfo.collider.gameObject.name);
             if (hitInfo.transform.TryGetComponent(out IDamage damageable))
             {
                 return damageable;

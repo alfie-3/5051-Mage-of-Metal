@@ -137,7 +137,7 @@ MonoBehaviour:
   active: 1
   outlineThickness:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.36
   outlineDepthMultiplier:
     m_OverrideState: 1
     m_Value: 3000
@@ -146,10 +146,10 @@ MonoBehaviour:
     m_Value: 0.9
   outlineNormalMultiplier:
     m_OverrideState: 1
-    m_Value: 1.77
+    m_Value: 3.15
   outlineNormalBias:
     m_OverrideState: 1
-    m_Value: 2.3
+    m_Value: 29.75
   outlineColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}

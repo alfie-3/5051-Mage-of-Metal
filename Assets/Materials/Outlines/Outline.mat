@@ -102,14 +102,14 @@ Material:
     - _MaxDistance: 23.63
     - _MaxOutlineWidth: 0.02
     - _MaxOutlineWidthCamDist: 400
-    - _MaxOutlineZ: -0.00044
+    - _MaxOutlineZ: -0.00893
     - _MaxWCamDist: 500
     - _MaxZCamDist: 98.3
     - _Metallic: 0
     - _MinDistance: 1.5
     - _MinOutlineThicknessMultiplier: 0.19
     - _MinOutlineWidth: 0.004
-    - _MinOutlineZ: -0.00421
+    - _MinOutlineZ: -0.01
     - _OcclusionStrength: 1
     - _OutlineWidth: 0.02
     - _OutlineZ: -0.00019
