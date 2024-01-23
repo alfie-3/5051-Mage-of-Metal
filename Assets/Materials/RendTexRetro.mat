@@ -118,7 +118,10 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ScalineDensity: 92.63
+    - _ScalineDensity: 397.46
+    - _ScanlineBlend: 0.22
+    - _ScanlineSpeed: 0.02
+    - _ScanlineStep: 0.53
     - _Scannlines: 92.63
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
