@@ -7,11 +7,15 @@ using UnityEngine;
 //only current note is playable
 //way to check what button player presses against current rune
 
+//change way next rune is called
+//put it into this script
+//need a way to skip to next rune once hit
+
 
 
 public class RuneManager : MonoBehaviour
 {
-    List<GameObject> Runes = new List<GameObject>();
+    public List<GameObject> Runes = new List<GameObject>();
     [Header("Rune Order")]
     [TextArea]
     public string Rune_Instructions = "Type in the Runes Text box the order of which the runes should appear, B (Blue), O ( Orange), Y (Yellow), G (Green), R (Red) ";
@@ -31,6 +35,7 @@ public class RuneManager : MonoBehaviour
 
     [SerializeField] Transform RuneSpawnpoint;
     [SerializeField] GameObject HUDCanvas;
+    public GameObject CurrentRune;
     public float SpeedOfRune = 1.0f;
     public float runeTimer = 3.0f;
 
@@ -38,8 +43,8 @@ public class RuneManager : MonoBehaviour
     {
         for(int i = 0; i < RunesText.Length; i++)
         {
-            char CurrentRune = RunesText[i];
-            switch (CurrentRune) {
+            char CurrentChar = RunesText[i];
+            switch (CurrentChar) {
                 case 'B':
                     Runes.Add(BlueRune);
                     break;
@@ -66,18 +71,12 @@ public class RuneManager : MonoBehaviour
     {
         UpdateRune();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     
     public void UpdateRune()
     {
         if(Runes.Count > 0)
         {
+            CurrentRune = Runes[0];
             Instantiate(Runes[0],RuneSpawnpoint.position, Quaternion.identity, HUDCanvas.transform);
             Runes.RemoveAt(0);
         }
