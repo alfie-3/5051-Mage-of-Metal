@@ -13,51 +13,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Note1",
-                    "type": "Button",
-                    "id": "a5bce679-bf97-459b-a2d2-a1f12ab55071",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Note2",
-                    "type": "Button",
-                    "id": "3136b2dd-77d0-4864-89f3-52b5b4a9799a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Note3",
-                    "type": "Button",
-                    "id": "a5b470ef-bfdf-490e-8e28-1f779a032e1c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Note4",
-                    "type": "Button",
-                    "id": "31a4c2e9-e9ab-44e0-98f1-6b375e6ef42c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Note5",
-                    "type": "Button",
-                    "id": "b041df77-640f-474b-8083-e9e9d3654c35",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -69,61 +24,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "ScreenPoint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8707e13b-65ee-4323-90dc-c3df7731f2ac",
-                    "path": "<Keyboard>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Note1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b430fdef-82db-4697-b96d-3e7508e773a8",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Note2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d507ef16-4db7-4045-8cd1-bec2b34a9737",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Note3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f728fe1e-5bdc-4757-bf20-bd703fe92fb8",
-                    "path": "<Keyboard>/v",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Note4",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "24d8c848-8afb-477c-a7a7-0ac88680b857",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Note5",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
