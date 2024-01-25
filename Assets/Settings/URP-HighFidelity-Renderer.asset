@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     showInSceneView: 1
-    _event: 550
+    _event: 450
     layerMask:
       serializedVersion: 2
       m_Bits: 1
