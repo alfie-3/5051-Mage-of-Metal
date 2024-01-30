@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638416192951435447
+  lastModified: 638422328606285590
   FileSizes:
   - Name: 
-    Value: 1020
+    Value: 1078
   Exists: 1
 --- !u!114 &-4234454804968402356
 MonoBehaviour:
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638416192951435447
+  lastModified: 638422256815295748
   FileSizes: []
   Exists: 1
 --- !u!114 &-4086606447808561957
@@ -85,12 +85,13 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 3568968472121339264}
   - {fileID: -4086606447808561957}
+  - {fileID: 4424463235003810918}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4234454804968402356}
   StringsBanks:
   - {fileID: -7067886867853178366}
-  cacheTime: 638416192951435447
+  cacheTime: 638422328606285590
   cacheVersion: 131608
 --- !u!114 &635613063070166417
 MonoBehaviour:
@@ -107,7 +108,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank B.bank
   Name: Bank B
   StudioPath: bank:/Music/Bank B
-  lastModified: 638416192951316172
+  lastModified: 638422328606265642
   FileSizes: []
   Exists: 1
 --- !u!114 &3568968472121339264
@@ -139,6 +140,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 29500
+--- !u!114 &4424463235003810918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CopywritedMusic/DanceyDance
+  m_EditorClassIdentifier: 
+  Path: event:/CopywritedMusic/DanceyDance
+  Guid:
+    Data1: -1471999138
+    Data2: 1262724100
+    Data3: -1999101270
+    Data4: -1120886550
+  Banks:
+  - {fileID: 635613063070166417}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 81288
 --- !u!114 &5393328273258006741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +206,6 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Weather/Bank A
-  lastModified: 638416192951180503
+  lastModified: 638412770423984711
   FileSizes: []
   Exists: 1
