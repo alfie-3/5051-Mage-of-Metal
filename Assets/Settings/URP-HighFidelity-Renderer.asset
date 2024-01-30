@@ -133,4 +133,4 @@ MonoBehaviour:
     overrideMaterial: {fileID: 0}
     overrideMaterialPass: 0
     colorTargetDestinationID: 
-    blitMaterial: {fileID: 2100000, guid: 235f3b402728d2140a2cd08bc6fc51e4, type: 2}
+    blitMaterial: {fileID: 2100000, guid: 46609f426eb384e43a30bc1e8ea00369, type: 2}
