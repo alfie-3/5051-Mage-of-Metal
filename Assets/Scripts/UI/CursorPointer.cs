@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class CursorPointer : MonoBehaviour
 {
     [SerializeField] RectTransform ir_pointer;
+    [SerializeField] NoteController _noteController;
 
     Image image;
     [Space]
@@ -111,5 +112,8 @@ public class CursorPointer : MonoBehaviour
         {
             Debug.Log("Miss");
         }
+
+        WiimoteApi.GuitarData guitardata = WiiInputManager.GuitarWiiMote.WiiMote.Guitar;
+        _noteController.CheckGuitarNotes(guitardata.green_fret,guitardata.red_fret,guitardata.yellow_fret,guitardata.blue_fret,guitardata.orange_fret);
     }
 }

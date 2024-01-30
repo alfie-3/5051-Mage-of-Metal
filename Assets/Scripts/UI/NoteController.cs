@@ -101,6 +101,15 @@ public class NoteController : MonoBehaviour
         return noteList;
     }
 
+    public void CheckGuitarNotes(bool note1, bool note2, bool note3, bool note4, bool note5)
+    {
+        if (note1) { OnNote1(); }
+        if (note2) { OnNote2(); }
+        if (note3) { OnNote3(); }
+        if (note4) { OnNote4(); }
+        if (note5) { OnNote5(); }
+    }
+
     public void OnNote1()
     {
         if (Vector3.Distance(noteList1[0].transform.position, notePlace1.transform.position) < distanceActivation)
