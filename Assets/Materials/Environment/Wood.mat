@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Outline
-  m_Shader: {fileID: 4800000, guid: 05e2d3e140492f44bb6cac2b18c19edc, type: 3}
+  m_Name: Wood
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -17,7 +17,8 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -98,30 +99,9 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaxCamDist: 346.63
-    - _MaxDistance: 23.63
-    - _MaxOutlineWidth: 0.02
-    - _MaxOutlineWidthCamDist: 400
-    - _MaxOutlineZ: -0.00893
-    - _MaxWCamDist: 500
-    - _MaxZCamDist: 98.3
     - _Metallic: 0
-    - _MinDistance: 1.5
-    - _MinOutlineThicknessMultiplier: 0.19
-    - _MinOutlineWidth: 0.004
-    - _MinOutlineZ: -0.01
     - _OcclusionStrength: 1
-    - _OutlineDepthBias: 0.9
-    - _OutlineDepthClamp: 1
-    - _OutlineDepthMultiplier: 3000
-    - _OutlineNormalBias: 1.1
-    - _OutlineNormalMultiplier: 1.8
-    - _OutlineThickness: 1
-    - _OutlineWidth: 0.02
-    - _OutlineZ: -0.00019
-    - _Outline_Thickness: 0.03
     - _Parallax: 0.005
-    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -133,15 +113,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.509434, g: 0.32094797, b: 0.27153793, a: 1}
+    - _Color: {r: 0.509434, g: 0.32094795, b: 0.2715379, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColour: {r: 0, g: 0, b: 0, a: 1}
-    - _Outline_Colour: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &5647756782912597626
+--- !u!114 &5840700794849373572
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

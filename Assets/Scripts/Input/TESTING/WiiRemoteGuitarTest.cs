@@ -12,31 +12,6 @@ public class WiiRemoteGuitarTest : MonoBehaviour
 
         guitarWiiMote.WiiMote.ReadWiimoteData();
 
-        if (guitarWiiMote.ColorPressedThisFrame(GUITAR_COLORS.GREEN))
-        {
-            Debug.Log("Green Pressed This Frame");
-        }
-
-        if (guitarWiiMote.ColorPressedThisFrame(GUITAR_COLORS.RED))
-        {
-            Debug.Log("Red Pressed This Frame");
-        }
-
-        if (guitarWiiMote.ColorPressedThisFrame(GUITAR_COLORS.YELLOW))
-        {
-            Debug.Log("Yellow Pressed This Frame");
-        }
-
-        if (guitarWiiMote.ColorPressedThisFrame(GUITAR_COLORS.BLUE))
-        {
-            Debug.Log("Blue Pressed This Frame");
-        }
-
-        if (guitarWiiMote.ColorPressedThisFrame(GUITAR_COLORS.ORANGE))
-        {
-            Debug.Log("Orange Pressed This Frame");
-        }
-
         if (guitarWiiMote.GetWhammy() > 0)
         {
             Debug.Log(guitarWiiMote.GetWhammy());

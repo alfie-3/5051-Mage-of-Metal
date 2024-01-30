@@ -78,7 +78,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0.058
+    m_Value: 0.05
   cropToFit:
     m_OverrideState: 1
     m_Value: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   active: 1
   outlineThickness:
     m_OverrideState: 1
-    m_Value: 1.36
+    m_Value: 1
   outlineDepthMultiplier:
     m_OverrideState: 1
     m_Value: 3000

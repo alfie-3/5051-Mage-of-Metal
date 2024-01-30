@@ -12,7 +12,7 @@ public class ObjectPooler : MonoBehaviour
 
     public GameObject SpawnNewNote(string name, Vector3 position)
     {
-        Debug.Log("Spawn note thing of name "+name);
+        //Debug.Log("Spawn note thing of name "+name);
         if (!poolDictionary.ContainsKey(name))
         {
             Debug.Log("Obj doesn't exist");

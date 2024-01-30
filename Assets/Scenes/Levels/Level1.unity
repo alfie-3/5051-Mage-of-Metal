@@ -306,44 +306,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 183280842}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &301034258
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 367
-  m_Height: 225
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 0
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!20 &307335489 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2685964791969498827, guid: e31a72bf4275f0749a0a27f1a641a678,
@@ -535,7 +497,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 301034258}
+      objectReference: {fileID: 1569229118}
     - target: {fileID: 2880871527608372577, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: m_TagString
@@ -1623,6 +1585,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 615809969}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &655479916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5765101176426460225, guid: d5de33f221eba7e43a860a4ebcb40d95,
+    type: 3}
+  m_PrefabInstance: {fileID: 615809969}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2559aa116d5c6c4468673b6805b245f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &668398955 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 486502788341722362, guid: e31a72bf4275f0749a0a27f1a641a678,
@@ -2638,6 +2612,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WiimoteCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6864635204286856430, guid: f5425d018d035074f80e97d751881fc5,
+        type: 3}
+      propertyPath: _noteController
+      value: 
+      objectReference: {fileID: 655479916}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2983,6 +2962,44 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1513091913}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &1569229118
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 640
+  m_Height: 360
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 0
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1001 &1643709186
 PrefabInstance:
   m_ObjectHideFlags: 0

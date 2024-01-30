@@ -88,7 +88,6 @@ public class CursorPointer : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
         {
-            Debug.Log(hitInfo.collider.gameObject.name);
             if (hitInfo.transform.TryGetComponent(out IDamage damageable))
             {
                 return damageable;
@@ -101,6 +100,10 @@ public class CursorPointer : MonoBehaviour
     //Basic attack, to have rune breaking stuff added to
     private void Attack()
     {
+        WiimoteApi.GuitarData guitardata = WiiInputManager.GuitarWiiMote.WiiMote.Guitar;
+        if (!_noteController.CheckGuitarNotes(guitardata.green_fret, guitardata.red_fret, guitardata.yellow_fret, guitardata.blue_fret, guitardata.orange_fret)) return;
+
+        Debug.Log("SUCCESSFUL ATTACK");
         IDamage damageable = CheckForEnemy();
 
         if (damageable != null)
@@ -112,8 +115,5 @@ public class CursorPointer : MonoBehaviour
         {
             Debug.Log("Miss");
         }
-
-        WiimoteApi.GuitarData guitardata = WiiInputManager.GuitarWiiMote.WiiMote.Guitar;
-        _noteController.CheckGuitarNotes(guitardata.green_fret,guitardata.red_fret,guitardata.yellow_fret,guitardata.blue_fret,guitardata.orange_fret);
     }
 }
