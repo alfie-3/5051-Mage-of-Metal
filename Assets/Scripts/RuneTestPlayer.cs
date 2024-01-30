@@ -17,89 +17,146 @@ public class RuneTestPlayer : MonoBehaviour
     public Camera playerCam;
     public float lookSpeed = 2.0f;
     public float lookLimitX = 45.0f;
+    public bool runePlayed = false;
+    private bool canFire = false;
+    Transform currentEnemy;
+
     [SerializeField] private RuneManager runeManager;
+
+    [SerializeField] private GameObject BlueEffect;
+    [SerializeField] private GameObject GreenEffect;
+    [SerializeField] private GameObject YellowEffect;
+    [SerializeField] private GameObject OrangeEffect;
+    [SerializeField] private GameObject RedEffect;
     float rotX = 0;
+
 
     private EnemyBehaviour enemyScript;
     void Start()
     {
         playerCam = Camera.main;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         //looking around logic
-        rotX += -Input.GetAxis("Mouse Y") * lookSpeed;
-        rotX = Mathf.Clamp(rotX, -lookLimitX, lookLimitX);
-        playerCam.transform.localRotation = Quaternion.Euler(rotX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        //rotX += -Input.GetAxis("Mouse Y") * lookSpeed;
+        //rotX = Mathf.Clamp(rotX, -lookLimitX, lookLimitX);
+        //playerCam.transform.localRotation = Quaternion.Euler(rotX, 0, 0);
+        //transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
 
         //attacking logic
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 2000))
+        if (Physics.Raycast(ray, out hit, 6000))
         {
+            if(hit.transform.gameObject)
+            {
+                Debug.Log(hit.transform.gameObject.name);
+            }
+
             if (hit.transform.gameObject.tag == "Enemy")
             {
                 Debug.Log("Enemy Hit");
                 enemyScript = hit.transform.gameObject.GetComponent<EnemyBehaviour>();
-                Gun();
+                canFire = true;
+                currentEnemy = hit.transform;
+            }
+            else
+            {
+                canFire = false;
             }
         }
 
 
     }
 
-    void Gun()
+
+    void FancyEffect(string effectType)
+        {
+            if(effectType == "blue") {
+                Instantiate(BlueEffect, currentEnemy);
+            }
+            else if(effectType == "green") {
+                Instantiate(GreenEffect, currentEnemy);
+            }
+            else if(effectType == "yellow"){
+                Instantiate(YellowEffect, currentEnemy);
+            }
+            else if(effectType == "orange"){
+                Instantiate(OrangeEffect, currentEnemy);
+            }
+            else if(effectType == "red"){
+                Instantiate(RedEffect, currentEnemy);
+            }
+            Destroy(GameObject.FindGameObjectWithTag("effect"), 0.3f);
+
+        }
+
+    
+    public void Gun(string buttonColor)
     {
+        Debug.Log("Button Hit!");
         char[] runeName = runeManager.CurrentRune.name.ToCharArray();
-
-        if(Input.GetKeyDown(KeyCode.B))
+        if(canFire == true)
         {
-            if(runeName[0] == 'B')
+            if(buttonColor == "blue")
             {
-                Debug.Log("Blue Hit!");
-                enemyScript.Damage(1);
+                if(runeName[0] == 'B')
+                {
+                    FancyEffect("blue");
+                    Debug.Log("Blue Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                }
             }
-        }
 
-        if(Input.GetKeyDown(KeyCode.Y))
-        {
-            if(runeName[0] == 'Y')
+            if(buttonColor == "yellow")
             {
-                Debug.Log("Yellow Hit!");
-                enemyScript.Damage(1);
+                if(runeName[0] == 'Y')
+                {
+                    FancyEffect("yellow");
+                    Debug.Log("Yellow Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                }
             }
-        }
 
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            if(runeName[0] == 'O')
+            if(buttonColor == "orange")
             {
-                Debug.Log("Orange Hit!");
-                enemyScript.Damage(1);
+                if(runeName[0] == 'O')
+                {
+                    FancyEffect("orange");
+                    Debug.Log("Orange Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                }
             }
-        }
 
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            if(runeName[0] == 'R')
+            if(buttonColor == "red")
             {
-                Debug.Log("Red Hit!");
-                enemyScript.Damage(1);
+                if(runeName[0] == 'R')
+                {
+                    FancyEffect("red");
+                    Debug.Log("Red Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                }
             }
-        }
 
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            if(runeName[0] == 'G')
+            if(buttonColor == "green")
             {
-                Debug.Log("Green Hit!");
-                enemyScript.Damage(1);
+                if(runeName[0] == 'G')
+                {
+                    FancyEffect("green");
+                    Debug.Log("Green Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                }
             }
         }
 

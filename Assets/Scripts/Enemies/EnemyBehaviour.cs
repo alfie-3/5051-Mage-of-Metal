@@ -10,7 +10,7 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     public Vector3 Offset;
     [TextArea]
     public string UIInfo = "Make sure UILocation game object is linked in the field below";
-
+    [SerializeField] GameObject DieEffect;
     [SerializeField] private Transform UILocation;
 
     void Awake() 
@@ -34,8 +34,10 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
 
     private void Kill()
     {
+        GameObject effect = Instantiate(DieEffect, gameObject.transform);
+        Destroy(effect, 0.3f);
         Debug.Log("Enemy Killed");
-        gameObject.SetActive(false);
+        Destroy(gameObject, 0.3f);
     }
 
 

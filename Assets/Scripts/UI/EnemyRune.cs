@@ -11,7 +11,8 @@ public class EnemyRune : MonoBehaviour
     // if player plays certain key they disappear
  
 
-    public RuneManager managerScript; 
+    private RuneManager managerScript; 
+    private RuneTestPlayer playerScript;
     private Camera cam;
     private float runeTimer;
     private Transform CentrePoint;
@@ -19,7 +20,9 @@ public class EnemyRune : MonoBehaviour
     void Awake()
     {
         GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         managerScript = managerObject.GetComponent<RuneManager>();
+        playerScript = playerObject.GetComponent<RuneTestPlayer>();
         runeTimer = managerScript.runeTimer;
         CentrePoint = GameObject.FindGameObjectWithTag("Centre").transform;
     }
@@ -36,18 +39,25 @@ public class EnemyRune : MonoBehaviour
     {
         RuneLifespan();
 
-        var step =  managerScript.SpeedOfRune * Time.deltaTime; // calculate distance to move
+        float step =  managerScript.SpeedOfRune * Time.deltaTime; // calculate distance to move
         transform.position = Vector3.MoveTowards(transform.position, CentrePoint.position, step);
     }
 
     void RuneLifespan()
     {
         runeTimer -= Time.deltaTime;
-
-        if(runeTimer <= 0.0f)
+          if(playerScript.runePlayed == true)
+            {
+                managerScript.UpdateRune();
+                playerScript.runePlayed = false;
+                Destroy(gameObject);
+            }
+            
+        else if(runeTimer <= 0.0f)
         {
-            Destroy(gameObject);
             managerScript.UpdateRune(); 
+            Destroy(gameObject);
+
         }
     }
 

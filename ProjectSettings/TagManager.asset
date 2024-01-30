@@ -8,6 +8,7 @@ TagManager:
   - UIReference
   - Manager
   - Centre
+  - effect
   layers:
   - Default
   - TransparentFX
