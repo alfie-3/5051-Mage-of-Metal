@@ -50,6 +50,10 @@ public class AudioManager : MonoBehaviour {
         instance.start();
         lastMarker = (string)timelineInfo.LastMarker;
     }
+    public void MusicStop()
+    {
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
     public void AddScore()
     {
         musicPercentage += 0.1f;
@@ -127,6 +131,10 @@ public class AudioManagerEditor : Editor
         if (GUILayout.Button("Start Music"))
         {
             audioManager.MusicPlay();
+        }
+        if (GUILayout.Button("Stop Music"))
+        {
+            audioManager.MusicStop();
         }
         if (GUILayout.Button("Add Score"))
         {
