@@ -479,7 +479,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1755837899}
+      objectReference: {fileID: 1774765635}
     - target: {fileID: 2880871527608372577, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: m_TagString
@@ -498,7 +498,7 @@ PrefabInstance:
     - target: {fileID: 6142474100208599440, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: screenScaleFactor
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6846606227152661455, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
@@ -2895,7 +2895,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7045a3583e5e277408a57f7f115798db, type: 3}
---- !u!84 &1755837899
+--- !u!84 &1774765635
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2909,8 +2909,8 @@ RenderTexture:
   m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
   serializedVersion: 5
-  m_Width: 640
-  m_Height: 360
+  m_Width: 734
+  m_Height: 366
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthStencilFormat: 94

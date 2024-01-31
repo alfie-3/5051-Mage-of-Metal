@@ -101,21 +101,29 @@ public class NoteController : MonoBehaviour
         return noteList;
     }
 
-    public bool CheckGuitarNotes(bool note1, bool note2, bool note3, bool note4, bool note5)
+    public bool CheckGuitarNotes()
     {
-        bool success = false;
+        GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
+        bool success = true;
 
-        if (note1) { if (!OnNote1()) { success = false; } }
-        if (note2) { if (!OnNote2()) { success = false; } }
-        if (note3) { if (!OnNote3()) { success = false; } }
-        if (note4) { if (!OnNote4()) { success = false; } }
-        if (note5) { if (!OnNote5()) { success = false; } }
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.GREEN))
+            if (!OnNote1()) { success = false; }
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.RED))
+            if (!OnNote2()) { success = false; }
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.YELLOW))
+            if (!OnNote3()) { success = false; }
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.BLUE)) //I like blue :)
+            if (!OnNote4()) { success = false; }
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.ORANGE))
+            if (!OnNote5()) { success = false; }
 
         if (success) Debug.Log("Success");
 
         return success;
     }
 
+
+    //GREEN
     public bool OnNote1()
     {
         if (Vector3.Distance(noteList1[0].transform.position, notePlace1.transform.position) < distanceActivation)
@@ -129,6 +137,8 @@ public class NoteController : MonoBehaviour
         return false;
 
     }
+
+    //RED
     public bool OnNote2()
     {
         if (Vector3.Distance(noteList2[0].transform.position, notePlace2.transform.position) < distanceActivation)
@@ -143,6 +153,7 @@ public class NoteController : MonoBehaviour
 
     }
 
+    //YELLOW
     public bool OnNote3()
     {
         if (Vector3.Distance(noteList3[0].transform.position, notePlace3.transform.position) < distanceActivation)
@@ -155,6 +166,8 @@ public class NoteController : MonoBehaviour
 
         return false;
     }
+
+    //BLUE
     public bool OnNote4()
     {
         if (Vector3.Distance(noteList4[0].transform.position, notePlace4.transform.position) < distanceActivation)
@@ -167,6 +180,8 @@ public class NoteController : MonoBehaviour
 
         return false;
     }
+
+    //ORANGE
     public bool OnNote5()
     {
         if (Vector3.Distance(noteList5[0].transform.position, notePlace5.transform.position) < distanceActivation)

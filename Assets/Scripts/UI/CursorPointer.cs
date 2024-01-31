@@ -101,7 +101,7 @@ public class CursorPointer : MonoBehaviour
     private void Attack()
     {
         WiimoteApi.GuitarData guitardata = WiiInputManager.GuitarWiiMote.WiiMote.Guitar;
-        if (!_noteController.CheckGuitarNotes(guitardata.green_fret, guitardata.red_fret, guitardata.yellow_fret, guitardata.blue_fret, guitardata.orange_fret)) return;
+        if (!_noteController.CheckGuitarNotes()) return;
 
         Debug.Log("SUCCESSFUL ATTACK");
         IDamage damageable = CheckForEnemy();
