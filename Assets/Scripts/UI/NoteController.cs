@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
 
 public class NoteController : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class NoteController : MonoBehaviour
     [SerializeField] float heightSpawn; //Height that note spawns
     [SerializeField] int beatNumberLeadUp; // How many 'beats' between spawn and reaching the destination
     [SerializeField] float distanceActivation;
+    [SerializeField] EventReference beepNoise;
 
     [Space]
     [Header("Pooler ref")]
@@ -130,6 +130,7 @@ public class NoteController : MonoBehaviour
         {
             noteList1[0].SetActive(false);
             noteList1.Remove(noteList1[0]);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
             return true;
         }
@@ -145,6 +146,7 @@ public class NoteController : MonoBehaviour
         {
             noteList2[0].SetActive(false);
             noteList2.Remove(noteList2[0]);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
             return true;
         }
@@ -160,6 +162,7 @@ public class NoteController : MonoBehaviour
         {
             noteList3[0].SetActive(false);
             noteList3.Remove(noteList3[0]);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
             return true;
         }
@@ -174,6 +177,7 @@ public class NoteController : MonoBehaviour
         {
             noteList4[0].SetActive(false);
             noteList4.Remove(noteList4[0]);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
             return true;
         }
@@ -188,6 +192,7 @@ public class NoteController : MonoBehaviour
         {
             noteList5[0].SetActive(false);
             noteList5.Remove(noteList5[0]);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
             return true;
         }

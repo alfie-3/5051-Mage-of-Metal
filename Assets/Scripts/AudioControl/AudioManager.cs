@@ -28,9 +28,15 @@ public class AudioManager : MonoBehaviour {
     [Range(0f, 1f)]
     private float musicPercentage;
     [SerializeField] int musicStartDelay=2000;
+    [SerializeField] GameObject UIButton;
 
     private void Awake()
     {
+#if UNITY_EDITOR
+        UIButton.SetActive(true);
+#else
+        UIButton.SetActive(false);
+#endif
         if (managerInstance == null)
         {
             managerInstance = this;
@@ -125,14 +131,15 @@ public class AudioManager : MonoBehaviour {
         return FMOD.RESULT.OK;
     }
 
-    private void OnApplicationPause(bool pause)
+    public async void Quit()
     {
-        instance.setPaused(true);
-    }
-
-    private void OnApplicationQuit()
-    {
-        instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Debug.Log("I have quitted");
+        MusicStop();
+        await Task.Delay(1000);
+        Application.Quit();
     }
 }
 
@@ -167,6 +174,10 @@ public class AudioManagerEditor : Editor
         if (GUILayout.Button("Remove Score"))
         {
             audioManager.RemoveScore();
+        }
+        if (GUILayout.Button("Stop PlayTime"))
+        {
+            audioManager.Quit();
         }
     }
 }
