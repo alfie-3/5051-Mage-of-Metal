@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEditor;
 using System.Runtime.InteropServices;
 using System;
+using Unity.VisualScripting;
+using System.Threading.Tasks;
 
 public class AudioManager : MonoBehaviour {
 
@@ -25,6 +27,7 @@ public class AudioManager : MonoBehaviour {
     [SerializeField]
     [Range(0f, 1f)]
     private float musicPercentage;
+    [SerializeField] int musicStartDelay=2000;
 
     private void Awake()
     {
@@ -32,6 +35,17 @@ public class AudioManager : MonoBehaviour {
         {
             managerInstance = this;
         }
+    }
+
+    private void Start()
+    {
+        MusicPlayWait(musicStartDelay);
+    }
+
+    async void MusicPlayWait(int milliseconds)
+    {
+        await Task.Delay(milliseconds);
+        MusicPlay();
     }
 
     public void MusicPlay()
@@ -52,7 +66,7 @@ public class AudioManager : MonoBehaviour {
     }
     public void MusicStop()
     {
-        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
     public void AddScore()
     {
@@ -109,6 +123,16 @@ public class AudioManager : MonoBehaviour {
             }
         }
         return FMOD.RESULT.OK;
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        instance.setPaused(true);
+    }
+
+    private void OnApplicationQuit()
+    {
+        instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 }
 
