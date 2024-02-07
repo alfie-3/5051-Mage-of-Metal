@@ -36,13 +36,14 @@ public class RuneManager : MonoBehaviour
     [SerializeField] GameObject GreenRune;
     [SerializeField] GameObject RedRune; 
 
-
-    Vector3 NorthSpawnpoint = new Vector3(642.0f, 386.7f, 0.0f);
-    Vector3 EastSpawnpoint = new Vector3(853.0f, 260.0f, 0.0f);
-    Vector3 WestSpawnpoint = new Vector3(445.0f, 265.0f, 0.0f);
-    Vector3 SouthEastSpawnpoint = new Vector3(775.0f, 122.0f, 0.0f);
-    Vector3 SouthWestSpawnpoint = new Vector3(562.0f, 122.0f, 0.0f);
-
+    Transform NorthSpawnpoint;
+    Transform EastSpawnpoint;
+    Transform WestSpawnpoint;
+    Transform SouthEastSpawnpoint;
+    Transform SouthWestSpawnpoint;
+    //centre = Vector3(7344.7998,3658.19995,0) 
+    
+    private GameObject centre;
     
     [SerializeField] GameObject HUDCanvas;
     public GameObject CurrentRune;
@@ -78,6 +79,8 @@ public class RuneManager : MonoBehaviour
                     break;
             }
         }
+        
+        centre = GameObject.FindGameObjectWithTag("Centre");
     }
 
     void Start()
@@ -85,29 +88,45 @@ public class RuneManager : MonoBehaviour
         UpdateRune();
     }
     
+    void Update()
+    {
+        //get centre point
+        //get points around centre - distance + angle from centre - runes already move towards pointer
+        NorthSpawnpoint  = NorthSpawnpoint.TransformPoint(centre.transform.localPosition +  new Vector3(10.0f, 5.0f, 0.0f));
+        // Vector3 EastSpawnpoint = centre * new Vector3(853.0f, 260.0f, 0.0f);
+        // Vector3 WestSpawnpoint = centre * new Vector3(445.0f, 265.0f, 0.0f);
+        // Vector3 SouthEastSpawnpoint = centre * new Vector3(775.0f, 122.0f, 0.0f);
+        // Vector3 SouthWestSpawnpoint = centre * new Vector3(562.0f, 122.0f, 0.0f);
+        //centre = Vector3(7344.7998,3658.19995,0) 
+
+
+    }
+
+
+
     public void UpdateRune()
     {
 
         if(Runes.Count > 0)
         {
-            currentDirection = Random.Range(0, 4);
+            currentDirection = 0; //Random.Range(0, 4);
             CurrentRune = Runes[0];
             switch(currentDirection) {
                 case 0:
-                    Instantiate(Runes[0],NorthSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    Instantiate(Runes[0],NorthSpawnpoint.position, Quaternion.identity, HUDCanvas.transform);
                     break;
-                case 1:
-                    Instantiate(Runes[0],WestSpawnpoint, Quaternion.identity, HUDCanvas.transform);
-                    break;
-                case 2:
-                    Instantiate(Runes[0],SouthWestSpawnpoint, Quaternion.identity, HUDCanvas.transform);
-                    break;
-                case 3:
-                    Instantiate(Runes[0],SouthEastSpawnpoint, Quaternion.identity, HUDCanvas.transform);
-                    break;
-                case 4:
-                    Instantiate(Runes[0],EastSpawnpoint, Quaternion.identity, HUDCanvas.transform);
-                    break;
+                // case 1:
+                //     Instantiate(Runes[0],WestSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                //     break;
+                // case 2:
+                //     Instantiate(Runes[0],SouthWestSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                //     break;
+                // case 3:
+                //     Instantiate(Runes[0],SouthEastSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                //     break;
+                // case 4:
+                //     Instantiate(Runes[0],EastSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                //     break;
                 default:
                     Debug.Log("Path literally doesn't exist");
                     break;

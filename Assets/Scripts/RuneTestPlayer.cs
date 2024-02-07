@@ -47,6 +47,15 @@ public class RuneTestPlayer : MonoBehaviour
         //rotX = Mathf.Clamp(rotX, -lookLimitX, lookLimitX);
         //playerCam.transform.localRotation = Quaternion.Euler(rotX, 0, 0);
         //transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        
+        //                       /\       /\
+        //                      /  \     /  \
+        //                      \\\\      ////
+        // /\ \\                _____     _____
+        //\ovo/\\                \O  \   /O  /
+        //  Y   \\                     V
+        //  |   \\                   \___
+        // _/\_   \\
 
         //attacking logic
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
