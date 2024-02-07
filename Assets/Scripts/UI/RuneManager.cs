@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //what needs to be done:
 //at the moment runes will appear in order of array and not on beat
-//only current note is playable
-//way to check what button player presses against current rune
-
-//change way next rune is called
-//put it into this script
-//need a way to skip to next rune once hit
 
 
+//new system for runes:
+//instead of single rune going towards centre, needs modularity so multiple can
+//runes need to be playable at the same time 
+//current way = rune manager summons each rune one by one 
+//change = rune manager needs to summon multiple runes towards the centre
+//this needs further clarification in the system of dictating what runes  need to be played.
+//need classification for which angle rune is coming from towards the centre - 5 lanes so north, west, east, south east and southwest
+//function that decides which is the next direction + when to do multiple
+//instead of having locations of rune spawnpoints as objects could just get their actual vector positions
 
 public class RuneManager : MonoBehaviour
 {
@@ -33,11 +37,20 @@ public class RuneManager : MonoBehaviour
     [SerializeField] GameObject RedRune; 
 
 
-    [SerializeField] Transform RuneSpawnpoint;
+    Vector3 NorthSpawnpoint = new Vector3(642.0f, 386.7f, 0.0f);
+    Vector3 EastSpawnpoint = new Vector3(853.0f, 260.0f, 0.0f);
+    Vector3 WestSpawnpoint = new Vector3(445.0f, 265.0f, 0.0f);
+    Vector3 SouthEastSpawnpoint = new Vector3(775.0f, 122.0f, 0.0f);
+    Vector3 SouthWestSpawnpoint = new Vector3(562.0f, 122.0f, 0.0f);
+
+    
     [SerializeField] GameObject HUDCanvas;
     public GameObject CurrentRune;
     public float SpeedOfRune = 1.0f;
     public float runeTimer = 3.0f;
+
+    //north 0, west 1, south west 2, south east 3, east 4
+    int currentDirection = 0;
 
     void Awake()
     {
@@ -74,10 +87,31 @@ public class RuneManager : MonoBehaviour
     
     public void UpdateRune()
     {
+
         if(Runes.Count > 0)
         {
+            currentDirection = Random.Range(0, 4);
             CurrentRune = Runes[0];
-            Instantiate(Runes[0],RuneSpawnpoint.position, Quaternion.identity, HUDCanvas.transform);
+            switch(currentDirection) {
+                case 0:
+                    Instantiate(Runes[0],NorthSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    break;
+                case 1:
+                    Instantiate(Runes[0],WestSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    break;
+                case 2:
+                    Instantiate(Runes[0],SouthWestSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    break;
+                case 3:
+                    Instantiate(Runes[0],SouthEastSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    break;
+                case 4:
+                    Instantiate(Runes[0],EastSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    break;
+                default:
+                    Debug.Log("Path literally doesn't exist");
+                    break;
+            }
             Runes.RemoveAt(0);
         }
         

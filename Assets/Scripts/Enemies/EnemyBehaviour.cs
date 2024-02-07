@@ -4,6 +4,14 @@ using UnityEngine;
 
 //enemy logic for health to test health display
 
+
+//system that randomly generates points along the spline
+//same script gets enemies within range and shoves em into a list inside a dictionary
+//enemy script movement towards player set on a bool
+// if player reaches point(trigger) script sets all enemies grouped in the list to true and they start running at the player 
+//not sure if this is what we need though
+
+
 public class EnemyBehaviour : MonoBehaviour, IDamage {
     public int EnemyHP = 10;
     public int EnemyMaxHP = 10;
@@ -15,6 +23,12 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
 
     void Awake() 
     {
+        foreach (Transform child in gameObject.transform)
+          {
+              if (child.tag == "UIReference")
+                  UILocation = child;
+          }
+
         Offset = UILocation.localPosition * 80;
     }
     void Start() {

@@ -402,41 +402,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c81436ae97414e8439817afd5a74f6e0, type: 3}
---- !u!1 &557604318
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 557604319}
-  m_Layer: 5
-  m_Name: RuneSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &557604319
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557604318}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1287117424}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 209.1}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &569274981
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +698,6 @@ MonoBehaviour:
   GreenRune: {fileID: 8318440137405486948, guid: 734ea401ec3ae0d4087019d85e3cf4b6,
     type: 3}
   RedRune: {fileID: 7422829870640007398, guid: 9c62221e9a351f046a635c0cd1471ff3, type: 3}
-  RuneSpawnpoint: {fileID: 557604319}
   HUDCanvas: {fileID: 1287117420}
   CurrentRune: {fileID: 0}
   SpeedOfRune: 20
@@ -1112,7 +1076,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1749629257}
-  - {fileID: 557604319}
   - {fileID: 569274982}
   - {fileID: 321451336}
   - {fileID: 1215890257}
