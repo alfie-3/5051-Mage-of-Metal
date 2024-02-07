@@ -108,23 +108,28 @@ public class RuneManager : MonoBehaviour
 
         if(Runes.Count > 0)
         {
-            currentDirection = 0; //Random.Range(0, 4);
+            currentDirection = Random.Range(0, 4);
             CurrentRune = Runes[0];
             switch(currentDirection) {
                 case 0:
-                    Instantiate(Runes[0],NorthSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    Instantiate(Runes[0],NorthSpawnpoint, Quaternion.identity, centre.transform);
+                    Debug.Log("north");
                     break;
                 case 1:
-                    Instantiate(Runes[0],WestSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    Instantiate(Runes[0],WestSpawnpoint, Quaternion.identity, centre.transform);
+                    Debug.Log("west");
                     break;
                 case 2:
-                    Instantiate(Runes[0],SouthWestSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    Instantiate(Runes[0],SouthWestSpawnpoint, Quaternion.identity, centre.transform);
+                    Debug.Log("southwest");
                     break;
                 case 3:
-                    Instantiate(Runes[0],SouthEastSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    Instantiate(Runes[0],SouthEastSpawnpoint, Quaternion.identity, centre.transform);
+                    Debug.Log("southeast");
                     break;
                 case 4:
-                    Instantiate(Runes[0],EastSpawnpoint, Quaternion.identity, HUDCanvas.transform);
+                    Instantiate(Runes[0],EastSpawnpoint, Quaternion.identity, centre.transform);
+                    Debug.Log("east");
                     break;
                 default:
                     Debug.Log("Path literally doesn't exist");
@@ -138,10 +143,10 @@ public class RuneManager : MonoBehaviour
 
     void RuneLocations() {
         NorthSpawnpoint  = centre.transform.position + new Vector3(0.0f, 50.0f, 0.0f);
-        EastSpawnpoint = centre.transform.position;
-        WestSpawnpoint = centre.transform.position;
-        SouthEastSpawnpoint = centre.transform.position;
-        SouthWestSpawnpoint = centre.transform.position;
+        EastSpawnpoint = centre.transform.position + new Vector3(50.0f, 0.0f, 0.0f);
+        WestSpawnpoint = centre.transform.position + new Vector3(50.0f, 0.0f, 0.0f);
+        SouthEastSpawnpoint = centre.transform.position + new Vector3(-30.0f, 30.0f, 0.0f);
+        SouthWestSpawnpoint = centre.transform.position + new Vector3(30.0f, 30.0f, 0.0f);
     }
 
 }
