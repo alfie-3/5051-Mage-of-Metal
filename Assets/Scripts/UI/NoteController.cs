@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class NoteController : MonoBehaviour
 {
@@ -32,6 +34,8 @@ public class NoteController : MonoBehaviour
     [SerializeField] GameObject note4;
     [SerializeField] GameObject note5;
 
+    [Space]
+    [Header("Current existing notes")]
     float noteVelocity;
     [SerializeField] List<GameObject> noteList1;
     [SerializeField] List<GameObject> noteList2;
@@ -39,8 +43,36 @@ public class NoteController : MonoBehaviour
     [SerializeField] List<GameObject> noteList4;
     [SerializeField] List<GameObject> noteList5;
 
+    [Space]
+    [Header("Inputs")]
+    //Action references
+    [SerializeField] InputActionReference strumInput;
+    PlayerInput _playerInput;
+    InputAction note1PressAct;
+    bool note1Press;
+    InputAction note2PressAct;
+    bool note2Press;
+    InputAction note3PressAct;
+    bool note3Press;
+    InputAction note4PressAct;
+    bool note4Press;
+    InputAction note5PressAct;
+    bool note5Press;
+    bool successfulNotes=true;
+
+    private void Awake()
+    {
+        strumInput.action.performed += OnStrum;
+    }
+
     private void Start()
     {
+        _playerInput = GetComponent<PlayerInput>();
+        note1PressAct = _playerInput.actions["Note1"];
+        note2PressAct = _playerInput.actions["Note2"];
+        note3PressAct = _playerInput.actions["Note3"];
+        note4PressAct = _playerInput.actions["Note4"];
+        note5PressAct = _playerInput.actions["Note5"];
         noteList1 = new List<GameObject>();
         noteList2 = new List<GameObject>();
         noteList3 = new List<GameObject>();
@@ -74,20 +106,35 @@ public class NoteController : MonoBehaviour
 
     private void Update()
     {
-        noteList1 = NoteChecker(noteList1,1);
-        noteList2 = NoteChecker(noteList2,2);
-        noteList3 = NoteChecker(noteList3,3);
-        noteList4 = NoteChecker(noteList4,4);
-        noteList5 = NoteChecker(noteList5,5);
+        noteList1 = NoteUpdate(noteList1,1);
+        noteList2 = NoteUpdate(noteList2,2);
+        noteList3 = NoteUpdate(noteList3,3);
+        noteList4 = NoteUpdate(noteList4,4);
+        noteList5 = NoteUpdate(noteList5,5);
     }
 
-    private List<GameObject> NoteChecker(List<GameObject> noteList, int thing)
+    public void OnStrum(InputAction.CallbackContext ctx)
+    {
+        bool success=true;
+        if (note1PressAct.IsPressed()) { if (CheckNote1()) { success = false; } }
+        if (note2PressAct.IsPressed()) { if (CheckNote2()) { success = false; } }
+        if (note3PressAct.IsPressed()) { if (CheckNote3()) { success = false; } }
+        if (note4PressAct.IsPressed()) { if (CheckNote4()) { success = false; } }
+        if (note5PressAct.IsPressed()) { if (CheckNote5()) { success = false; } }
+        if (success)
+        {
+            Debug.Log("Success");
+        }
+    }
+
+    //Notes lower until they go out of bounds and despawn
+    private List<GameObject> NoteUpdate(List<GameObject> noteList, int index)
     {
         if (noteList.Count != 0)
         {
             if (notePlace1.transform.position.y - noteList[0].transform.position.y > distanceActivation)
             {
-                //Debug.Log("Note " + thing + " has proceeded past thing.");
+                //Debug.Log("Note " + index + " has proceeded past thing.");
                 noteList[0].SetActive(false);
                 noteList.Remove(noteList[0]);
             }
@@ -101,102 +148,116 @@ public class NoteController : MonoBehaviour
         return noteList;
     }
 
+    //Check what notes on wii guitar are pressed
     public bool CheckGuitarNotes()
     {
         GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
         bool success = true;
-
         if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.GREEN))
-            if (!OnNote1()) { success = false; }
+            if (!CheckNote1()) { success = false; }
         if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.RED))
-            if (!OnNote2()) { success = false; }
+            if (!CheckNote2()) { success = false; }
         if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.YELLOW))
-            if (!OnNote3()) { success = false; }
+            if (!CheckNote3()) { success = false; }
         if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.BLUE)) //I like blue :)
-            if (!OnNote4()) { success = false; }
+            if (!CheckNote4()) { success = false; }
         if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.ORANGE))
-            if (!OnNote5()) { success = false; }
+            if (!CheckNote5()) { success = false; }
 
         if (success) Debug.Log("Success");
-
         return success;
     }
 
 
     //GREEN
-    public bool OnNote1()
+    public bool CheckNote1()
     {
-        if (Vector3.Distance(noteList1[0].transform.position, notePlace1.transform.position) < distanceActivation)
+        if (noteList1.Count != 0)
         {
-            noteList1[0].SetActive(false);
-            noteList1.Remove(noteList1[0]);
-            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
+            if (Vector3.Distance(noteList1[0].transform.position, notePlace1.transform.position) < distanceActivation)
+            {
+                noteList1[0].SetActive(false);
+                noteList1.Remove(noteList1[0]);
+                FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
-            return true;
+                return true;
+            }
         }
-
+        successfulNotes = false;
         return false;
 
     }
 
     //RED
-    public bool OnNote2()
+    public bool CheckNote2()
     {
-        if (Vector3.Distance(noteList2[0].transform.position, notePlace2.transform.position) < distanceActivation)
+        if (noteList2.Count != 0)
         {
-            noteList2[0].SetActive(false);
-            noteList2.Remove(noteList2[0]);
-            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
+            if (Vector3.Distance(noteList2[0].transform.position, notePlace2.transform.position) < distanceActivation)
+            {
+                noteList2[0].SetActive(false);
+                noteList2.Remove(noteList2[0]);
+                FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
-            return true;
+                return true;
+            }
         }
-
+        successfulNotes = false;
         return false;
 
     }
 
     //YELLOW
-    public bool OnNote3()
+    public bool CheckNote3()
     {
-        if (Vector3.Distance(noteList3[0].transform.position, notePlace3.transform.position) < distanceActivation)
+        if (noteList3.Count != 0)
         {
-            noteList3[0].SetActive(false);
-            noteList3.Remove(noteList3[0]);
-            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
+            if (Vector3.Distance(noteList3[0].transform.position, notePlace3.transform.position) < distanceActivation)
+            {
+                noteList3[0].SetActive(false);
+                noteList3.Remove(noteList3[0]);
+                FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
-            return true;
+                return true;
+            }
         }
-
+        successfulNotes = false;
         return false;
     }
 
     //BLUE
-    public bool OnNote4()
+    public bool CheckNote4()
     {
-        if (Vector3.Distance(noteList4[0].transform.position, notePlace4.transform.position) < distanceActivation)
+        if (noteList4.Count != 0)
         {
-            noteList4[0].SetActive(false);
-            noteList4.Remove(noteList4[0]);
-            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
+            if (Vector3.Distance(noteList4[0].transform.position, notePlace4.transform.position) < distanceActivation)
+            {
+                noteList4[0].SetActive(false);
+                noteList4.Remove(noteList4[0]);
+                FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
-            return true;
+                return true;
+            }
         }
-
+        successfulNotes = false;
         return false;
     }
 
     //ORANGE
-    public bool OnNote5()
+    public bool CheckNote5()
     {
-        if (Vector3.Distance(noteList5[0].transform.position, notePlace5.transform.position) < distanceActivation)
+        if (noteList5.Count != 0)
         {
-            noteList5[0].SetActive(false);
-            noteList5.Remove(noteList5[0]);
-            FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
+            if (Vector3.Distance(noteList5[0].transform.position, notePlace5.transform.position) < distanceActivation)
+            {
+                noteList5[0].SetActive(false);
+                noteList5.Remove(noteList5[0]);
+                FMODUnity.RuntimeManager.PlayOneShotAttached(beepNoise, GameObject.Find("Player"));
 
-            return true;
+                return true;
+            }
         }
-
+        successfulNotes = false;
         return false;
     }
 }

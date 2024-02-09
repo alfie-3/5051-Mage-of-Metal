@@ -16,44 +16,53 @@
                 },
                 {
                     "name": "Note1",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "a5bce679-bf97-459b-a2d2-a1f12ab55071",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Note2",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "3136b2dd-77d0-4864-89f3-52b5b4a9799a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Note3",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "a5b470ef-bfdf-490e-8e28-1f779a032e1c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Note4",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "31a4c2e9-e9ab-44e0-98f1-6b375e6ef42c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Note5",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "b041df77-640f-474b-8083-e9e9d3654c35",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Strum",
+                    "type": "Button",
+                    "id": "6614e8eb-0bc0-43d1-9835-011be2ccb78e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -124,6 +133,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Note5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "30b5365d-94a9-4af2-9ee4-66e37c8d8460",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Strum",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
