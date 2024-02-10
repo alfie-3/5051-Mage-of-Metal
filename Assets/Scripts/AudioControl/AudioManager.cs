@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 public class AudioManager : MonoBehaviour {
 
-    [SerializeField] public NoteController _noteController;
+    [SerializeField] public RuneFMODBridge _runeFMODBridge;
 
     public static AudioManager managerInstance { get; private set; }
     [SerializeField] EventReference audioRef;
@@ -117,7 +117,7 @@ public class AudioManager : MonoBehaviour {
                     {
                         var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
                         timelineInfo.LastMarker = parameter.name;
-                        _noteController.SpawnNote((string)timelineInfo.LastMarker);
+                        _runeFMODBridge.SpawnNote((string)timelineInfo.LastMarker); //
                         break;
                     }
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.DESTROYED:

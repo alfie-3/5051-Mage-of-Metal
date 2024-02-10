@@ -11,7 +11,7 @@ public class EnemyRune : MonoBehaviour
     // if player plays certain key they disappear
  
 
-    private RuneManager managerScript; 
+    private RuneFMODBridge managerScript; 
     private RuneTestPlayer playerScript;
     private Camera cam;
     private float runeTimer;
@@ -21,7 +21,7 @@ public class EnemyRune : MonoBehaviour
     {
         GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        managerScript = managerObject.GetComponent<RuneManager>();
+        managerScript = managerObject.GetComponent<RuneFMODBridge>();
         playerScript = playerObject.GetComponent<RuneTestPlayer>();
         runeTimer = managerScript.runeTimer;
         CentrePoint = GameObject.FindGameObjectWithTag("Centre").transform;
@@ -48,14 +48,12 @@ public class EnemyRune : MonoBehaviour
         runeTimer -= Time.deltaTime;
           if(playerScript.runePlayed == true)
             {
-                managerScript.UpdateRune();
                 playerScript.runePlayed = false;
                 Destroy(gameObject);
             }
             
         else if(runeTimer <= 0.0f)
         {
-            managerScript.UpdateRune(); 
             Destroy(gameObject);
 
         }
