@@ -41,7 +41,7 @@ public class RuneManager : MonoBehaviour
     Vector3 WestSpawnpoint;
     Vector3 SouthEastSpawnpoint;
     Vector3 SouthWestSpawnpoint;
-    //centre = Vector3(7344.7998,3658.19995,0) 
+    //centre = Vector3(7344.7998,3658.19995,0)
     
     private GameObject centre;
     
