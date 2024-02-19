@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -971,15 +971,19 @@ MonoBehaviour:
     appear, B (Blue), O ( Orange), Y (Yellow), G (Green), R (Red) '
   Rune_Sprites_Info: These are temporary placeholders, to be replaced when rune sprites
     designed
-  BlueRune: {fileID: 1023754337}
-  OrangeRune: {fileID: 2021212598}
-  YellowRune: {fileID: 1215890256}
-  GreenRune: {fileID: 569274981}
-  RedRune: {fileID: 321451335}
+  BlueRune: {fileID: 5229120250615849984, guid: 4d1fe0c68b6130b409da3c25642c9221,
+    type: 3}
+  OrangeRune: {fileID: 4922536295286603219, guid: 98e93c9fa405f984f9fc996c21f491e6,
+    type: 3}
+  YellowRune: {fileID: 2743905035295439625, guid: 9a2ef7ea719d54b45a579f9106940fb1,
+    type: 3}
+  GreenRune: {fileID: 8318440137405486948, guid: 734ea401ec3ae0d4087019d85e3cf4b6,
+    type: 3}
+  RedRune: {fileID: 7422829870640007398, guid: 9c62221e9a351f046a635c0cd1471ff3, type: 3}
   HUDCanvas: {fileID: 1287117420}
   CurrentRune: {fileID: 0}
-  SpeedOfRune: 20
-  runeTimer: 2
+  SpeedOfRune: 3
+  runeTimer: 3
 --- !u!1 &1023754337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,7 +1342,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1821859965}
   - {fileID: 1749629257}
   - {fileID: 1760479108}
   m_Father: {fileID: 0}
@@ -1690,13 +1693,13 @@ Transform:
   m_GameObject: {fileID: 1821859964}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.253204, y: 13.919312, z: -354.77667}
+  m_LocalPosition: {x: 600.2468, y: 276.9193, z: -354.77667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1829657690}
   - {fileID: 864326189}
-  m_Father: {fileID: 1287117424}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829657689
 GameObject:
@@ -2219,3 +2222,4 @@ SceneRoots:
   - {fileID: 1870246939}
   - {fileID: 1769568106}
   - {fileID: 1287117424}
+  - {fileID: 1821859965}

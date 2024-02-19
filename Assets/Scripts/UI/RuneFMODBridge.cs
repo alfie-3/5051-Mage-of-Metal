@@ -69,22 +69,22 @@ public class RuneFMODBridge : MonoBehaviour
         switch (noteName)
         {
             case "1":
-                Instantiate(GreenRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                CurrentRune = Instantiate(GreenRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
                 break;
             case "2":
-                Instantiate(RedRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                CurrentRune = Instantiate(RedRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
                 break;
             case "3":
-                Instantiate(YellowRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                CurrentRune = Instantiate(YellowRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
                 break;
             case "4":
-                Instantiate(BlueRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                CurrentRune = Instantiate(BlueRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
                 break;
             case "5":
-                Instantiate(OrangeRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                CurrentRune = Instantiate(OrangeRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
                 break;
             default:
-                Debug.Log("Incorrect Input");
+                Debug.Log("Note Name Not Found!");
                 break;
         }
     }

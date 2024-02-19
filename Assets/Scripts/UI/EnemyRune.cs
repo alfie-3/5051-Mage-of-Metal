@@ -6,11 +6,9 @@ using UnityEngine;
 public class EnemyRune : MonoBehaviour
 {
 
-    // this needs to lerp towards the centre point 
-    // also fade in time - timer
-    // if player plays certain key they disappear
- 
+    //script of runes that appear in game
 
+    //variables
     private RuneFMODBridge managerScript; 
     private RuneTestPlayer playerScript;
     private Camera cam;
@@ -19,18 +17,27 @@ public class EnemyRune : MonoBehaviour
 
     void Awake()
     {
+        //get manager script
         GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         managerScript = managerObject.GetComponent<RuneFMODBridge>();
+
+        //get player script
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         playerScript = playerObject.GetComponent<RuneTestPlayer>();
-        runeTimer = managerScript.runeTimer;
+
+        //get point runes need to head towards
         CentrePoint = GameObject.FindGameObjectWithTag("Centre").transform;
+
+        //rune lifespan - as defined by manager
+        runeTimer = managerScript.runeTimer;
+
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        //get main camera
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
     }
 
