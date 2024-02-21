@@ -83,6 +83,7 @@ MonoBehaviour:
   EnemyMaxHP: 10
   Offset: {x: 0, y: 0, z: 0}
   UIInfo: Make sure to link UILocation game object into the field below
+  DieEffect: {fileID: 0}
   UILocation: {fileID: 5979004823322221893}
 --- !u!136 &5318202595034375976
 CapsuleCollider:
@@ -206,6 +207,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 424b75e8cbb773d4aa79a8c8d41c89ea, type: 2}
+    - target: {fileID: 279831893324619170, guid: c0056c06ecda1994791cda6c9af925ea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c0056c06ecda1994791cda6c9af925ea,
         type: 3}
       propertyPath: m_Name

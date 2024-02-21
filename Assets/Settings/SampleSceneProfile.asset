@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661e1e352c8b4b24f9ecebcafa667a8f, type: 3}
   m_Name: CustomPostOutline
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   outlineThickness:
     m_OverrideState: 1
     m_Value: 1

@@ -4,11 +4,8 @@ Shader "Unlit/OutlineShader"
     {
         _OutlineColour ("Outline Colour", Color) = (1, 1, 1, 1) 
         _OutlineWidth ("Outline Width", float) = 0.1
-        _MinOutlineWidth ("Min Outline Width", float) = 0.1
-        _MaxOutlineWidth ("Max Outline Width", float) = 1
 
-        _MinOutlineZ("Min Outline Z", Range(-0.01, 0)) = -.001
-		_MaxOutlineZ("Max Outline Z", Range(-0.01, 0)) = -.001
+        _outlineZ("OutlineZ", Range(-0.01, 0)) = -.001
         _MaxWCamDist("Max Width CamDist", float) = 500
         _MaxZCamDist("Max Z CamDist", float) = 500
 
@@ -20,6 +17,7 @@ Shader "Unlit/OutlineShader"
                "Queue" = "Geometry-1"
                "DisableBatching" = "true"}
 
+
         LOD 100
 
         Pass
@@ -28,8 +26,11 @@ Shader "Unlit/OutlineShader"
             {
                 Ref 2
                 Comp Always
-                Pass Zero
+                Pass Replace
             }
+
+            Cull Off
+            ZWrite On
 
             CGPROGRAM
             #pragma vertex vert
@@ -58,14 +59,7 @@ Shader "Unlit/OutlineShader"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
-            uniform float _MinOutlineZ;
-            uniform float _MaxOutlineZ;
-
-            uniform float _MaxZCamDist;
-            uniform float _MaxWCamDist;
-
-            uniform float _MinOutlineWidth;
-            uniform float _MaxOutlineWidth;
+            uniform float _outlineZ;
 
             v2f vert (appdata v)
             {
@@ -79,14 +73,9 @@ Shader "Unlit/OutlineShader"
 
                 float camDist = distance(_WorldSpaceCameraPos, mul(unity_ObjectToWorld, o.pos));
 
-                float cameraAdjustedOutlineWidth = _OutlineWidth * clamp(camDist, camDist,  camDist / _MaxWCamDist);
+                o.pos.xy += offset * _OutlineWidth;
 
-                o.pos.xy += offset * clamp(cameraAdjustedOutlineWidth, _MinOutlineWidth, _MaxOutlineWidth);
-
-                float normCamDistance = camDist/_MaxZCamDist;
-                float clampedOutlineZ = clamp(lerp(_MinOutlineZ, _MaxOutlineZ, normCamDistance), _MinOutlineZ, _MaxOutlineZ);
-
-                o.pos.z += clampedOutlineZ;
+                o.pos.z += _outlineZ;
 
                 return o;
             }
