@@ -187,5 +187,26 @@ public class RuneTestPlayer : MonoBehaviour
         }
 
     }
-    
+    public void Strummed()
+    {
+        GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
+        bool success = true;
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.GREEN))
+        {
+            //Check stuff
+        }
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.RED))
+        {
+        }
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.YELLOW))
+        {
+        }
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.BLUE))
+        {
+        }
+        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.ORANGE))
+        {
+        }
+    }
+
 }
