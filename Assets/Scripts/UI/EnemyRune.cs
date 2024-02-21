@@ -9,7 +9,7 @@ public class EnemyRune : MonoBehaviour
     //script of runes that appear in game
 
     //variables
-    private RuneFMODBridge managerScript; 
+    private RuneFMODBridge runeManager; 
     private RuneTestPlayer playerScript;
     private Camera cam;
     private float runeTimer;
@@ -19,7 +19,7 @@ public class EnemyRune : MonoBehaviour
     {
         //get manager script
         GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
-        managerScript = managerObject.GetComponent<RuneFMODBridge>();
+        runeManager = managerObject.GetComponent<RuneFMODBridge>();
 
         //get player script
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -29,7 +29,7 @@ public class EnemyRune : MonoBehaviour
         CentrePoint = GameObject.FindGameObjectWithTag("Centre").transform;
 
         //rune lifespan - as defined by manager
-        runeTimer = managerScript.runeTimer;
+        runeTimer = runeManager.runeTimer;
 
 
     }
@@ -46,7 +46,7 @@ public class EnemyRune : MonoBehaviour
     {
         RuneLifespan();
 
-        float step =  managerScript.SpeedOfRune * Time.deltaTime; // calculate distance to move
+        float step =  runeManager.SpeedOfRune * Time.deltaTime; // calculate distance to move
         transform.position = Vector3.MoveTowards(transform.position, CentrePoint.position, step);
     }
 
@@ -61,7 +61,7 @@ public class EnemyRune : MonoBehaviour
             
         else if(runeTimer <= 0.0f)
         {
-            managerScript.RunesInScene.Remove(gameObject);
+            runeManager.RunesInScene.Remove(gameObject);
             Destroy(gameObject);
 
         }
