@@ -46,6 +46,7 @@ public class RuneTestPlayer : MonoBehaviour
         {
             Debug.Log("manager not found");
         }
+
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
     }
@@ -111,65 +112,76 @@ public class RuneTestPlayer : MonoBehaviour
     
     public void Gun(string buttonColor)
     {
+        //look through runes in array, if any rune matches the one played play it + eliminate from array
         Debug.Log("Button Hit!");
-        char[] runeName = runeManager.CurrentRune.name.ToCharArray();
-        if(canFire == true)
+        List<GameObject> RunesInScene = runeManager.RunesInScene;
+        foreach(GameObject rune in RunesInScene)
         {
-            if(buttonColor == "blue")
+            char[] runeName = rune.name.ToCharArray();
+            if(canFire == true)
             {
-                if(runeName[0] == 'B')
+                if(buttonColor == "blue")
                 {
-                    FancyEffect("blue");
-                    Debug.Log("Blue Hit!");
-                    enemyScript.Damage(1);
-                    runePlayed = true;
+                    if(runeName[0] == 'B')
+                    {
+                        FancyEffect("blue");
+                        Debug.Log("Blue Hit!");
+                        enemyScript.Damage(1);
+                        runePlayed = true;
+                        RunesInScene.Remove(rune);
+                    }
                 }
-            }
 
-            if(buttonColor == "yellow")
-            {
-                if(runeName[0] == 'Y')
+                if(buttonColor == "yellow")
                 {
-                    FancyEffect("yellow");
-                    Debug.Log("Yellow Hit!");
-                    enemyScript.Damage(1);
-                    runePlayed = true;
+                    if(runeName[0] == 'Y')
+                    {
+                        FancyEffect("yellow");
+                        Debug.Log("Yellow Hit!");
+                        enemyScript.Damage(1);
+                        runePlayed = true;
+                        RunesInScene.Remove(rune);
+                    }
                 }
-            }
 
-            if(buttonColor == "orange")
-            {
-                if(runeName[0] == 'O')
+                if(buttonColor == "orange")
                 {
-                    FancyEffect("orange");
-                    Debug.Log("Orange Hit!");
-                    enemyScript.Damage(1);
-                    runePlayed = true;
+                    if(runeName[0] == 'O')
+                    {
+                        FancyEffect("orange");
+                        Debug.Log("Orange Hit!");
+                        enemyScript.Damage(1);
+                        runePlayed = true;
+                        RunesInScene.Remove(rune);
+                    }
                 }
-            }
 
-            if(buttonColor == "red")
-            {
-                if(runeName[0] == 'R')
+                if(buttonColor == "red")
                 {
-                    FancyEffect("red");
-                    Debug.Log("Red Hit!");
-                    enemyScript.Damage(1);
-                    runePlayed = true;
+                    if(runeName[0] == 'R')
+                    {
+                        FancyEffect("red");
+                        Debug.Log("Red Hit!");
+                        enemyScript.Damage(1);
+                        runePlayed = true;
+                        RunesInScene.Remove(rune);
+                    }
                 }
-            }
 
-            if(buttonColor == "green")
-            {
-                if(runeName[0] == 'G')
+                if(buttonColor == "green")
                 {
-                    FancyEffect("green");
-                    Debug.Log("Green Hit!");
-                    enemyScript.Damage(1);
-                    runePlayed = true;
+                    if(runeName[0] == 'G')
+                    {
+                        FancyEffect("green");
+                        Debug.Log("Green Hit!");
+                        enemyScript.Damage(1);
+                        runePlayed = true;
+                        RunesInScene.Remove(rune);
+                    }
                 }
             }
         }
+        
 
     }
     

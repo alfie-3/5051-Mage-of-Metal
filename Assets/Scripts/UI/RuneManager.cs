@@ -112,23 +112,23 @@ public class RuneManager : MonoBehaviour
             CurrentRune = Runes[0];
             switch(currentDirection) {
                 case 0:
-                    Instantiate(Runes[0],NorthSpawnpoint, Quaternion.identity, centre.transform);
+                    Instantiate(CurrentRune,NorthSpawnpoint, Quaternion.identity, centre.transform);
                     Debug.Log("north");
                     break;
                 case 1:
-                    Instantiate(Runes[0],WestSpawnpoint, Quaternion.identity, centre.transform);
+                    Instantiate(CurrentRune,WestSpawnpoint, Quaternion.identity, centre.transform);
                     Debug.Log("west");
                     break;
                 case 2:
-                    Instantiate(Runes[0],SouthWestSpawnpoint, Quaternion.identity, centre.transform);
+                    Instantiate(CurrentRune,SouthWestSpawnpoint, Quaternion.identity, centre.transform);
                     Debug.Log("southwest");
                     break;
                 case 3:
-                    Instantiate(Runes[0],SouthEastSpawnpoint, Quaternion.identity, centre.transform);
+                    Instantiate(CurrentRune,SouthEastSpawnpoint, Quaternion.identity, centre.transform);
                     Debug.Log("southeast");
                     break;
                 case 4:
-                    Instantiate(Runes[0],EastSpawnpoint, Quaternion.identity, centre.transform);
+                    Instantiate(CurrentRune,EastSpawnpoint, Quaternion.identity, centre.transform);
                     Debug.Log("east");
                     break;
                 default:

@@ -27,11 +27,17 @@ public class RuneFMODBridge : MonoBehaviour
     [TextArea]
     public string Rune_Sprites_Info = "These are temporary placeholders, to be replaced when rune sprites designed";
 
-    [SerializeField] GameObject BlueRune;
-    [SerializeField] GameObject OrangeRune;
-    [SerializeField] GameObject YellowRune;
-    [SerializeField] GameObject GreenRune;
-    [SerializeField] GameObject RedRune;
+    [SerializeField] GameObject BlueRunePrefab;
+    [SerializeField] GameObject OrangeRunePrefab;
+    [SerializeField] GameObject YellowRunePrefab;
+    [SerializeField] GameObject GreenRunePrefab;
+    [SerializeField] GameObject RedRunePrefab;
+
+    [SerializeField] GameObject HUDCanvas;
+
+    public float SpeedOfRune = 1.0f;
+    public float runeTimer = 3.0f;
+    public List<GameObject>  RunesInScene = new List<GameObject>();
 
     Vector3 NorthSpawnpoint;
     Vector3 EastSpawnpoint;
@@ -41,14 +47,9 @@ public class RuneFMODBridge : MonoBehaviour
     //centre = Vector3(7344.7998,3658.19995,0)
 
     private GameObject centre;
-
-    [SerializeField] GameObject HUDCanvas;
-    public GameObject CurrentRune;
-    public float SpeedOfRune = 1.0f;
-    public float runeTimer = 3.0f;
-
-    //north 0, west 1, south west 2, south east 3, east 4
     int currentDirection = 0;
+
+    
 
     void Awake()
     {
@@ -69,19 +70,19 @@ public class RuneFMODBridge : MonoBehaviour
         switch (noteName)
         {
             case "1":
-                CurrentRune = Instantiate(GreenRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                RunesInScene.Add(Instantiate(GreenRunePrefab, NorthSpawnpoint, Quaternion.identity, centre.transform));
                 break;
             case "2":
-                CurrentRune = Instantiate(RedRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                RunesInScene.Add(Instantiate(RedRunePrefab, EastSpawnpoint, Quaternion.identity, centre.transform));
                 break;
             case "3":
-                CurrentRune = Instantiate(YellowRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                RunesInScene.Add(Instantiate(YellowRunePrefab, SouthEastSpawnpoint, Quaternion.identity, centre.transform));
                 break;
             case "4":
-                CurrentRune = Instantiate(BlueRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                RunesInScene.Add(Instantiate(BlueRunePrefab, WestSpawnpoint, Quaternion.identity, centre.transform));
                 break;
             case "5":
-                CurrentRune = Instantiate(OrangeRune, NorthSpawnpoint, Quaternion.identity, centre.transform);
+                RunesInScene.Add(Instantiate(OrangeRunePrefab, SouthWestSpawnpoint, Quaternion.identity, centre.transform));
                 break;
             default:
                 Debug.Log("Note Name Not Found!");
@@ -94,7 +95,7 @@ public class RuneFMODBridge : MonoBehaviour
     {
         NorthSpawnpoint = centre.transform.position + new Vector3(0.0f, 50.0f, 0.0f);
         EastSpawnpoint = centre.transform.position + new Vector3(50.0f, 0.0f, 0.0f);
-        WestSpawnpoint = centre.transform.position + new Vector3(50.0f, 0.0f, 0.0f);
+        WestSpawnpoint = centre.transform.position + new Vector3(-50.0f, 0.0f, 0.0f);
         SouthEastSpawnpoint = centre.transform.position + new Vector3(-30.0f, 30.0f, 0.0f);
         SouthWestSpawnpoint = centre.transform.position + new Vector3(30.0f, 30.0f, 0.0f);
     }
