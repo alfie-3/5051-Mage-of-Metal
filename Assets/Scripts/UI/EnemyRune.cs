@@ -61,6 +61,7 @@ public class EnemyRune : MonoBehaviour
             
         else if(runeTimer <= 0.0f)
         {
+            managerScript.RunesInScene.Remove(gameObject);
             Destroy(gameObject);
 
         }

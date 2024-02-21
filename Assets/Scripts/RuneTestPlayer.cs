@@ -98,7 +98,7 @@ public class RuneTestPlayer : MonoBehaviour
             }
             else if(effectType == "yellow"){
                 Instantiate(YellowEffect, currentEnemy);
-            }
+            } 
             else if(effectType == "orange"){
                 Instantiate(OrangeEffect, currentEnemy);
             }
