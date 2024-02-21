@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class CursorPointer : MonoBehaviour
 {
     [SerializeField] RectTransform ir_pointer;
-    [SerializeField] NoteController _noteController;
+    [SerializeField] RuneTestPlayer _runeTestPlayer;
 
     Image image;
     [Space]
@@ -100,20 +100,10 @@ public class CursorPointer : MonoBehaviour
     //Basic attack, to have rune breaking stuff added to
     private void Attack()
     {
-        WiimoteApi.GuitarData guitardata = WiiInputManager.GuitarWiiMote.WiiMote.Guitar;
-        if (!_noteController.CheckGuitarNotes()) return;
+        //WiimoteApi.GuitarData guitardata = WiiInputManager.GuitarWiiMote.WiiMote.Guitar;
+        _runeTestPlayer.Strummed();
 
-        Debug.Log("SUCCESSFUL ATTACK");
-        IDamage damageable = CheckForEnemy();
-
-        if (damageable != null)
-        {
-            Debug.Log("Attack");
-            damageable.Damage(3);
-        }
-        else
-        {
-            Debug.Log("Miss");
-        }
+        //Debug.Log("SUCCESSFUL ATTACK");
+        //IDamage damageable = CheckForEnemy();
     }
 }

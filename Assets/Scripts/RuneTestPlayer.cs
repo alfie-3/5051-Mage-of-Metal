@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -116,16 +117,16 @@ public class RuneTestPlayer : MonoBehaviour
         //look through runes in array, if any rune matches the one played play it + eliminate from array
         Debug.Log("Button Hit!");
         List<GameObject> RunesInScene = runeManager.RunesInScene;
-        if(RunesInScene.Count != 0)
+        if (RunesInScene.Count != 0)
         {
-            foreach(GameObject rune in RunesInScene)
+            if (canFire == true)
             {
-                char[] runeName = rune.name.ToCharArray();
-                if(canFire == true)
+                foreach (GameObject rune in RunesInScene)
                 {
-                    if(buttonColor == "blue")
+                    char[] runeName = rune.name.ToCharArray();
+                    if (buttonColor == "blue")
                     {
-                        if(runeName[0] == 'B')
+                        if (runeName[0] == 'B')
                         {
                             FancyEffect("blue");
                             Debug.Log("Blue Hit!");
@@ -135,9 +136,9 @@ public class RuneTestPlayer : MonoBehaviour
                         }
                     }
 
-                    if(buttonColor == "yellow")
+                    if (buttonColor == "yellow")
                     {
-                        if(runeName[0] == 'Y')
+                        if (runeName[0] == 'Y')
                         {
                             FancyEffect("yellow");
                             Debug.Log("Yellow Hit!");
@@ -147,9 +148,9 @@ public class RuneTestPlayer : MonoBehaviour
                         }
                     }
 
-                    if(buttonColor == "orange")
+                    if (buttonColor == "orange")
                     {
-                        if(runeName[0] == 'O')
+                        if (runeName[0] == 'O')
                         {
                             FancyEffect("orange");
                             Debug.Log("Orange Hit!");
@@ -159,9 +160,9 @@ public class RuneTestPlayer : MonoBehaviour
                         }
                     }
 
-                    if(buttonColor == "red")
+                    if (buttonColor == "red")
                     {
-                        if(runeName[0] == 'R')
+                        if (runeName[0] == 'R')
                         {
                             FancyEffect("red");
                             Debug.Log("Red Hit!");
@@ -171,9 +172,9 @@ public class RuneTestPlayer : MonoBehaviour
                         }
                     }
 
-                    if(buttonColor == "green")
+                    if (buttonColor == "green")
                     {
-                        if(runeName[0] == 'G')
+                        if (runeName[0] == 'G')
                         {
                             FancyEffect("green");
                             Debug.Log("Green Hit!");
@@ -189,23 +190,54 @@ public class RuneTestPlayer : MonoBehaviour
     }
     public void Strummed()
     {
-        GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
-        bool success = true;
-        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.GREEN))
+        if (canFire == true)
         {
-            //Check stuff
-        }
-        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.RED))
-        {
-        }
-        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.YELLOW))
-        {
-        }
-        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.BLUE))
-        {
-        }
-        if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.ORANGE))
-        {
+            GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
+            List<GameObject> RunesInScene = runeManager.RunesInScene;
+            foreach (GameObject rune in RunesInScene)
+            {
+                char[] runeName = rune.name.ToCharArray();
+                if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.GREEN))
+                {
+                    FancyEffect("green");
+                    Debug.Log("Green Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                    RunesInScene.Remove(rune);
+                }
+                if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.RED))
+                {
+                    FancyEffect("red");
+                    Debug.Log("Red Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                    RunesInScene.Remove(rune);
+                }
+                if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.YELLOW))
+                {
+                    FancyEffect("yellow");
+                    Debug.Log("Yellow Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                    RunesInScene.Remove(rune);
+                }
+                if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.BLUE))
+                {
+                    FancyEffect("blue");
+                    Debug.Log("Blue Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                    RunesInScene.Remove(rune);
+                }
+                if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.ORANGE))
+                {
+                    FancyEffect("orange");
+                    Debug.Log("Orange Hit!");
+                    enemyScript.Damage(1);
+                    runePlayed = true;
+                    RunesInScene.Remove(rune);
+                }
+            }
         }
     }
 
