@@ -8,21 +8,15 @@ using UnityEngine.InputSystem;
 
 public class RuneTestPlayer : MonoBehaviour
 {
-    //needs logic for hitting correct key with the rune displayed or not correct
-    //deals damage on correct hit - healthbar
+    //quick script for testing player implementation
 
-
-
-
-
-    //quick script for testing
+    //public vars
     public Camera playerCam;
     public float lookSpeed = 2.0f;
     public float lookLimitX = 45.0f;
     public bool runePlayed = false;
-    private bool canFire = false;
-    Transform currentEnemy;
 
+    //serialized
     [SerializeField] private RuneFMODBridge runeManager;
 
     [SerializeField] private GameObject BlueEffect;
@@ -30,17 +24,21 @@ public class RuneTestPlayer : MonoBehaviour
     [SerializeField] private GameObject YellowEffect;
     [SerializeField] private GameObject OrangeEffect;
     [SerializeField] private GameObject RedEffect;
-    float rotX = 0;
-
-
+    
+    //private
+    private float rotX = 0;
+    private Transform currentEnemy;
     private EnemyBehaviour enemyScript;
+    private bool canFire = false;
+
 
     void Start()
     {
+        //gets camera + rune manager
         playerCam = Camera.main;
         GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
         runeManager = managerObject.GetComponent<RuneFMODBridge>();
-        if(runeManager)
+        if(runeManager) //checks if manager found
         {
             Debug.Log("manager found");        
         }
@@ -49,6 +47,7 @@ public class RuneTestPlayer : MonoBehaviour
             Debug.Log("manager not found");
         }
 
+        //looking around logic
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
     }
@@ -62,26 +61,33 @@ public class RuneTestPlayer : MonoBehaviour
         //playerCam.transform.localRotation = Quaternion.Euler(rotX, 0, 0);
         //transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
 
-        //attacking logic
+        //creates raycast stuff
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 6000))
         {
+            //on hitting something with raycast - display name (ONLY FOR TESTING)
             if(hit.transform.gameObject)
             {
                 Debug.Log(hit.transform.gameObject.name);
             }
 
+            //if looking at enemy
             if (hit.transform.gameObject.tag == "Enemy")
             {
+                //debug log for testing
                 Debug.Log("Enemy Hit");
+                //get the enemy script of the enemy being looked at
                 enemyScript = hit.transform.gameObject.GetComponent<EnemyBehaviour>();
+                //if player looking at enemy can fire
                 canFire = true;
+                //get transform for spawning shooting effects
                 currentEnemy = hit.transform;
             }
             else
             {
+                //if the player isnt looking at an enemy - cant fire
                 canFire = false;
             }
         }
@@ -91,8 +97,10 @@ public class RuneTestPlayer : MonoBehaviour
     }
 
 
+//special effects function
     void FancyEffect(string effectType)
         {
+            //depending on string inputted - spawns effect on enemy
             if(effectType == "blue") {
                 Instantiate(BlueEffect, currentEnemy);
             }
@@ -108,6 +116,7 @@ public class RuneTestPlayer : MonoBehaviour
             else if(effectType == "red"){
                 Instantiate(RedEffect, currentEnemy);
             }
+            //destroy after a little
             Destroy(GameObject.FindGameObjectWithTag("effect"), 0.3f);
 
         }
@@ -115,22 +124,33 @@ public class RuneTestPlayer : MonoBehaviour
     
     public void Gun(string buttonColor)
     {
-        //look through runes in array, if any rune matches the one played play it + eliminate from array
+        //function to play on enemy attack 
         Debug.Log("Button Hit!");
+        //if there is a rune in scene
         if (runeManager.RunesInScene.Count != 0)
         {
+            //if the player is looking at an enemy
             if (canFire == true)
             {
+                //for each rune in scene - not optimised
+                //goes through each rune in scene checking whether its playable
                 foreach (GameObject rune in runeManager.RunesInScene)
                 {
+                    //get rune name
                     char[] runeName = rune.name.ToCharArray();
+                    //if blue is pressed
                     if (buttonColor == "blue")
                     {
+                        //if first letter is B of name (probably means the rune is Blue)
                         if (runeName[0] == 'B')
                         {
+                            //spawn special effect
                             FancyEffect("blue");
+                            //debug log for testing
                             Debug.Log("Blue Hit!");
+                            //damage enemy
                             enemyScript.Damage(1);
+                            //remove rune using manager function (it destroys the rune and removes it from RunesInScene)
                             runeManager.RemoveRune(rune);
                         }
                     }

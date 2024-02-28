@@ -19,6 +19,7 @@ using UnityEngine;
 
 public class RuneFMODBridge : MonoBehaviour
 {
+    //inspector display stuff
     [Header("Rune Order")]
     [TextArea]
     public string Rune_Instructions = "Type in the Runes Text box the order of which the runes should appear, B (Blue), O ( Orange), Y (Yellow), G (Green), R (Red) ";
@@ -27,6 +28,7 @@ public class RuneFMODBridge : MonoBehaviour
     [TextArea]
     public string Rune_Sprites_Info = "These are temporary placeholders, to be replaced when rune sprites designed";
 
+//serialized
     [SerializeField] GameObject BlueRunePrefab;
     [SerializeField] GameObject OrangeRunePrefab;
     [SerializeField] GameObject YellowRunePrefab;
@@ -35,6 +37,7 @@ public class RuneFMODBridge : MonoBehaviour
 
     [SerializeField] GameObject HUDCanvas;
 
+//public
     public float SpeedOfRune = 1.0f;
     public float runeTimer = 3.0f;
     public List<GameObject>  RunesInScene = new List<GameObject>();
@@ -46,6 +49,7 @@ public class RuneFMODBridge : MonoBehaviour
     Vector3 SouthWestSpawnpoint;
     //centre = Vector3(7344.7998,3658.19995,0)
 
+//private
     private GameObject centre;
     int currentDirection = 0;
 
@@ -53,12 +57,11 @@ public class RuneFMODBridge : MonoBehaviour
 
     void Awake()
     {
-        if (!centre)
-        {
+        //gets centre (players pointer)
+        if (!centre) {
             centre = GameObject.FindGameObjectWithTag("Centre");
         }
-        if (!centre)
-        {
+        else {
             Debug.Log("Centre not found");
         }
 
@@ -91,6 +94,7 @@ public class RuneFMODBridge : MonoBehaviour
     }
 
 
+//gets spawn points of runes relative to centre
     void RuneLocations()
     {
         NorthSpawnpoint = centre.transform.position + new Vector3(0.0f, 50.0f, 0.0f);
@@ -100,6 +104,7 @@ public class RuneFMODBridge : MonoBehaviour
         SouthWestSpawnpoint = centre.transform.position + new Vector3(30.0f, 30.0f, 0.0f);
     }
 
+///remove rune 
     public void RemoveRune(GameObject rune)
     {
         if(rune)
