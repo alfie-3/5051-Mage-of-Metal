@@ -53,16 +53,10 @@ public class EnemyRune : MonoBehaviour
     void RuneLifespan()
     {
         runeTimer -= Time.deltaTime;
-          if(playerScript.runePlayed == true)
-            {
-                playerScript.runePlayed = false;
-                Destroy(gameObject);
-            }
             
-        else if(runeTimer <= 0.0f)
+        if(runeTimer <= 0.0f)
         {
-            runeManager.RunesInScene.Remove(gameObject);
-            Destroy(gameObject);
+            runeManager.RemoveRune(gameObject);
 
         }
     }

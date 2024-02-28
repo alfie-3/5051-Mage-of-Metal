@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -84,7 +85,7 @@ public class RuneTestPlayer : MonoBehaviour
                 canFire = false;
             }
         }
-        Debug.Log(runeManager.RunesInScene);
+        Debug.Log(canFire);
 
 
     }
@@ -116,12 +117,11 @@ public class RuneTestPlayer : MonoBehaviour
     {
         //look through runes in array, if any rune matches the one played play it + eliminate from array
         Debug.Log("Button Hit!");
-        List<GameObject> RunesInScene = runeManager.RunesInScene;
-        if (RunesInScene.Count != 0)
+        if (runeManager.RunesInScene.Count != 0)
         {
             if (canFire == true)
             {
-                foreach (GameObject rune in RunesInScene)
+                foreach (GameObject rune in runeManager.RunesInScene)
                 {
                     char[] runeName = rune.name.ToCharArray();
                     if (buttonColor == "blue")
@@ -131,8 +131,7 @@ public class RuneTestPlayer : MonoBehaviour
                             FancyEffect("blue");
                             Debug.Log("Blue Hit!");
                             enemyScript.Damage(1);
-                            runePlayed = true;
-                            RunesInScene.Remove(rune);
+                            runeManager.RemoveRune(rune);
                         }
                     }
 
@@ -143,8 +142,7 @@ public class RuneTestPlayer : MonoBehaviour
                             FancyEffect("yellow");
                             Debug.Log("Yellow Hit!");
                             enemyScript.Damage(1);
-                            runePlayed = true;
-                            RunesInScene.Remove(rune);
+                            runeManager.RemoveRune(rune);
                         }
                     }
 
@@ -155,8 +153,7 @@ public class RuneTestPlayer : MonoBehaviour
                             FancyEffect("orange");
                             Debug.Log("Orange Hit!");
                             enemyScript.Damage(1);
-                            runePlayed = true;
-                            RunesInScene.Remove(rune);
+                            runeManager.RemoveRune(rune);
                         }
                     }
 
@@ -167,8 +164,7 @@ public class RuneTestPlayer : MonoBehaviour
                             FancyEffect("red");
                             Debug.Log("Red Hit!");
                             enemyScript.Damage(1);
-                            runePlayed = true;
-                            RunesInScene.Remove(rune);
+                            runeManager.RemoveRune(rune);
                         }
                     }
 
@@ -179,8 +175,7 @@ public class RuneTestPlayer : MonoBehaviour
                             FancyEffect("green");
                             Debug.Log("Green Hit!");
                             enemyScript.Damage(1);
-                            runePlayed = true;
-                            RunesInScene.Remove(rune);
+                            runeManager.RemoveRune(rune);
                         }
                     }
                 }
@@ -202,40 +197,40 @@ public class RuneTestPlayer : MonoBehaviour
                     FancyEffect("green");
                     Debug.Log("Green Hit!");
                     enemyScript.Damage(1);
-                    runePlayed = true;
-                    RunesInScene.Remove(rune);
+                    runeManager.RemoveRune(rune);
+
                 }
                 if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.RED))
                 {
                     FancyEffect("red");
                     Debug.Log("Red Hit!");
                     enemyScript.Damage(1);
-                    runePlayed = true;
-                    RunesInScene.Remove(rune);
+                    runeManager.RemoveRune(rune);
+                    
                 }
                 if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.YELLOW))
                 {
                     FancyEffect("yellow");
                     Debug.Log("Yellow Hit!");
                     enemyScript.Damage(1);
-                    runePlayed = true;
-                    RunesInScene.Remove(rune);
+                    runeManager.RemoveRune(rune);
+
                 }
                 if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.BLUE))
                 {
                     FancyEffect("blue");
                     Debug.Log("Blue Hit!");
                     enemyScript.Damage(1);
-                    runePlayed = true;
-                    RunesInScene.Remove(rune);
+                    runeManager.RemoveRune(rune);
+
                 }
                 if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.ORANGE))
                 {
                     FancyEffect("orange");
                     Debug.Log("Orange Hit!");
                     enemyScript.Damage(1);
-                    runePlayed = true;
-                    RunesInScene.Remove(rune);
+                    runeManager.RemoveRune(rune);
+
                 }
             }
         }

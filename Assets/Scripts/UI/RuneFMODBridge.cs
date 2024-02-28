@@ -100,4 +100,13 @@ public class RuneFMODBridge : MonoBehaviour
         SouthWestSpawnpoint = centre.transform.position + new Vector3(30.0f, 30.0f, 0.0f);
     }
 
+    public void RemoveRune(GameObject rune)
+    {
+        if(rune)
+        {
+            RunesInScene.Remove(rune);
+            Destroy(rune);
+        }
+    }
+
 }
