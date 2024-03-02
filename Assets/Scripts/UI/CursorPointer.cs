@@ -1,10 +1,15 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class CursorPointer : MonoBehaviour
 {
     [SerializeField] RectTransform ir_pointer;
     [SerializeField] RuneTestPlayer _runeTestPlayer;
+
+    Controls _controlsKnm;
+    InputAction controls;
 
     Image image;
     [Space]
@@ -16,15 +21,23 @@ public class CursorPointer : MonoBehaviour
     private void Awake()
     {
         image = ir_pointer.GetComponent<Image>();
+        _controlsKnm = new Controls();
     }
 
     private void OnEnable()
     {
         WiiInputManager.GuitarWiiMote.Strummed += Attack;
+
+        controls = _controlsKnm.GuitarControls.Strum;
+        _controlsKnm.GuitarControls.Strum.performed += Attack;
+        _controlsKnm.GuitarControls.Strum.Enable();
+
     }
     private void OnDisable()
     {
         WiiInputManager.GuitarWiiMote.Strummed -= Attack;
+        _controlsKnm.GuitarControls.Strum.performed -= Attack;
+        _controlsKnm.GuitarControls.Strum.Disable();
     }
 
     private void Update()
@@ -97,13 +110,32 @@ public class CursorPointer : MonoBehaviour
         return null;
     }
 
+    private void Attack(InputAction.CallbackContext obj)
+    {
+        Attack();
+    }
+
     //Basic attack, to have rune breaking stuff added to
     private void Attack()
     {
         //WiimoteApi.GuitarData guitardata = WiiInputManager.GuitarWiiMote.WiiMote.Guitar;
-        _runeTestPlayer.Strummed();
+        if (_runeTestPlayer != null)
+        {
+            _runeTestPlayer.Strummed();
+        }
 
-        //Debug.Log("SUCCESSFUL ATTACK");
-        //IDamage damageable = CheckForEnemy();
+        Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
+        RaycastHit hitInfo = new();
+
+        Debug.DrawRay(ray.origin, ray.direction * 50);
+
+        if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
+        {
+            if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))
+            {
+                Debug.Log("Attack");
+                _button.onClick.Invoke();
+            }
+        }
     }
 }
