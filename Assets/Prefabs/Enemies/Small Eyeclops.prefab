@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8666798336776722394}
   - component: {fileID: 2925760958741588230}
   - component: {fileID: 9100982912852106409}
+  - component: {fileID: -7004709798043533988}
+  - component: {fileID: 3637989427368293441}
   m_Layer: 0
   m_Name: Small Eyeclops
   m_TagString: Enemy
@@ -125,6 +127,7 @@ MonoBehaviour:
   EnemyMaxHP: 10
   Offset: {x: 0, y: 0, z: 0}
   UIInfo: Make sure to link UILocation game object into the field below
+  DieEffect: {fileID: 0}
   UILocation: {fileID: 3748317840680969244}
 --- !u!136 &9100982912852106409
 CapsuleCollider:
@@ -149,6 +152,41 @@ CapsuleCollider:
   m_Height: 0.75
   m_Direction: 1
   m_Center: {x: 0, y: -0.15, z: 0}
+--- !u!114 &-7004709798043533988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628510504027079244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2cb4c3e650efc4dba80a66ae8bdb53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minAttackDistance: 1000
+--- !u!195 &3637989427368293441
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628510504027079244}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &9160239919144339383
 GameObject:
   m_ObjectHideFlags: 0
