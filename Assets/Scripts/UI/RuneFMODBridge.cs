@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//what needs to be done:
-//at the moment runes will appear in order of array and not on beat
-
-
-//new system for runes:
-//runes need to be playable at the same time 
-//need classification for which angle rune is coming from towards the centre - 5 lanes so north, west, east, south east and southwest
-//function that decides which is the next direction + when to do multiple
-//instead of having locations of rune spawnpoints as objects could just get their actual vector positions
 
 public class RuneFMODBridge : MonoBehaviour
 {
@@ -93,8 +84,8 @@ public class RuneFMODBridge : MonoBehaviour
         NorthSpawnpoint = centre.transform.position + new Vector3(0.0f, DistanceFromCentre, 0.0f);
         EastSpawnpoint = centre.transform.position + new Vector3(DistanceFromCentre, 0.0f, 0.0f);
         WestSpawnpoint = centre.transform.position + new Vector3(-DistanceFromCentre, 0.0f, 0.0f);
-        SouthEastSpawnpoint = centre.transform.position + new Vector3(-DistanceFromCentre/2, DistanceFromCentre, 0.0f);
-        SouthWestSpawnpoint = centre.transform.position + new Vector3(DistanceFromCentre, DistanceFromCentre, 0.0f);
+        SouthEastSpawnpoint = centre.transform.position + new Vector3(-DistanceFromCentre/2, -DistanceFromCentre, 0.0f);
+        SouthWestSpawnpoint = centre.transform.position + new Vector3(DistanceFromCentre, -DistanceFromCentre, 0.0f);
     }
 
 ///remove rune 

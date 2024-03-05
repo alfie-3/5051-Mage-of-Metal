@@ -10,6 +10,7 @@ TagManager:
   - Centre
   - effect
   - RuneLimit
+  - Rune
   layers:
   - Default
   - TransparentFX
