@@ -15,10 +15,14 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
+<<<<<<< Updated upstream
   lastModified: 638427352216606073
+=======
+  lastModified: 638452606992093416
+>>>>>>> Stashed changes
   FileSizes:
   - Name: 
-    Value: 1124
+    Value: 1180
   Exists: 1
 --- !u!114 &-4234454804968402356
 MonoBehaviour:
@@ -35,7 +39,11 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
+<<<<<<< Updated upstream
   lastModified: 638416196899212783
+=======
+  lastModified: 638452606992073464
+>>>>>>> Stashed changes
   FileSizes: []
   Exists: 1
 --- !u!114 &-4086606447808561957
@@ -111,13 +119,45 @@ MonoBehaviour:
   - {fileID: -4086606447808561957}
   - {fileID: 4424463235003810918}
   - {fileID: 4405729266716193895}
+  - {fileID: 249059225546448272}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4234454804968402356}
   StringsBanks:
   - {fileID: -7067886867853178366}
+<<<<<<< Updated upstream
   cacheTime: 638427352216606073
+=======
+  cacheTime: 638452607007534938
+>>>>>>> Stashed changes
   cacheVersion: 131608
+--- !u!114 &249059225546448272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CopywritedMusic/MageOfMelodies
+  m_EditorClassIdentifier: 
+  Path: event:/CopywritedMusic/MageOfMelodies
+  Guid:
+    Data1: 1766504633
+    Data2: 1223952308
+    Data3: -934460525
+    Data4: 2063881120
+  Banks:
+  - {fileID: 635613063070166417}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 63059
 --- !u!114 &635613063070166417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +173,11 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank B.bank
   Name: Bank B
   StudioPath: bank:/Music/Bank B
+<<<<<<< Updated upstream
   lastModified: 638427352216346226
+=======
+  lastModified: 638452607007264968
+>>>>>>> Stashed changes
   FileSizes: []
   Exists: 1
 --- !u!114 &3568968472121339264
@@ -259,6 +303,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Weather/Bank A
+<<<<<<< Updated upstream
   lastModified: 638427352214447304
+=======
+  lastModified: 638452607007534938
+>>>>>>> Stashed changes
   FileSizes: []
   Exists: 1
