@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using WiimoteApi;
 
 
 
@@ -35,8 +36,12 @@ public class RuneTestPlayer : MonoBehaviour
     private List<GameObject> StrumRunes = new List<GameObject>();
 
 
+    GuitarRemoteInput guitardata;
+
     void Start()
     {
+        guitardata = WiiInputManager.GuitarWiiMote;
+
         //gets camera + rune manager
         playerCam = Camera.main;
         GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
@@ -128,7 +133,6 @@ public class RuneTestPlayer : MonoBehaviour
 
    public void StrumGun()
     {
-        GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
         // If there are no runes in the scene or player can't fire, exit
         if (runeManager.RunesInScene.Count == 0 || !canFire)
             return;
@@ -180,30 +184,30 @@ void UnRuner(GameObject rune)
 {
     char runeColor = rune.name[0]; // First character of rune name represents color
 
-    if (guitardata.ColorReleasedThisFrame(BLUE) && runeColor == 'B') 
+    if (guitardata.ColorReleasedThisFrame(GUITAR_COLORS.BLUE) && runeColor == 'B') 
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);
         
     }
-    else if (guitardata.ColorReleasedThisFrame(YELLOW) && runeColor == 'Y')
+    else if (guitardata.ColorReleasedThisFrame(GUITAR_COLORS.YELLOW) && runeColor == 'Y')
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);
     }
-    else if (guitardata.ColorReleasedThisFrame(ORANGE) && runeColor == 'O')
+    else if (guitardata.ColorReleasedThisFrame(GUITAR_COLORS.ORANGE) && runeColor == 'O')
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);
 
     }
-    else if (guitardata.ColorReleasedThisFrame(GREEN) && runeColor == 'G')
+    else if (guitardata.ColorReleasedThisFrame(GUITAR_COLORS.GREEN) && runeColor == 'G')
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);
     
     }
-    else if (guitardata.ColorReleasedThisFrame(RED) && runeColor == 'R')
+    else if (guitardata.ColorReleasedThisFrame(GUITAR_COLORS.RED) && runeColor == 'R')
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);    

@@ -117,7 +117,7 @@ Material:
     - _OutlineNormalBias: 2.3
     - _OutlineNormalMultiplier: 1.77
     - _OutlineThickness: 0
-    - _OutlineWidth: 0.03
+    - _OutlineWidth: 0.04
     - _OutlineZ: -0.00019
     - _Outline_Thickness: 0.03
     - _Parallax: 0.005
