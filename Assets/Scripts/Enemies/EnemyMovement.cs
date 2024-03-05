@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Splines;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
 
     GameObject player;
     float distance = Mathf.Infinity;
+
 
     private void Start()
     {
