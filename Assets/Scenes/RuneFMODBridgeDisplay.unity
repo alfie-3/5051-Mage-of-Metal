@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1850,11 +1850,11 @@ MonoBehaviour:
   _runeFMODBridge: {fileID: 864326190}
   audioRef:
     Guid:
-      Data1: -1932895076
-      Data2: 1207980107
-      Data3: -285993572
-      Data4: -227267567
-    Path: event:/BadMusic/BadMusic
+      Data1: 1766504633
+      Data2: 1223952308
+      Data3: -934460525
+      Data4: 2063881120
+    Path: event:/CopywritedMusic/MageOfMelodies
   musicPercentage: 0
   musicStartDelay: 2000
   UIButton: {fileID: 101536062}
