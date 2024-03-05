@@ -48,14 +48,6 @@ public class EnemyRune : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, CentrePoint.position, step);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (GetComponent<Collider>().gameObject.tag == "RuneLimit")
-        {
-            runeManager.RemoveRune(gameObject);
-        }
-        Debug.Log("collided");
-    }
+    
 
 }

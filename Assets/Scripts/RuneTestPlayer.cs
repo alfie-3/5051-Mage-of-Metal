@@ -32,6 +32,7 @@ public class RuneTestPlayer : MonoBehaviour
     private Transform currentEnemy;
     private EnemyBehaviour enemyScript;
     private bool canFire = false;
+    private List<GameObject> StrumRunes = new List<GameObject>();
 
 
     void Start()
@@ -72,23 +73,22 @@ public class RuneTestPlayer : MonoBehaviour
             //if looking at enemy
             if (hit.transform.gameObject.tag == "Enemy")
             {
-                //debug log for testing
-                Debug.Log("Enemy Hit");
                 //get the enemy script of the enemy being looked at
                 enemyScript = hit.transform.gameObject.GetComponent<EnemyBehaviour>();
                 //if player looking at enemy can fire
                 canFire = true;
                 //get transform for spawning shooting effects
                 currentEnemy = hit.transform;
+                Debug.Log("can fire");
             }
             else
             {
                 //if the player isnt looking at an enemy - cant fire
                 canFire = false;
+                Debug.Log("cant fire");
             }
         }
         StrumGun();
-
 
     }
 
@@ -124,83 +124,93 @@ public class RuneTestPlayer : MonoBehaviour
     //when keys are held, runes are added to array/list
     //when keys are let go of those runes are removed from the list - separate function
     //when strum key is pressed and the keys are still being pressed those runes disappear from screen and attack is fired
+    //runes that are pressed and let go get destroyed
 
-    public void StrumGun()
+   public void StrumGun()
     {
-        List<GameObject>  StrumRunes = new List<GameObject>();
-        //if there is a rune in scene
-        if (runeManager.RunesInScene.Count != 0)
+        GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
+        // If there are no runes in the scene or player can't fire, exit
+        if (runeManager.RunesInScene.Count == 0 || !canFire)
+            return;
+
+        // Check key inputs for corresponding runes
+        foreach (GameObject rune in runeManager.RunesInScene)
         {
-            //if the player is looking at an enemy
-            if (canFire == true)
+            char runeColor = rune.name[0]; // First character of rune name represents color
+
+            if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.BLUE) && runeColor == 'B') 
             {
-                //for each rune in scene - not optimised
-                //goes through each rune in scene checking whether its playable
-                foreach (GameObject rune in runeManager.RunesInScene)
-                {
-                    //get rune name
-                    char[] runeName = rune.name.ToCharArray();
-                    //blue
-                    if(Input.GetKeyDown(KeyCode.B))
-                    {
-                        if (runeName[0] == 'B')
-                        {
-                            StrumRunes.Add(rune);
-                        }
-                        
-                    }
-
-                    //yellow
-                    if(Input.GetKeyDown(KeyCode.Y))
-                    {
-                        if (runeName[0] == 'Y')
-                        {
-                            StrumRunes.Add(rune);
-                        }
-                    }
-
-                    //orange
-                    if(Input.GetKeyDown(KeyCode.O))
-                    {
-                        if (runeName[0] == 'O')
-                        {
-                            StrumRunes.Add(rune);
-                        }
-                    }
-                    //green
-                    if(Input.GetKeyDown(KeyCode.G))
-                    {
-                        if (runeName[0] == 'G')
-                        {
-                            StrumRunes.Add(rune);
-                        }
-                    }
-                    //red
-                    if(Input.GetKeyDown(KeyCode.R))
-                    {
-                        if (runeName[0] == 'R')
-                        {
-                            StrumRunes.Add(rune);
-                        }
-                    }
-
-                    //strum
-                    if(Input.GetKeyDown(KeyCode.Space))
-                    {
-                        int damage = StrumRunes.Count;
-                        FancyEffect("red");
-                        enemyScript.Damage(damage);
-                        Debug.Log(damage);
-                        StrumRunes.Clear();
-                    }
-                    
-                }
-            Debug.Log(StrumRunes);
+                StrumRunes.Add(rune);
             }
+            else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.YELLOW) && runeColor == 'Y')
+            {
+                StrumRunes.Add(rune);
+            }
+            else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.ORANGE) && runeColor == 'O')
+            {
+                StrumRunes.Add(rune);
+            }
+            else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.GREEN) && runeColor == 'G')
+            {
+                StrumRunes.Add(rune);
+            }
+            else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.RED) && runeColor == 'R')
+            {
+                StrumRunes.Add(rune);
+            }
+
+            UnRuner(rune);
         }
 
+        if (guitardata.CheckStrummedThisFrame() && StrumRunes.Count > 0)
+        {
+            int damage = StrumRunes.Count;
+            FancyEffect("red");
+            enemyScript.Damage(damage);
+            Debug.Log(damage);
+            foreach(GameObject rune in StrumRunes)
+            {
+                runeManager.RemoveRune(rune);
+            }
+            StrumRunes.Clear();
+        }
+    }
+
+void UnRuner(GameObject rune)
+{
+    char runeColor = rune.name[0]; // First character of rune name represents color
+
+    if (Input.GetKeyUp(KeyCode.B) && runeColor == 'B') 
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);
+        
+    }
+    else if (Input.GetKeyUp(KeyCode.Y) && runeColor == 'Y')
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);
+    }
+    else if (Input.GetKeyUp(KeyCode.O) && runeColor == 'O')
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);
 
     }
+    else if (Input.GetKeyUp(KeyCode.G) && runeColor == 'G')
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);
+    
+    }
+    else if (Input.GetKeyUp(KeyCode.R) && runeColor == 'R')
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);    
+    }
+}
+
+
 
 //functions for ui buttons    
     public void Gun(string buttonColor)
