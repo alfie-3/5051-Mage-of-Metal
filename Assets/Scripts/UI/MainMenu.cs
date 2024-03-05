@@ -10,10 +10,16 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Vector3 menuPos, menuRot, settingsPos, settingsRot;
     [SerializeField] GameObject player;
     [SerializeField] float alphaRate;
+    [SerializeField] Renderer quadTransition;
 
     float alpha;
     Vector3 movingPos;
     Vector3 movingRot;
+
+    private void Start()
+    {
+        StartCoroutine(LevelManager.ChangeAlpha(0, 0.5f, quadTransition.material, 0.5f));
+    }
 
     public void Play()
     {
