@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] float alphaRate;
     [SerializeField] Renderer quadTransition;
 
+    bool isTransitioning = false;
     float alpha;
     Vector3 movingPos;
     Vector3 movingRot;
@@ -28,7 +29,11 @@ public class MainMenu : MonoBehaviour
 
     public void Settings()
     {
-        StartCoroutine(SettingsLerp(menuPos, menuRot, settingsPos, settingsRot));
+        if (!isTransitioning)
+        {
+            isTransitioning = true;
+            StartCoroutine(SettingsLerp(menuPos, menuRot, settingsPos, settingsRot));
+        }
     }
 
     IEnumerator SettingsLerp(Vector3 startPos, Vector3 startRot, Vector3 endPos, Vector3 endRot)
@@ -44,12 +49,17 @@ public class MainMenu : MonoBehaviour
             player.transform.eulerAngles = movingRot;
             yield return null;
         }
+        isTransitioning = false;
         yield return null;
     }
 
     public void MenuLerp()
     {
-        StartCoroutine(SettingsLerp(settingsPos, settingsRot, menuPos, menuRot));
+        if (!isTransitioning)
+        {
+            isTransitioning = true;
+            StartCoroutine(SettingsLerp(settingsPos, settingsRot, menuPos, menuRot));
+        }
     }
 
     public void Quit()
