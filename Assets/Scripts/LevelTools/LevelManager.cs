@@ -9,6 +9,15 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private SplineAnimate splineInfo;
     [SerializeField] Renderer quadTransitioner;
     float duration;
+    [SerializeField] GameObject playerRef, splineRef;
+
+    [SerializeField] static public GameObject player, spline;
+
+    private void Awake()
+    {
+        player = playerRef;
+        spline = splineRef;
+    }
 
     private void Start()
     {
