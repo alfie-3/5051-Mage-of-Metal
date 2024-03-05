@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene(2);
+        StartCoroutine(ExitScene(2));
     }
 
     public void Settings()
@@ -65,6 +65,12 @@ public class MainMenu : MonoBehaviour
     public void MinusVolume()
     {
         slider.value = Mathf.Clamp(slider.value - 0.1f, 0, 1);
+    }
+
+    IEnumerator ExitScene(int nextLevel)
+    {
+        yield return LevelManager.ChangeAlpha(0.5f, 0, quadTransition.material, 0.5f);
+        SceneManager.LoadScene(nextLevel);
     }
 }
 

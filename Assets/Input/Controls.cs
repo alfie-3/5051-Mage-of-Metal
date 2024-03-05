@@ -161,7 +161,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""30b5365d-94a9-4af2-9ee4-66e37c8d8460"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
