@@ -49,7 +49,7 @@ public class GuitarRemoteInput : RemoteInput
                     return previousBlueState;
                 case GUITAR_COLORS.ORANGE:
                     previousOrangeState = WiiMote.Guitar.orange_fret;
-                    return previousOrangeState
+                    return previousOrangeState;
                 default:
                     return false;
             }
