@@ -11,6 +11,13 @@ public class GuitarRemoteInput : RemoteInput
     public event Action Strummed = delegate { };
     bool strum;
 
+        // Variables to store the previous state of each color key
+    private bool previousGreenState;
+    private bool previousRedState;
+    private bool previousYellowState;
+    private bool previousBlueState;
+    private bool previousOrangeState;
+    private bool released;
     public GuitarRemoteInput(Wiimote _wiiMote = null) {
         WiiMote = _wiiMote;
     }
@@ -29,15 +36,20 @@ public class GuitarRemoteInput : RemoteInput
         if (WiiMote.current_ext == ExtensionController.GUITAR) {
             switch (color) {
                 case GUITAR_COLORS.GREEN:
-                    return WiiMote.Guitar.green_fret;
+                    previousGreenState = WiiMote.Guitar.green_fret;
+                    return previousGreenState;
                 case GUITAR_COLORS.RED:
-                    return WiiMote.Guitar.red_fret;
+                    previousRedState = WiiMote.Guitar.red_fret;
+                    return previousRedState;
                 case GUITAR_COLORS.YELLOW:
-                    return WiiMote.Guitar.yellow_fret;
+                    previousYellowState = WiiMote.Guitar.yellow_fret;
+                    return previousYellowState;
                 case GUITAR_COLORS.BLUE:
-                    return WiiMote.Guitar.blue_fret;
+                    previousBlueState = WiiMote.Guitar.blue_fret;
+                    return previousBlueState;
                 case GUITAR_COLORS.ORANGE:
-                    return WiiMote.Guitar.orange_fret;
+                    previousOrangeState = WiiMote.Guitar.orange_fret;
+                    return previousOrangeState
                 default:
                     return false;
             }
@@ -45,6 +57,42 @@ public class GuitarRemoteInput : RemoteInput
 
         return false;
     }
+
+     // Checks if the requested color fret was released this frame
+    public bool ColorReleasedThisFrame(GUITAR_COLORS color)
+    {
+        if (WiiMote.current_ext == ExtensionController.GUITAR)
+        {
+            switch (color)
+            {
+                case GUITAR_COLORS.GREEN:
+                    released = !WiiMote.Guitar.green_fret && previousGreenState;
+                    previousGreenState = !WiiMote.Guitar.green_fret;
+                    return released;
+                case GUITAR_COLORS.RED:
+                    released = !WiiMote.Guitar.red_fret && previousRedState;
+                    previousRedState = !WiiMote.Guitar.red_fret;
+                    return released;
+                case GUITAR_COLORS.YELLOW:
+                    released = !WiiMote.Guitar.yellow_fret && previousYellowState;
+                    previousYellowState = !WiiMote.Guitar.yellow_fret;
+                    return released;
+                case GUITAR_COLORS.BLUE:
+                    released = !WiiMote.Guitar.blue_fret && previousBlueState;
+                    previousBlueState = !WiiMote.Guitar.blue_fret;
+                    return released;
+                case GUITAR_COLORS.ORANGE:
+                    released = !WiiMote.Guitar.orange_fret && previousOrangeState;
+                    previousOrangeState = !WiiMote.Guitar.orange_fret;
+                    return released;
+                default:
+                    return false;
+            }
+        }
+
+        return false;
+    }
+
 
     //Checks to see if this guitar was strummed this frame, is triggered once and reset by releasing the strum to resting position
     public void CheckStrummedThisFrame()

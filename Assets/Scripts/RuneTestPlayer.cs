@@ -180,36 +180,35 @@ void UnRuner(GameObject rune)
 {
     char runeColor = rune.name[0]; // First character of rune name represents color
 
-    if (Input.GetKeyUp(KeyCode.B) && runeColor == 'B') 
+    if (guitardata.ColorReleasedThisFrame(BLUE) && runeColor == 'B') 
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);
         
     }
-    else if (Input.GetKeyUp(KeyCode.Y) && runeColor == 'Y')
+    else if (guitardata.ColorReleasedThisFrame(YELLOW) && runeColor == 'Y')
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);
     }
-    else if (Input.GetKeyUp(KeyCode.O) && runeColor == 'O')
+    else if (guitardata.ColorReleasedThisFrame(ORANGE) && runeColor == 'O')
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);
 
     }
-    else if (Input.GetKeyUp(KeyCode.G) && runeColor == 'G')
+    else if (guitardata.ColorReleasedThisFrame(GREEN) && runeColor == 'G')
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);
     
     }
-    else if (Input.GetKeyUp(KeyCode.R) && runeColor == 'R')
+    else if (guitardata.ColorReleasedThisFrame(RED) && runeColor == 'R')
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);    
     }
 }
-
 
 
 //functions for ui buttons    
