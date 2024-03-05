@@ -3,19 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//what needs to be done:
-//at the moment runes will appear in order of array and not on beat
-
-
-//new system for runes:
-//instead of single rune going towards centre, needs modularity so multiple can
-//runes need to be playable at the same time 
-//current way = rune manager summons each rune one by one 
-//change = rune manager needs to summon multiple runes towards the centre
-//this needs further clarification in the system of dictating what runes  need to be played.
-//need classification for which angle rune is coming from towards the centre - 5 lanes so north, west, east, south east and southwest
-//function that decides which is the next direction + when to do multiple
-//instead of having locations of rune spawnpoints as objects could just get their actual vector positions
+//OLD RUNE MANAGER SCRIPT - USE RUNEFMODBRIDGE
 
 public class RuneManager : MonoBehaviour
 {

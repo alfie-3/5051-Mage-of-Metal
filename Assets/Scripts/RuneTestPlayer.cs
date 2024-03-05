@@ -6,9 +6,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
 public class RuneTestPlayer : MonoBehaviour
 {
-    //quick script for testing player implementation
+    //script for testing player implementation
 
     //public vars
     public Camera playerCam;
@@ -67,12 +69,6 @@ public class RuneTestPlayer : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 6000))
         {
-            //on hitting something with raycast - display name (ONLY FOR TESTING)
-            if(hit.transform.gameObject)
-            {
-                Debug.Log(hit.transform.gameObject.name);
-            }
-
             //if looking at enemy
             if (hit.transform.gameObject.tag == "Enemy")
             {
@@ -91,40 +87,125 @@ public class RuneTestPlayer : MonoBehaviour
                 canFire = false;
             }
         }
-        Debug.Log(canFire);
+        StrumGun();
 
 
     }
 
 
-//special effects function
+    //special effects function
     void FancyEffect(string effectType)
-        {
-            //depending on string inputted - spawns effect on enemy
-            if(effectType == "blue") {
-                Instantiate(BlueEffect, currentEnemy);
-            }
-            else if(effectType == "green") {
-                Instantiate(GreenEffect, currentEnemy);
-            }
-            else if(effectType == "yellow"){
-                Instantiate(YellowEffect, currentEnemy);
-            } 
-            else if(effectType == "orange"){
-                Instantiate(OrangeEffect, currentEnemy);
-            }
-            else if(effectType == "red"){
-                Instantiate(RedEffect, currentEnemy);
-            }
-            //destroy after a little
-            Destroy(GameObject.FindGameObjectWithTag("effect"), 0.3f);
+    {
+        //depending on string inputted - spawns effect on enemy
+        if(effectType == "blue") {
+            Instantiate(BlueEffect, currentEnemy);
+        }
+        else if(effectType == "green") {
+            Instantiate(GreenEffect, currentEnemy);
+        }
+        else if(effectType == "yellow"){
+            Instantiate(YellowEffect, currentEnemy);
+        } 
+        else if(effectType == "orange"){
+            Instantiate(OrangeEffect, currentEnemy);
+        }
+         else if(effectType == "red"){
+            Instantiate(RedEffect, currentEnemy);
+        }
+        //destroy after a little
+        Destroy(GameObject.FindGameObjectWithTag("effect"), 0.3f);
 
+    }
+
+    //function for input (for now with keyboard for testing)
+    //for strumming:
+    //player needs to hold buttons of runes they want to play 
+    //when strum is pressed runes that are pressed are released
+    //when keys are held, runes are added to array/list
+    //when keys are let go of those runes are removed from the list - separate function
+    //when strum key is pressed and the keys are still being pressed those runes disappear from screen and attack is fired
+
+    public void StrumGun()
+    {
+        List<GameObject>  StrumRunes = new List<GameObject>();
+        //if there is a rune in scene
+        if (runeManager.RunesInScene.Count != 0)
+        {
+            //if the player is looking at an enemy
+            if (canFire == true)
+            {
+                //for each rune in scene - not optimised
+                //goes through each rune in scene checking whether its playable
+                foreach (GameObject rune in runeManager.RunesInScene)
+                {
+                    //get rune name
+                    char[] runeName = rune.name.ToCharArray();
+                    //blue
+                    if(Input.GetKeyDown(KeyCode.B))
+                    {
+                        if (runeName[0] == 'B')
+                        {
+                            StrumRunes.Add(rune);
+                        }
+                        
+                    }
+
+                    //yellow
+                    if(Input.GetKeyDown(KeyCode.Y))
+                    {
+                        if (runeName[0] == 'Y')
+                        {
+                            StrumRunes.Add(rune);
+                        }
+                    }
+
+                    //orange
+                    if(Input.GetKeyDown(KeyCode.O))
+                    {
+                        if (runeName[0] == 'O')
+                        {
+                            StrumRunes.Add(rune);
+                        }
+                    }
+                    //green
+                    if(Input.GetKeyDown(KeyCode.G))
+                    {
+                        if (runeName[0] == 'G')
+                        {
+                            StrumRunes.Add(rune);
+                        }
+                    }
+                    //red
+                    if(Input.GetKeyDown(KeyCode.R))
+                    {
+                        if (runeName[0] == 'R')
+                        {
+                            StrumRunes.Add(rune);
+                        }
+                    }
+
+                    //strum
+                    if(Input.GetKeyDown(KeyCode.Space))
+                    {
+                        int damage = StrumRunes.Count;
+                        FancyEffect("red");
+                        enemyScript.Damage(damage);
+                        Debug.Log(damage);
+                        StrumRunes.Clear();
+                    }
+                    
+                }
+            Debug.Log(StrumRunes);
+            }
         }
 
-    
+
+    }
+
+//functions for ui buttons    
     public void Gun(string buttonColor)
     {
-        //function to play on enemy attack 
+        //function to play for attacking enemies
         Debug.Log("Button Hit!");
         //if there is a rune in scene
         if (runeManager.RunesInScene.Count != 0)
@@ -203,6 +284,7 @@ public class RuneTestPlayer : MonoBehaviour
         }
 
     }
+    //Adriens function for guitar things
     public void Strummed()
     {
         if (canFire == true)

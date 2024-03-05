@@ -15,6 +15,7 @@ public class EnemyRune : MonoBehaviour
     private float runeTimer;
     private Transform CentrePoint;
 
+
     void Awake()
     {
         //get manager script
@@ -28,8 +29,6 @@ public class EnemyRune : MonoBehaviour
         //get point runes need to head towards
         CentrePoint = GameObject.FindGameObjectWithTag("Centre").transform;
 
-        //rune lifespan - as defined by manager
-        runeTimer = runeManager.runeTimer;
 
 
     }
@@ -44,21 +43,19 @@ public class EnemyRune : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RuneLifespan();
 
         float step =  runeManager.SpeedOfRune * Time.deltaTime; // calculate distance to move
         transform.position = Vector3.MoveTowards(transform.position, CentrePoint.position, step);
     }
 
-    void RuneLifespan()
+    private void OnTriggerEnter(Collider other)
     {
-        runeTimer -= Time.deltaTime;
-            
-        if(runeTimer <= 0.0f)
+        //Check for a match with the specific tag on any GameObject that collides with your GameObject
+        if (GetComponent<Collider>().gameObject.tag == "RuneLimit")
         {
             runeManager.RemoveRune(gameObject);
-
         }
+        Debug.Log("collided");
     }
 
 }
