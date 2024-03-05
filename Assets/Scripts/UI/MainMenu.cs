@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Renderer quadTransition;
 
     bool isTransitioning = false;
+    bool isLeaving = false;
     float alpha;
     Vector3 movingPos;
     Vector3 movingRot;
@@ -24,15 +25,22 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        StartCoroutine(ExitScene(2));
+        if (!isLeaving)
+        {
+            isLeaving = true;
+            StartCoroutine(ExitScene(2));
+        }
     }
 
     public void Settings()
     {
-        if (!isTransitioning)
+        if (!isLeaving)
         {
-            isTransitioning = true;
-            StartCoroutine(SettingsLerp(menuPos, menuRot, settingsPos, settingsRot));
+            if (!isTransitioning)
+            {
+                isTransitioning = true;
+                StartCoroutine(SettingsLerp(menuPos, menuRot, settingsPos, settingsRot));
+            }
         }
     }
 
@@ -64,7 +72,11 @@ public class MainMenu : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
+        if (!isLeaving)
+        {
+            isLeaving = true;
+            StartCoroutine(ExitGame());
+        }
     }
 
     public void AddVolume()
@@ -81,6 +93,12 @@ public class MainMenu : MonoBehaviour
     {
         yield return LevelManager.ChangeAlpha(0.5f, 0, quadTransition.material, 0.5f);
         SceneManager.LoadScene(nextLevel);
+    }
+
+    IEnumerator ExitGame()
+    {
+        yield return LevelManager.ChangeAlpha(0.5f, 0, quadTransition.material, 0.5f);
+        Application.Quit();
     }
 }
 
