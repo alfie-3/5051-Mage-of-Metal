@@ -49,7 +49,7 @@ public class GuitarRemoteInput : RemoteInput
                     return previousBlueState;
                 case GUITAR_COLORS.ORANGE:
                     previousOrangeState = WiiMote.Guitar.orange_fret;
-                    return previousOrangeState
+                    return previousOrangeState;
                 default:
                     return false;
             }
@@ -95,7 +95,7 @@ public class GuitarRemoteInput : RemoteInput
 
 
     //Checks to see if this guitar was strummed this frame, is triggered once and reset by releasing the strum to resting position
-    public void CheckStrummedThisFrame()
+    public bool CheckStrummedThisFrame()
     {
         WiiMote.ReadWiimoteData();
 
@@ -103,15 +103,15 @@ public class GuitarRemoteInput : RemoteInput
         {
             Strummed.Invoke();
             strum = true;
-            return;
+            return true;
         }
         else if (!WiiMote.Guitar.strum)
         {
             strum = false;
-            return;
+            return false;
         }
 
-        return;
+        return false;
     }
 
     //Gets 0 - 1 on the whammy bar, whammy unpushed is 0 and when pushed down is 1 but detects anything between
