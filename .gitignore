@@ -79,3 +79,5 @@ crashlytics-build.properties
 /[Aa]ssets/StreamingAssets/**/*.bank
 /[Aa]ssets/StreamingAssets/**/*.bank.meta
 
+fmod_editor.log
+Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
