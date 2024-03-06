@@ -138,11 +138,9 @@ public class CursorPointer : MonoBehaviour
 
                 return;
             }
-
-            if (hitInfo.transform.TryGetComponent(out IDamage iDamage))
+            if (hitInfo.transform.TryGetComponent(out IDamage damage))
             {
-                Debug.Log("Attack");
-                iDamage.Damage(1);
+                damage.Damage(1);
             }
         }
     }

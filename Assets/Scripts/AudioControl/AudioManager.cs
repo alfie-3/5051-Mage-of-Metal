@@ -41,11 +41,12 @@ public class AudioManager : MonoBehaviour {
         {
             managerInstance = this;
         }
+        MusicPlay();
     }
 
     private void Start()
     {
-        MusicPlayWait(musicStartDelay);
+        //MusicPlayWait(musicStartDelay);
     }
 
     async void MusicPlayWait(int milliseconds)

@@ -22,7 +22,6 @@ public class RuneFMODBridge : MonoBehaviour
     [SerializeField] GameObject GreenRunePrefab;
     [SerializeField] GameObject RedRunePrefab;
 
-    [SerializeField] GameObject HUDCanvas;
     [SerializeField] GameObject RuneLimit;
     [SerializeField] int ColliderSize;
     [SerializeField] float DistanceFromCentre = 50.0f;
