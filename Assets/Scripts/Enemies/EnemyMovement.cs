@@ -22,6 +22,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        if (Vector3.Distance(Camera.main.transform.position, transform.position) > minAttackDistance) { return; }
+
         SplineUtility.GetNearestPoint(spline, new float3(transform.position.x, transform.position.y, transform.position.z), out float3 nearest, out float t);
         Vector3 point = new Vector3(nearest.x, nearest.y, nearest.z);
         float distance = Vector3.Distance(transform.position, point);
