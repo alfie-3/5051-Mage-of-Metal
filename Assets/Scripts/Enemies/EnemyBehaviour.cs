@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,8 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     [SerializeField] private GameObject DieEffect;
     [SerializeField] private Transform UILocation;
 
+    public Action OnDeath = delegate { };
+
     void Awake() 
     {
         //checks each child to find ui location point
@@ -35,7 +38,8 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
                 UILocation = child;
             }
             else{
-                Debug.Log("UI Location not found");
+                Debug.Log("UI Location n" +
+                    "ot found");
             }
         }
         //offset for ui
@@ -60,10 +64,9 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     private void Kill()
     {
         //special effect
-        GameObject effect = Instantiate(DieEffect, gameObject.transform);
-        Destroy(effect, 0.3f); //destroy effect
+        OnDeath.Invoke();
         Debug.Log("Enemy Killed"); //debug log for testing
-        Destroy(gameObject, 0.3f); //destroy enemy
+        Destroy(gameObject); //destroy enemy
     }
 
 
