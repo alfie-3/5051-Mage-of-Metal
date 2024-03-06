@@ -135,6 +135,14 @@ public class CursorPointer : MonoBehaviour
             {
                 Debug.Log("Attack");
                 _button.onClick.Invoke();
+
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out IDamage iDamage))
+            {
+                Debug.Log("Attack");
+                iDamage.Damage(1);
             }
         }
     }
