@@ -10,15 +10,15 @@ public class HowToPlay : MonoBehaviour
 
     public void SwitchCanvi()
     {
-        //animator.Play("animate");
-        StartCoroutine(Reset(1.0f, 1));
+        animator.Play("animate");
+        StartCoroutine(Reset(animator.speed, 1, 0.2f));
     }
 
-    IEnumerator Reset(float speed, int canvasType)
+    IEnumerator Reset(float speed, int canvasType, float seconds)
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(seconds);
 
-        //animator.speed = speed;
+        animator.speed = speed;
         if (canvasType == 1)
         {
             HTPCanvas.SetActive(true);
@@ -33,10 +33,10 @@ public class HowToPlay : MonoBehaviour
 
     public void Return()
     {
-        float currentSpeed = 1.0f;//animator.speed;
-        //animator.speed = -1f;
-        //animator.Play("animate");
-        StartCoroutine(Reset(currentSpeed, 2));
+        float currentSpeed = animator.speed;
+        animator.speed = -1f;
+        animator.Play("animate");
+        StartCoroutine(Reset(currentSpeed, 2, 0.24f));
 
     }
 
