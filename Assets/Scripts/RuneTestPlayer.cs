@@ -27,6 +27,8 @@ public class RuneTestPlayer : MonoBehaviour
     [SerializeField] private GameObject YellowEffect;
     [SerializeField] private GameObject OrangeEffect;
     [SerializeField] private GameObject RedEffect;
+    [SerializeField] private bool KeyboardInput;
+    [SerializeField] private bool GuitarInput;
     
     //private
     private float rotX = 0;
@@ -93,8 +95,15 @@ public class RuneTestPlayer : MonoBehaviour
                 Debug.Log("cant fire");
             }
         }
-        StrumGun();
 
+        if(KeyboardInput)
+        {
+            StrumGunKeyboard();
+        }
+        else if(GuitarInput)
+        {
+            StrumGunGuitar();
+        }
     }
 
 
@@ -131,7 +140,7 @@ public class RuneTestPlayer : MonoBehaviour
     //when strum key is pressed and the keys are still being pressed those runes disappear from screen and attack is fired
     //runes that are pressed and let go get destroyed
 
-   public void StrumGun()
+   public void StrumGunGuitar()
     {
         GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
 
@@ -165,7 +174,7 @@ public class RuneTestPlayer : MonoBehaviour
                 StrumRunes.Add(rune);
             }
 
-            UnRuner(rune);
+            UnRunerGuitar(rune);
         }
 
         if (guitardata.CheckStrummedThisFrame() && StrumRunes.Count > 0)
@@ -182,7 +191,57 @@ public class RuneTestPlayer : MonoBehaviour
         }
     }
 
-void UnRuner(GameObject rune)
+    public void StrumGunKeyboard()
+    {
+
+        // If there are no runes in the scene or player can't fire, exit
+        if (runeManager.RunesInScene.Count == 0 || !canFire)
+            return;
+
+        // Check key inputs for corresponding runes
+        foreach (GameObject rune in runeManager.RunesInScene)
+        {
+            char runeColor = rune.name[0]; // First character of rune name represents color
+
+            if (Input.GetKeyDown(KeyCode.B) && runeColor == 'B') 
+            {
+                StrumRunes.Add(rune);
+            }
+            else if (Input.GetKeyDown(KeyCode.Y) && runeColor == 'Y')
+            {
+                StrumRunes.Add(rune);
+            }
+            else if (Input.GetKeyDown(KeyCode.O) && runeColor == 'O')
+            {
+                StrumRunes.Add(rune);
+            }
+            else if (Input.GetKeyDown(KeyCode.G) && runeColor == 'G')
+            {
+                StrumRunes.Add(rune);
+            }
+            else if (Input.GetKeyDown(KeyCode.R) && runeColor == 'R')
+            {
+                StrumRunes.Add(rune);
+            }
+
+            UnRunerKeyboard(rune);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && StrumRunes.Count > 0)
+        {
+            int damage = StrumRunes.Count;
+            FancyEffect("red");
+            enemyScript.Damage(damage);
+            Debug.Log(damage);
+            foreach(GameObject rune in StrumRunes)
+            {
+                runeManager.RemoveRune(rune);
+            }
+            StrumRunes.Clear();
+        }
+    }
+
+void UnRunerGuitar(GameObject rune)
 {
     GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
 
@@ -212,6 +271,41 @@ void UnRuner(GameObject rune)
     
     }
     else if (guitardata.ColorReleasedThisFrame(GUITAR_COLORS.RED) && runeColor == 'R')
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);    
+    }
+}
+
+void UnRunerKeyboard(GameObject rune)
+{
+
+    char runeColor = rune.name[0]; // First character of rune name represents color
+
+    if (Input.GetKeyUp(KeyCode.B) && runeColor == 'B') 
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);
+        
+    }
+    else if (Input.GetKeyUp(KeyCode.Y) && runeColor == 'Y')
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);
+    }
+    else if (Input.GetKeyUp(KeyCode.O) && runeColor == 'O')
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);
+
+    }
+    else if (Input.GetKeyUp(KeyCode.G) && runeColor == 'G')
+    {
+        StrumRunes.Remove(rune);
+        runeManager.RemoveRune(rune);
+    
+    }
+    else if (Input.GetKeyUp(KeyCode.R) && runeColor == 'R')
     {
         StrumRunes.Remove(rune);
         runeManager.RemoveRune(rune);    
