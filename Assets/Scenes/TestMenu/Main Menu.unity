@@ -510,44 +510,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &197660997
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 734
-  m_Height: 366
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 0
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &198414012
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,7 +825,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1311559500}
         m_TargetAssemblyTypeName: HowToPlay, Assembly-CSharp
         m_MethodName: Return
         m_Mode: 1
@@ -1658,7 +1620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &730066585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1772,7 +1734,7 @@ Transform:
   m_GameObject: {fileID: 738341034}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0.272, z: 0}
+  m_LocalPosition: {x: 0.12, y: 0.595, z: 0}
   m_LocalScale: {x: 1.0112, y: 0.8334, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3311,6 +3273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1311559499}
   - component: {fileID: 1311559498}
+  - component: {fileID: 1311559500}
   m_Layer: 0
   m_Name: Menu Canvi
   m_TagString: Untagged
@@ -3356,6 +3319,21 @@ Transform:
   - {fileID: 1731073862}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1311559500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311559497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8231eeaf17a42a43a1cb15c6c94f871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1615861906}
+  MainMenuCanvas: {fileID: 730066584}
+  HTPCanvas: {fileID: 1917210647}
 --- !u!1 &1316686276
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,7 +3603,6 @@ GameObject:
   - component: {fileID: 1466917743}
   - component: {fileID: 1466917742}
   - component: {fileID: 1466917741}
-  - component: {fileID: 1466917745}
   m_Layer: 5
   m_Name: HowToPlay
   m_TagString: Untagged
@@ -3650,7 +3627,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.883, y: 0.83}
+  m_AnchoredPosition: {x: -2.145, y: 0.83}
   m_SizeDelta: {x: 100, y: 19.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1466917741
@@ -3718,7 +3695,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1466917745}
+      - m_Target: {fileID: 1311559500}
         m_TargetAssemblyTypeName: HowToPlay, Assembly-CSharp
         m_MethodName: SwitchCanvi
         m_Mode: 1
@@ -3768,21 +3745,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466917739}
   m_CullTransparentMesh: 1
---- !u!114 &1466917745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466917739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8231eeaf17a42a43a1cb15c6c94f871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1615861906}
-  MainMenuCanvas: {fileID: 730066584}
-  HTPCanvas: {fileID: 1917210647}
 --- !u!84 &1511347264
 RenderTexture:
   m_ObjectHideFlags: 0
@@ -3848,7 +3810,7 @@ Transform:
   m_GameObject: {fileID: 1615861904}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8780005, y: 0.84000015, z: 0}
+  m_LocalPosition: {x: -2.153, y: 0.84000015, z: 0}
   m_LocalScale: {x: 0.44931787, y: 0.139369, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4321,7 +4283,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 197660997}
+  m_TargetTexture: {fileID: 2012596444}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -4892,7 +4854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1917210648
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5147,6 +5109,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975993067}
   m_CullTransparentMesh: 1
+--- !u!84 &2012596444
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 734
+  m_Height: 366
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 0
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &2079839044
 GameObject:
   m_ObjectHideFlags: 0
