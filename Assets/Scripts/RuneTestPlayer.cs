@@ -133,6 +133,8 @@ public class RuneTestPlayer : MonoBehaviour
 
    public void StrumGun()
     {
+        GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
+
         // If there are no runes in the scene or player can't fire, exit
         if (runeManager.RunesInScene.Count == 0 || !canFire)
             return;
@@ -182,6 +184,8 @@ public class RuneTestPlayer : MonoBehaviour
 
 void UnRuner(GameObject rune)
 {
+    GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
+
     char runeColor = rune.name[0]; // First character of rune name represents color
 
     if (guitardata.ColorReleasedThisFrame(GUITAR_COLORS.BLUE) && runeColor == 'B') 
