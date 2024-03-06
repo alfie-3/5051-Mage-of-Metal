@@ -93,6 +93,7 @@ public class RuneTestPlayer : MonoBehaviour
                 //if the player isnt looking at an enemy - cant fire
                 canFire = false;
                 Debug.Log("cant fire");
+                Debug.Log(hit.transform.gameObject.name);
             }
         }
 
@@ -396,7 +397,7 @@ void UnRunerKeyboard(GameObject rune)
 
     }
     //Adriens function for guitar things
-    public void Strummed()
+    /*public void Strummed()
     {
         if (canFire == true)
         {
@@ -447,6 +448,6 @@ void UnRunerKeyboard(GameObject rune)
                 }
             }
         }
-    }
+    }*/
 
 }

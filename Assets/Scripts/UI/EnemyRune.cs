@@ -19,11 +19,11 @@ public class EnemyRune : MonoBehaviour
     void Awake()
     {
         //get manager script
-        GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
-        runeManager = managerObject.GetComponent<RuneFMODBridge>();
+        runeManager = LevelManager.runeManager.GetComponent<RuneFMODBridge>();
+
 
         //get player script
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObject = LevelManager.player;
         playerScript = playerObject.GetComponent<RuneTestPlayer>();
 
         //get point runes need to head towards
@@ -37,7 +37,8 @@ public class EnemyRune : MonoBehaviour
     void Start()
     {
         //get main camera
-        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
+        //cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
+        cam = Camera.main as Camera;
     }
 
     // Update is called once per frame

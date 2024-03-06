@@ -9,14 +9,15 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private SplineAnimate splineInfo;
     [SerializeField] Renderer quadTransitioner;
     float duration;
-    [SerializeField] GameObject playerRef, splineRef;
+    [SerializeField] GameObject playerRef, splineRef, runeManagerRef;
 
-    [SerializeField] static public GameObject player, spline;
+    [SerializeField] static public GameObject player, spline, runeManager;
 
     private void Awake()
     {
         player = playerRef;
         spline = splineRef;
+        runeManager = runeManagerRef;
     }
 
     private void Start()

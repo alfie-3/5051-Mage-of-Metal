@@ -121,7 +121,7 @@ public class CursorPointer : MonoBehaviour
         //WiimoteApi.GuitarData guitardata = WiiInputManager.GuitarWiiMote.WiiMote.Guitar;
         if (_runeTestPlayer != null)
         {
-            _runeTestPlayer.Strummed();
+            //_runeTestPlayer.Strummed();
         }
 
         Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
