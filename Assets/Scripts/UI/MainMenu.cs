@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] float alphaRate;
     [SerializeField] Renderer quadTransition;
 
+    private AsyncOperation loadedScene;
+
     bool isTransitioning = false;
     bool isLeaving = false;
     float alpha;
@@ -92,7 +94,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator ExitScene(int nextLevel)
     {
         yield return LevelManager.ChangeAlpha(0.5f, 0, quadTransition.material, 0.5f);
-        SceneManager.LoadScene(nextLevel);
+        loadedScene = SceneManager.LoadSceneAsync(nextLevel);
     }
 
     IEnumerator ExitGame()

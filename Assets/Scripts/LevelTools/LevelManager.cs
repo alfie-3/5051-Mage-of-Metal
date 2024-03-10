@@ -65,8 +65,8 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator SceneEnd()
     {
-        yield return ChangeAlpha(0, 0.5f, quadTransitioner.material, 1);
-        SceneManager.LoadScene(1);
+        yield return ChangeAlpha(0.5f, 0, quadTransitioner.material, 1);
+        SceneManager.LoadSceneAsync(1);
     }
 }
 //
