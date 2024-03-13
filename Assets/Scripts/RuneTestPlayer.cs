@@ -86,14 +86,14 @@ public class RuneTestPlayer : MonoBehaviour
                 canFire = true;
                 //get transform for spawning shooting effects
                 currentEnemy = hit.transform;
-                Debug.Log("can fire");
+                //Debug.Log("can fire");
             }
             else
             {
                 //if the player isnt looking at an enemy - cant fire
                 canFire = false;
-                Debug.Log("cant fire");
-                Debug.Log(hit.transform.gameObject.name);
+                //Debug.Log("cant fire");
+                //Debug.Log(hit.transform.gameObject.name);
             }
         }
 

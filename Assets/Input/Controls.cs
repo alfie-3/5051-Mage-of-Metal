@@ -168,6 +168,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Strum"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7606024c-dd79-436a-9007-ad38727bc86c"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Strum"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }

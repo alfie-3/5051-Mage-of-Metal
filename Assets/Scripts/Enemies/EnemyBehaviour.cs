@@ -35,7 +35,7 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
                 UILocation = child;
             }
             else{
-                Debug.Log("UI Location not found");
+                //Debug.Log("UI Location not found");
             }
         }
         //offset for ui
@@ -62,7 +62,7 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         //special effect
         GameObject effect = Instantiate(DieEffect, gameObject.transform);
         Destroy(effect, 0.3f); //destroy effect
-        Debug.Log("Enemy Killed"); //debug log for testing
+        //Debug.Log("Enemy Killed"); //debug log for testing
         Destroy(gameObject, 0.3f); //destroy enemy
     }
 

@@ -137,7 +137,7 @@ public class AudioManager : MonoBehaviour {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
-        Debug.Log("I have quitted");
+        //Debug.Log("I have quitted");
         MusicStop();
         await Task.Delay(1000);
         Application.Quit();

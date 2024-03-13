@@ -36,15 +36,13 @@ public class RuneFMODBridge : MonoBehaviour
     Vector3 SouthWestSpawnpoint;
     //centre = Vector3(7344.7998,3658.19995,0)
 
-//private
-    private GameObject centre;
+    //private
     int currentDirection = 0;
 
     
 
     void Awake()
     {
-        centre = GameObject.FindGameObjectWithTag("Centre");
         BoxCollider RuneLimitCollider = RuneLimit.GetComponent<BoxCollider>();
         RuneLimitCollider.size = new Vector3(ColliderSize, ColliderSize, 3);
 
@@ -56,19 +54,19 @@ public class RuneFMODBridge : MonoBehaviour
         switch (noteName)
         {
             case "1":
-                RunesInScene.Add(Instantiate(GreenRunePrefab, NorthSpawnpoint, Quaternion.identity, centre.transform));
+                RunesInScene.Add(Instantiate(GreenRunePrefab, NorthSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             case "2":
-                RunesInScene.Add(Instantiate(RedRunePrefab, EastSpawnpoint, Quaternion.identity, centre.transform));
+                RunesInScene.Add(Instantiate(RedRunePrefab, EastSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             case "3":
-                RunesInScene.Add(Instantiate(YellowRunePrefab, SouthEastSpawnpoint, Quaternion.identity, centre.transform));
+                RunesInScene.Add(Instantiate(YellowRunePrefab, SouthEastSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             case "4":
-                RunesInScene.Add(Instantiate(BlueRunePrefab, WestSpawnpoint, Quaternion.identity, centre.transform));
+                RunesInScene.Add(Instantiate(BlueRunePrefab, WestSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             case "5":
-                RunesInScene.Add(Instantiate(OrangeRunePrefab, SouthWestSpawnpoint, Quaternion.identity, centre.transform));
+                RunesInScene.Add(Instantiate(OrangeRunePrefab, SouthWestSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             default:
                 Debug.Log("Note Name Not Found!");
@@ -80,11 +78,11 @@ public class RuneFMODBridge : MonoBehaviour
 //gets spawn points of runes relative to centre
     void RuneLocations()
     {
-        NorthSpawnpoint = centre.transform.position + new Vector3(0.0f, DistanceFromCentre, 0.0f);
-        EastSpawnpoint = centre.transform.position + new Vector3(DistanceFromCentre, 0.0f, 0.0f);
-        WestSpawnpoint = centre.transform.position + new Vector3(-DistanceFromCentre, 0.0f, 0.0f);
-        SouthEastSpawnpoint = centre.transform.position + new Vector3(-DistanceFromCentre/2, -DistanceFromCentre, 0.0f);
-        SouthWestSpawnpoint = centre.transform.position + new Vector3(DistanceFromCentre, -DistanceFromCentre, 0.0f);
+        NorthSpawnpoint = LevelManager.pointer.transform.position + new Vector3(0.0f, DistanceFromCentre, 0.0f);
+        EastSpawnpoint = LevelManager.pointer.transform.position + new Vector3(DistanceFromCentre, 0.0f, 0.0f);
+        WestSpawnpoint = LevelManager.pointer.transform.position + new Vector3(-DistanceFromCentre, 0.0f, 0.0f);
+        SouthEastSpawnpoint = LevelManager.pointer.transform.position + new Vector3(-DistanceFromCentre/2, -DistanceFromCentre, 0.0f);
+        SouthWestSpawnpoint = LevelManager.pointer.transform.position + new Vector3(DistanceFromCentre, -DistanceFromCentre, 0.0f);
     }
 
 ///remove rune 

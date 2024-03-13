@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1590620316408678104}
   - component: {fileID: 4577732474370348915}
   - component: {fileID: 8477579639541438574}
-  - component: {fileID: 2020647358399590956}
   m_Layer: 5
   m_Name: Blue
   m_TagString: Untagged
@@ -76,18 +75,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2020647358399590956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531304806905520428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78228e0541409f6478b0011f2add024e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5229120250615849984
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +87,8 @@ GameObject:
   - component: {fileID: 747895351849097716}
   - component: {fileID: 627153889046432848}
   - component: {fileID: 7624403556900709186}
-  - component: {fileID: 7284157312354710291}
+  - component: {fileID: 9088558956603509440}
+  - component: {fileID: -1584277359186769030}
   m_Layer: 5
   m_Name: Blue
   m_TagString: Rune
@@ -178,13 +166,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78228e0541409f6478b0011f2add024e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &7284157312354710291
-BoxCollider:
+--- !u!50 &9088558956603509440
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5229120250615849984}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &-1584277359186769030
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229120250615849984}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -193,9 +210,21 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 100, y: 100, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 50

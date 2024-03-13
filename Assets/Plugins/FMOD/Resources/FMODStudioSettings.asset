@@ -451,8 +451,10 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - Badgers
   - Bank A
   - Bank B
+  - MageOfMelodies
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
