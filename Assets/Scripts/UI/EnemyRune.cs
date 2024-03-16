@@ -49,21 +49,20 @@ public class EnemyRune : MonoBehaviour
     private void OnEnable()
     {
         controls = _controlsKnm.GuitarControls.Strum;
-        _controlsKnm.GuitarControls.Strum.performed += Temp;
+        _controlsKnm.GuitarControls.Strum.performed += OnStrum;
         _controlsKnm.GuitarControls.Strum.Enable();
 
     }
     private void OnDisable()
     {
-        _controlsKnm.GuitarControls.Strum.performed -= Temp;
+        _controlsKnm.GuitarControls.Strum.performed -= OnStrum;
         _controlsKnm.GuitarControls.Strum.Disable();
     }
 
-    void Temp(InputAction.CallbackContext obj)
+    void OnStrum(InputAction.CallbackContext obj)
     {
         if (isActive)
         {
-            print("I SO SMORt");
             Destroy(gameObject);
         }
         else
@@ -93,7 +92,6 @@ public class EnemyRune : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("YEEEEEEEEEEEE");
         if (collision.name == "Pointer")
         {
             Destroy(gameObject);
@@ -105,8 +103,4 @@ public class EnemyRune : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        
-    }
 }
