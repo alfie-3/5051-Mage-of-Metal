@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using WiimoteApi;
 
 public class EnemyRune : MonoBehaviour
 {
@@ -49,17 +50,19 @@ public class EnemyRune : MonoBehaviour
     private void OnEnable()
     {
         controls = _controlsKnm.GuitarControls.Strum;
+        WiiInputManager.GuitarWiiMote.Strummed += DestroyRune;
         _controlsKnm.GuitarControls.Strum.performed += OnStrum;
         _controlsKnm.GuitarControls.Strum.Enable();
 
     }
     private void OnDisable()
     {
+        WiiInputManager.GuitarWiiMote.Strummed -= DestroyRune;
         _controlsKnm.GuitarControls.Strum.performed -= OnStrum;
         _controlsKnm.GuitarControls.Strum.Disable();
     }
 
-    void OnStrum(InputAction.CallbackContext obj)
+    void DestroyRune()
     {
         if (isActive)
         {
@@ -69,6 +72,11 @@ public class EnemyRune : MonoBehaviour
         {
             print("nyo >:(");
         }
+    }
+
+    void OnStrum(InputAction.CallbackContext obj)
+    {
+        DestroyRune();
     }
 
     // Update is called once per frame

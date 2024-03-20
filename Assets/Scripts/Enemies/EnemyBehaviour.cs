@@ -63,8 +63,12 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     private void Kill()
     {
         //special effect
-        GameObject effect = Instantiate(DieEffect, gameObject.transform);
-        Destroy(effect, 0.3f); //destroy effect
+        if (DieEffect != null)
+        {
+            GameObject effect = Instantiate(DieEffect, gameObject.transform);
+            Destroy(effect, 0.3f); //destroy effect
+        }
+
         //Debug.Log("Enemy Killed"); //debug log for testing
         OnDeath.Invoke();
         Destroy(gameObject, 0.3f); //destroy enemy
