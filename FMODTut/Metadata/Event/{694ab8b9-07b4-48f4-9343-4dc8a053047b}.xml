@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{694ab8b9-07b4-48f4-9343-4dc8a053047b}">
 		<property name="name">
-			<value>MageOfMelodies</value>
+			<value>Gentle Plains</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{92bf77db-50b5-43af-98f4-77791ca349c8}</destination>
+			<destination>{4fa47bbd-2945-498c-819c-783b5c643839}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{72ebe855-bb3a-4d3d-a1e5-a998714eca22}</destination>
