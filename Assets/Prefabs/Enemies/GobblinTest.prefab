@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: -7969993770086398814}
   - component: {fileID: -2668941026815296626}
   - component: {fileID: 4518123187442507611}
+  - component: {fileID: 4236299034343527319}
   m_Layer: 0
   m_Name: GobblinTest
   m_TagString: Enemy
@@ -82,8 +83,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc7add0b82b0864094c11c4e4ac9972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHP: 10
-  EnemyMaxHP: 10
+  EnemyHP: 3
+  EnemyMaxHP: 3
   Offset: {x: 0, y: 0, z: 0}
   UIInfo: Make sure UILocation game object is linked in the field below
   DieEffect: {fileID: 0}
@@ -179,6 +180,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60dc2c042c79da4487bd00769d7cdab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4236299034343527319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562985597246443796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6b3d039df5bba4ea42551e8dd85ae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 100
 --- !u!1001 &1112781886026192484
 PrefabInstance:
   m_ObjectHideFlags: 0
