@@ -13,12 +13,6 @@ public class RuneTestPlayer : MonoBehaviour
 {
     //script for testing player implementation
 
-    //public vars
-    public Camera playerCam;
-    public float lookSpeed = 2.0f;
-    public float lookLimitX = 45.0f;
-    public bool runePlayed = false;
-
     //serialized
     [SerializeField] private RuneFMODBridge runeManager;
 
@@ -31,21 +25,17 @@ public class RuneTestPlayer : MonoBehaviour
     [SerializeField] private bool GuitarInput;
     
     //private
-    private float rotX = 0;
     private Transform currentEnemy;
-    private EnemyBehaviour enemyScript;
     private bool canFire = false;
     private List<GameObject> StrumRunes = new List<GameObject>();
-
-
-    GuitarRemoteInput guitardata;
+    private EnemyBehaviour enemyScript;
+    private GuitarRemoteInput guitardata;
 
     void Start()
     {
         guitardata = WiiInputManager.GuitarWiiMote;
 
         //gets camera + rune manager
-        playerCam = Camera.main;
         GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
         runeManager = managerObject.GetComponent<RuneFMODBridge>();
         if(runeManager) //checks if manager found
@@ -57,19 +47,11 @@ public class RuneTestPlayer : MonoBehaviour
             Debug.Log("manager not found");
         }
 
-        //looking around logic
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //looking around logic
-        //rotX += -Input.GetAxis("Mouse Y") * lookSpeed;
-        //rotX = Mathf.Clamp(rotX, -lookLimitX, lookLimitX);
-        //playerCam.transform.localRotation = Quaternion.Euler(rotX, 0, 0);
-        //transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
 
         //creates raycast stuff
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -132,19 +114,9 @@ public class RuneTestPlayer : MonoBehaviour
 
     }
 
-    //function for input (for now with keyboard for testing)
-    //for strumming:
-    //player needs to hold buttons of runes they want to play 
-    //when strum is pressed runes that are pressed are released
-    //when keys are held, runes are added to array/list
-    //when keys are let go of those runes are removed from the list - separate function
-    //when strum key is pressed and the keys are still being pressed those runes disappear from screen and attack is fired
-    //runes that are pressed and let go get destroyed
 
    public void StrumGunGuitar()
     {
-        GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
-
         // If there are no runes in the scene or player can't fire, exit
         if (runeManager.RunesInScene.Count == 0 || !canFire)
             return;
@@ -244,8 +216,6 @@ public class RuneTestPlayer : MonoBehaviour
 
 void UnRunerGuitar(GameObject rune)
 {
-    GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
-
     char runeColor = rune.name[0]; // First character of rune name represents color
 
     if (guitardata.ColorReleasedThisFrame(GUITAR_COLORS.BLUE) && runeColor == 'B') 
@@ -314,88 +284,6 @@ void UnRunerKeyboard(GameObject rune)
 }
 
 
-//functions for ui buttons    
-    public void Gun(string buttonColor)
-    {
-        //function to play for attacking enemies
-        Debug.Log("Button Hit!");
-        //if there is a rune in scene
-        if (runeManager.RunesInScene.Count != 0)
-        {
-            //if the player is looking at an enemy
-            if (canFire == true)
-            {
-                //for each rune in scene - not optimised
-                //goes through each rune in scene checking whether its playable
-                foreach (GameObject rune in runeManager.RunesInScene)
-                {
-                    //get rune name
-                    char[] runeName = rune.name.ToCharArray();
-                    //if blue is pressed
-                    if (buttonColor == "blue")
-                    {
-                        //if first letter is B of name (probably means the rune is Blue)
-                        if (runeName[0] == 'B')
-                        {
-                            //spawn special effect
-                            FancyEffect("blue");
-                            //debug log for testing
-                            Debug.Log("Blue Hit!");
-                            //damage enemy
-                            enemyScript.Damage(1);
-                            //remove rune using manager function (it destroys the rune and removes it from RunesInScene)
-                            runeManager.RemoveRune(rune);
-                        }
-                    }
-
-                    if (buttonColor == "yellow")
-                    {
-                        if (runeName[0] == 'Y')
-                        {
-                            FancyEffect("yellow");
-                            Debug.Log("Yellow Hit!");
-                            enemyScript.Damage(1);
-                            runeManager.RemoveRune(rune);
-                        }
-                    }
-
-                    if (buttonColor == "orange")
-                    {
-                        if (runeName[0] == 'O')
-                        {
-                            FancyEffect("orange");
-                            Debug.Log("Orange Hit!");
-                            enemyScript.Damage(1);
-                            runeManager.RemoveRune(rune);
-                        }
-                    }
-
-                    if (buttonColor == "red")
-                    {
-                        if (runeName[0] == 'R')
-                        {
-                            FancyEffect("red");
-                            Debug.Log("Red Hit!");
-                            enemyScript.Damage(1);
-                            runeManager.RemoveRune(rune);
-                        }
-                    }
-
-                    if (buttonColor == "green")
-                    {
-                        if (runeName[0] == 'G')
-                        {
-                            FancyEffect("green");
-                            Debug.Log("Green Hit!");
-                            enemyScript.Damage(1);
-                            runeManager.RemoveRune(rune);
-                        }
-                    }
-                }
-            }
-        }
-
-    }
     //Adriens function for guitar things
     /*public void Strummed()
     {
