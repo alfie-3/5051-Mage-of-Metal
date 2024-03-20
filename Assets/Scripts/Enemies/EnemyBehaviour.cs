@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,8 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     //serialized
     [SerializeField] private GameObject DieEffect;
     [SerializeField] private Transform UILocation;
+
+    public event Action OnDeath = delegate { };
 
     void Awake() 
     {
@@ -63,6 +66,7 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         GameObject effect = Instantiate(DieEffect, gameObject.transform);
         Destroy(effect, 0.3f); //destroy effect
         //Debug.Log("Enemy Killed"); //debug log for testing
+        OnDeath.Invoke();
         Destroy(gameObject, 0.3f); //destroy enemy
     }
 
