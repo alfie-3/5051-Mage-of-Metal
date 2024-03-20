@@ -1,4 +1,3 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -131,7 +130,7 @@ public class CursorPointer : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
         {
-            if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))
+            if (hitInfo.transform.TryGetComponent(out Button _button))
             {
                 Debug.Log("Attack");
                 _button.onClick.Invoke();

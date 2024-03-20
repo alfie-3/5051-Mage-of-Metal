@@ -11,7 +11,7 @@ public class TerrainDetailer : MonoBehaviour
     [SerializeField] private TerrainDetail[] terrainDetails;
     void Start()
     {
-        GenerateDetail();
+        //GenerateDetail();
     }
 
     public void GenerateDetail()

@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
         if (!isLeaving)
         {
             isLeaving = true;
-            StartCoroutine(ExitScene(2));
+            StartCoroutine(ExitScene(1));
         }
     }
 
