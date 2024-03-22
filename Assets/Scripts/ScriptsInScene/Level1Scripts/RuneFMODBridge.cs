@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class RuneFMODBridge : MonoBehaviour
 {
-    //inspector display stuff
-    [Header("Rune Order")]
-    [TextArea]
-    public string Rune_Instructions = "Type in the Runes Text box the order of which the runes should appear, B (Blue), O ( Orange), Y (Yellow), G (Green), R (Red) ";
+    // //inspector display stuff
+    // [Header("Rune Order")]
+    // [TextArea]
+    // public string Rune_Instructions = "Type in the Runes Text box the order of which the runes should appear, B (Blue), O ( Orange), Y (Yellow), G (Green), R (Red) ";
 
-    [Header("Rune Sprites")]
-    [TextArea]
-    public string Rune_Sprites_Info = "These are temporary placeholders, to be replaced when rune sprites designed";
+    // [Header("Rune Sprites")]
+    // [TextArea]
+    // public string Rune_Sprites_Info = "These are temporary placeholders, to be replaced when rune sprites designed";
 
     //serialized
     [Header("Prefabs")]
@@ -30,13 +30,17 @@ public class RuneFMODBridge : MonoBehaviour
     [SerializeField] GameObject GreenRuneHolder;
     [SerializeField] GameObject RedRuneHolder;
 
+    [Header("Numbers")]
     [SerializeField] GameObject RuneLimit;
     [SerializeField] int ColliderSize;
     [SerializeField] float DistanceFromCentre = 50.0f;
-//public
+
     public float SpeedOfRune = 1.0f;
+    
+    [Header("Runes")]
     public List<GameObject>  RunesInScene = new List<GameObject>();
 
+    //private
     Vector3 GreenSpawnpoint;
     Vector3 RedSpawnpoint;
     Vector3 BlueSpawnpoint;
@@ -44,7 +48,6 @@ public class RuneFMODBridge : MonoBehaviour
     Vector3 OrangeSpawnpoint;
     //centre = Vector3(7344.7998,3658.19995,0)
 
-    //private
     int currentDirection = 0;
 
     
