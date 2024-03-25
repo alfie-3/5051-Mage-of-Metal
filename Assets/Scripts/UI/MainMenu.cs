@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] Slider slider;
     [SerializeField] Vector3 menuPos, menuRot, settingsPos, settingsRot;
     [SerializeField] GameObject player;
     [SerializeField] float alphaRate;
@@ -80,17 +79,6 @@ public class MainMenu : MonoBehaviour
             StartCoroutine(ExitGame());
         }
     }
-
-    public void AddVolume()
-    {
-        slider.value = Mathf.Clamp(slider.value + 0.1f,0,1);
-    }
-
-    public void MinusVolume()
-    {
-        slider.value = Mathf.Clamp(slider.value - 0.1f, 0, 1);
-    }
-
     IEnumerator ExitScene(int nextLevel)
     {
         yield return LevelManager.ChangeAlpha(0.5f, 0, quadTransition.material, 0.5f);

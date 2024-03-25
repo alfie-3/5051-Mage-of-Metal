@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour {
         instance.setUserData(GCHandle.ToIntPtr(timelineHandle));
         instance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
         //EndTimestuff
-
+        instance.setVolume(GameManager.musicVolume);
         instance.start();
         lastMarker = (string)timelineInfo.LastMarker;
     }

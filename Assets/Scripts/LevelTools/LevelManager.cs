@@ -85,6 +85,7 @@ public class LevelManager : MonoBehaviour
         float roundedTime;
         while (time > -1)
         {
+            time -= Time.unscaledDeltaTime * 1.5f;
             roundedTime = Mathf.Ceil(time);
             if (roundedTime > 0)
             {
@@ -94,8 +95,6 @@ public class LevelManager : MonoBehaviour
             {
                 pauseTimer.text = "";
             }
-            time -= Time.unscaledDeltaTime*1.5f;
-            Debug.Log(time.ToString());
             yield return null;
         }
         AudioManager.managerInstance.MusicResume();

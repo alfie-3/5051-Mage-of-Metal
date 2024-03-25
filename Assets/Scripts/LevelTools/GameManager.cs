@@ -17,4 +17,13 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    public void MusicChange(float volume)
+    {
+        musicVolume = volume;
+    }
+    public void SFXChange(float volume)
+    {
+        sfxVolume = volume;
+    }
+    
 }
