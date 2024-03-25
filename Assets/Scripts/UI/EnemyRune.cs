@@ -22,14 +22,11 @@ public class EnemyRune : MonoBehaviour
     InputAction controls;
     private bool isActive = false;
 
-
-
     void Awake()
     {
         //get manager script
         runeManager = LevelManager.runeManager.GetComponent<RuneFMODBridge>();
         _controlsKnm = new Controls();
-
 
         //get player script
         GameObject playerObject = LevelManager.player;
@@ -61,13 +58,16 @@ public class EnemyRune : MonoBehaviour
 
     void OnStrum(InputAction.CallbackContext obj)
     {
-        if (isActive)
+        if (!LevelManager.isPaused)
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            print("nyo >:(");
+            if (isActive)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                print("nyo >:(");
+            }
         }
     }
 
@@ -87,6 +87,7 @@ public class EnemyRune : MonoBehaviour
         // distance = velocity
 
         transform.position += velocity * Time.deltaTime;
+        
         //print("TTTTTTTTTT");
     }
 

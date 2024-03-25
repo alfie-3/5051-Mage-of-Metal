@@ -89,6 +89,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e21077d-258d-4e6f-ad07-73f3978bf74a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -179,6 +188,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Strum"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47899c48-e008-49e7-bc42-553b85e7c466"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -194,6 +214,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_GuitarControls_Note4 = m_GuitarControls.FindAction("Note4", throwIfNotFound: true);
         m_GuitarControls_Note5 = m_GuitarControls.FindAction("Note5", throwIfNotFound: true);
         m_GuitarControls_Strum = m_GuitarControls.FindAction("Strum", throwIfNotFound: true);
+        m_GuitarControls_Pause = m_GuitarControls.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,6 +283,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GuitarControls_Note4;
     private readonly InputAction m_GuitarControls_Note5;
     private readonly InputAction m_GuitarControls_Strum;
+    private readonly InputAction m_GuitarControls_Pause;
     public struct GuitarControlsActions
     {
         private @Controls m_Wrapper;
@@ -273,6 +295,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Note4 => m_Wrapper.m_GuitarControls_Note4;
         public InputAction @Note5 => m_Wrapper.m_GuitarControls_Note5;
         public InputAction @Strum => m_Wrapper.m_GuitarControls_Strum;
+        public InputAction @Pause => m_Wrapper.m_GuitarControls_Pause;
         public InputActionMap Get() { return m_Wrapper.m_GuitarControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -303,6 +326,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Strum.started += instance.OnStrum;
             @Strum.performed += instance.OnStrum;
             @Strum.canceled += instance.OnStrum;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGuitarControlsActions instance)
@@ -328,6 +354,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Strum.started -= instance.OnStrum;
             @Strum.performed -= instance.OnStrum;
             @Strum.canceled -= instance.OnStrum;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGuitarControlsActions instance)
@@ -354,5 +383,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnNote4(InputAction.CallbackContext context);
         void OnNote5(InputAction.CallbackContext context);
         void OnStrum(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

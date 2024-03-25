@@ -75,6 +75,15 @@ public class AudioManager : MonoBehaviour {
     {
         instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
+    public void MusicPause()
+    {
+        instance.setPaused(true);
+    }
+    public void MusicResume()
+    {
+        instance.setPaused(false);
+    }
+
     public void AddScore()
     {
         musicPercentage += 0.1f;

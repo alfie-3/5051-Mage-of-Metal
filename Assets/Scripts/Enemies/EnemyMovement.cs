@@ -37,5 +37,4 @@ public class EnemyMovement : MonoBehaviour
             agent.SetDestination(point);
         }
     }
-
 }

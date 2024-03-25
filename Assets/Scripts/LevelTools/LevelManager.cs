@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
+using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
@@ -15,7 +17,10 @@ public class LevelManager : MonoBehaviour
     static public GameObject player, spline, runeManager, pointer;
     static public float beatLeadUp, bpm;
 
+    private Controls _controlsKnm;
+    InputAction controls;
 
+    static public bool isPaused=false;
 
     private void Awake()
     {
@@ -25,6 +30,7 @@ public class LevelManager : MonoBehaviour
         pointer = pointerRef;
         beatLeadUp = beatLeadUpRef;
         bpm = tempoRef;
+        _controlsKnm = new Controls();
     }
 
     private void Start()
@@ -35,6 +41,40 @@ public class LevelManager : MonoBehaviour
             StartCoroutine(CheckSpline());
         }
         StartCoroutine(ChangeAlpha(0, 0.5f, quadTransitioner.material,1));
+    }
+    private void OnEnable()
+    {
+        controls = _controlsKnm.GuitarControls.Pause;
+        _controlsKnm.GuitarControls.Pause.performed += PauseGame;
+        _controlsKnm.GuitarControls.Pause.Enable();
+
+    }
+    private void OnDisable()
+    {
+        _controlsKnm.GuitarControls.Strum.performed -= PauseGame;
+        _controlsKnm.GuitarControls.Strum.Disable();
+    }
+
+    private void PauseGame(InputAction.CallbackContext obj)
+    {
+        if (!isPaused) {
+            isPaused = true;
+            AudioManager.managerInstance.MusicPause();
+            Time.timeScale = 0;
+            foreach (Transform child in pointerRef.transform) {
+                child.gameObject.SetActive(false);
+            }
+        }
+        else if (isPaused)
+        {
+            isPaused = false;
+            AudioManager.managerInstance.MusicResume();
+            Time.timeScale = 1;
+            foreach (Transform child in pointerRef.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
     }
 
     IEnumerator CheckSpline()
