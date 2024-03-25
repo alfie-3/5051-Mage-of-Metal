@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class LevelManager : MonoBehaviour
     InputAction controls;
 
     static public bool isPaused=false;
+    private bool isUnpausing=false;
+    [SerializeField] TextMeshProUGUI pauseTimer;
 
     private void Awake()
     {
@@ -57,7 +60,7 @@ public class LevelManager : MonoBehaviour
 
     private void PauseGame(InputAction.CallbackContext obj)
     {
-        if (!isPaused) {
+        if (!isPaused && !isUnpausing) {
             isPaused = true;
             AudioManager.managerInstance.MusicPause();
             Time.timeScale = 0;
@@ -65,16 +68,40 @@ public class LevelManager : MonoBehaviour
                 child.gameObject.SetActive(false);
             }
         }
-        else if (isPaused)
+        else if (isPaused && !isUnpausing)
         {
-            isPaused = false;
-            AudioManager.managerInstance.MusicResume();
-            Time.timeScale = 1;
             foreach (Transform child in pointerRef.transform)
             {
                 child.gameObject.SetActive(true);
             }
+            StartCoroutine(ResumeGame(3));
         }
+    }
+
+    private IEnumerator ResumeGame(float leadInTime)
+    {
+        isUnpausing = true;
+        float time = leadInTime;
+        float roundedTime;
+        while (time > -1)
+        {
+            roundedTime = Mathf.Ceil(time);
+            if (roundedTime > 0)
+            {
+                pauseTimer.text = roundedTime.ToString();
+            }
+            else
+            {
+                pauseTimer.text = "";
+            }
+            time -= Time.unscaledDeltaTime*1.5f;
+            Debug.Log(time.ToString());
+            yield return null;
+        }
+        AudioManager.managerInstance.MusicResume();
+        isPaused = false;
+        isUnpausing = false;
+        Time.timeScale = 1;
     }
 
     IEnumerator CheckSpline()
