@@ -55,6 +55,11 @@ public class AudioManager : MonoBehaviour {
         MusicPlay();
     }
 
+    public void SetMusicSettings(float volume)
+    {
+        instance.setVolume(volume);
+    }
+
     public void MusicPlay()
     {
         instance = FMODUnity.RuntimeManager.CreateInstance(audioRef);
@@ -67,7 +72,7 @@ public class AudioManager : MonoBehaviour {
         instance.setUserData(GCHandle.ToIntPtr(timelineHandle));
         instance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
         //EndTimestuff
-        instance.setVolume(GameManager.musicVolume);
+        SetMusicSettings(GameManager.musicVolume);
         instance.start();
         lastMarker = (string)timelineInfo.LastMarker;
     }

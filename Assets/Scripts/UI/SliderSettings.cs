@@ -20,7 +20,7 @@ public class SliderSettings : MonoBehaviour
     }
     public void ChangeSFXVolume(float value)
     {
-        musicSlider.value = Mathf.Clamp(musicSlider.value + value, 0, 1);
+        sfxSlider.value = Mathf.Clamp(sfxSlider.value + value, 0, 1);
         GameManager.Instance.SFXChange(sfxSlider.value);
     }
 }
