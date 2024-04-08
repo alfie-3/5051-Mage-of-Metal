@@ -98,6 +98,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WinDie"",
+                    ""type"": ""Button"",
+                    ""id"": ""af67e9af-d060-4ab9-bec6-9058fdd22160"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -199,6 +208,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5886b4a-b25f-48a0-bca6-e4895033030f"",
+                    ""path"": ""<Keyboard>/equals"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WinDie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -215,6 +235,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_GuitarControls_Note5 = m_GuitarControls.FindAction("Note5", throwIfNotFound: true);
         m_GuitarControls_Strum = m_GuitarControls.FindAction("Strum", throwIfNotFound: true);
         m_GuitarControls_Pause = m_GuitarControls.FindAction("Pause", throwIfNotFound: true);
+        m_GuitarControls_WinDie = m_GuitarControls.FindAction("WinDie", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,6 +305,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GuitarControls_Note5;
     private readonly InputAction m_GuitarControls_Strum;
     private readonly InputAction m_GuitarControls_Pause;
+    private readonly InputAction m_GuitarControls_WinDie;
     public struct GuitarControlsActions
     {
         private @Controls m_Wrapper;
@@ -296,6 +318,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Note5 => m_Wrapper.m_GuitarControls_Note5;
         public InputAction @Strum => m_Wrapper.m_GuitarControls_Strum;
         public InputAction @Pause => m_Wrapper.m_GuitarControls_Pause;
+        public InputAction @WinDie => m_Wrapper.m_GuitarControls_WinDie;
         public InputActionMap Get() { return m_Wrapper.m_GuitarControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -329,6 +352,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @WinDie.started += instance.OnWinDie;
+            @WinDie.performed += instance.OnWinDie;
+            @WinDie.canceled += instance.OnWinDie;
         }
 
         private void UnregisterCallbacks(IGuitarControlsActions instance)
@@ -357,6 +383,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @WinDie.started -= instance.OnWinDie;
+            @WinDie.performed -= instance.OnWinDie;
+            @WinDie.canceled -= instance.OnWinDie;
         }
 
         public void RemoveCallbacks(IGuitarControlsActions instance)
@@ -384,5 +413,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnNote5(InputAction.CallbackContext context);
         void OnStrum(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnWinDie(InputAction.CallbackContext context);
     }
 }

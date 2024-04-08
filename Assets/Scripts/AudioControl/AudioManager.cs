@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour {
 
     public static AudioManager managerInstance { get; private set; }
     [SerializeField] EventReference audioRef;
-    EventInstance instance;
+    public EventInstance instance;
 
     //Time stuff
     TimelineInfo timelineInfo;

@@ -6,23 +6,34 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Spline and quads")]
     [SerializeField] private SplineAnimate splineInfo;
-    [SerializeField] Renderer quadTransitioner;
+    [SerializeField] Renderer transitionerQuad;
+    [SerializeField] Renderer levelWinLoseQuad;
+    [SerializeField] float maxAlpha;
+    bool showingResults=false;
+    bool isTransitioning=false;
+
     float duration;
+    [Header("Object references for static values")]
     [SerializeField] GameObject playerRef, splineRef, runeManagerRef, pointerRef;
     [SerializeField] float beatLeadUpRef, tempoRef;
 
     static public GameObject player, spline, runeManager, pointer;
     static public float beatLeadUp, bpm;
 
+    [Header("Controls")]
     private Controls _controlsKnm;
     InputAction controls;
-
     static public bool isPaused=false;
     private bool isUnpausing=false;
+
+    [Header("Pause menu objects")]
     [SerializeField] TextMeshProUGUI pauseTimer;
 
     private void Awake()
@@ -43,19 +54,23 @@ public class LevelManager : MonoBehaviour
             duration = splineInfo.Duration;
             StartCoroutine(CheckSpline());
         }
-        StartCoroutine(ChangeAlpha(0, 0.5f, quadTransitioner.material,1));
+        StartCoroutine(ChangeAlpha(0, 0.5f, transitionerQuad.material,1));
     }
     private void OnEnable()
     {
-        controls = _controlsKnm.GuitarControls.Pause;
         _controlsKnm.GuitarControls.Pause.performed += PauseGame;
         _controlsKnm.GuitarControls.Pause.Enable();
 
+        _controlsKnm.GuitarControls.WinDie.performed += WinLossState;
+        _controlsKnm.GuitarControls.WinDie.Enable();
     }
     private void OnDisable()
     {
         _controlsKnm.GuitarControls.Strum.performed -= PauseGame;
         _controlsKnm.GuitarControls.Strum.Disable();
+
+        _controlsKnm.GuitarControls.WinDie.performed -= WinLossState;
+        _controlsKnm.GuitarControls.WinDie.Disable();
     }
 
     private void PauseGame(InputAction.CallbackContext obj)
@@ -75,6 +90,22 @@ public class LevelManager : MonoBehaviour
                 child.gameObject.SetActive(true);
             }
             StartCoroutine(ResumeGame(3));
+        }
+    }
+
+    private void WinLossState(InputAction.CallbackContext obj)
+    {
+        if (showingResults && !isTransitioning)
+        {
+            Debug.Log("LERP1");
+            AudioManager.managerInstance.instance.getPitch(out float thing);
+            Debug.Log(thing);
+            StartCoroutine(GameSpeedLerp(true,1));
+        }
+        else if (!showingResults && !isTransitioning)
+        {
+            Debug.Log("LERP2");
+            StartCoroutine(GameSpeedLerp(false, 1, Color.blue));
         }
     }
 
@@ -112,6 +143,61 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(SceneEnd());
     }
 
+    private IEnumerator GameSpeedLerp(bool isStarting, float speedMod, [Optional] Color quadColor)
+    {
+        isTransitioning = true;
+        levelWinLoseQuad.gameObject.SetActive(true);
+        if (isStarting )
+        {
+            AudioManager.managerInstance.MusicResume();
+        }
+        if (quadColor != null)
+        {
+            levelWinLoseQuad.material.SetColor("_Color",quadColor);
+        }
+        if (isStarting)
+        {
+            float time = 0;
+            while (time != 1)
+            {
+                time = Mathf.Clamp(time + Time.unscaledDeltaTime, 0, 1);
+                Time.timeScale = time;
+                levelWinLoseQuad.material.SetFloat("_AlphaRange", 0.6f - (time * maxAlpha));
+                AudioManager.managerInstance.instance.setPitch(time);
+                yield return null;
+            }
+        }
+        else
+        {
+            float time = 1;
+            while (time != 0)
+            {
+                time = Mathf.Clamp(time - Time.unscaledDeltaTime, 0, 1);
+                Time.timeScale = time;
+                levelWinLoseQuad.material.SetFloat("_AlphaRange", 0.6f - (time * maxAlpha));
+                AudioManager.managerInstance.instance.setPitch(time);
+                yield return null;
+            }
+        }
+        if (isStarting)
+        {
+            levelWinLoseQuad.material.SetFloat("_AlphaRange", 0);
+            Time.timeScale = 1;
+            AudioManager.managerInstance.instance.setPitch(1);
+            showingResults = false;
+        }
+        else
+        {
+            levelWinLoseQuad.material.SetFloat("_AlphaRange", maxAlpha);
+            Time.timeScale = 0;
+            AudioManager.managerInstance.instance.setPitch(0);
+            AudioManager.managerInstance.MusicPause();
+            showingResults = true;
+        }
+        isTransitioning = false;
+        yield return null;
+    }
+
     public static IEnumerator ChangeAlpha(float start,float end, Material mat, float alphaSpeed)
     {
         if (start < end)
@@ -138,7 +224,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator SceneEnd()
     {
-        yield return ChangeAlpha(0.5f, 0, quadTransitioner.material, 1);
+        yield return ChangeAlpha(0.5f, 0, transitionerQuad.material, 1);
         SceneManager.LoadSceneAsync(1);
     }
 }
