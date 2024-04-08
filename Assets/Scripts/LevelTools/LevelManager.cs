@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
     private bool isUnpausing=false;
 
     [Header("Pause menu objects")]
+    [SerializeField] GameObject pauseSettingsMenu;
     [SerializeField] TextMeshProUGUI pauseTimer;
 
     private void Awake()
@@ -77,6 +78,8 @@ public class LevelManager : MonoBehaviour
     {
         if (!isPaused && !isUnpausing) {
             isPaused = true;
+            levelWinLoseQuad.material.SetFloat("_AlphaRange", maxAlpha);
+            levelWinLoseQuad.material.SetColor("_Color", Color.green);
             AudioManager.managerInstance.MusicPause();
             Time.timeScale = 0;
             foreach (Transform child in pointerRef.transform) {
@@ -85,6 +88,7 @@ public class LevelManager : MonoBehaviour
         }
         else if (isPaused && !isUnpausing)
         {
+            levelWinLoseQuad.material.SetFloat("_AlphaRange", 0);
             foreach (Transform child in pointerRef.transform)
             {
                 child.gameObject.SetActive(true);
@@ -95,14 +99,14 @@ public class LevelManager : MonoBehaviour
 
     private void WinLossState(InputAction.CallbackContext obj)
     {
-        if (showingResults && !isTransitioning)
+        if (showingResults && !isTransitioning && !isPaused)
         {
             Debug.Log("LERP1");
             AudioManager.managerInstance.instance.getPitch(out float thing);
             Debug.Log(thing);
             StartCoroutine(GameSpeedLerp(true,1));
         }
-        else if (!showingResults && !isTransitioning)
+        else if (!showingResults && !isTransitioning && !isPaused)
         {
             Debug.Log("LERP2");
             StartCoroutine(GameSpeedLerp(false, 1, Color.blue));
@@ -162,7 +166,7 @@ public class LevelManager : MonoBehaviour
             {
                 time = Mathf.Clamp(time + Time.unscaledDeltaTime, 0, 1);
                 Time.timeScale = time;
-                levelWinLoseQuad.material.SetFloat("_AlphaRange", 0.6f - (time * maxAlpha));
+                levelWinLoseQuad.material.SetFloat("_AlphaRange", maxAlpha - (time * maxAlpha));
                 AudioManager.managerInstance.instance.setPitch(time);
                 yield return null;
             }
@@ -174,7 +178,7 @@ public class LevelManager : MonoBehaviour
             {
                 time = Mathf.Clamp(time - Time.unscaledDeltaTime, 0, 1);
                 Time.timeScale = time;
-                levelWinLoseQuad.material.SetFloat("_AlphaRange", 0.6f - (time * maxAlpha));
+                levelWinLoseQuad.material.SetFloat("_AlphaRange", maxAlpha - (time * maxAlpha));
                 AudioManager.managerInstance.instance.setPitch(time);
                 yield return null;
             }

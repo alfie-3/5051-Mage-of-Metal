@@ -2,6 +2,8 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class CursorPointer : MonoBehaviour
 {
@@ -113,6 +115,20 @@ public class CursorPointer : MonoBehaviour
     private void Attack(InputAction.CallbackContext obj)
     {
         Attack();
+        if (LevelManager.isPaused)
+        {
+            var eventData = new PointerEventData(EventSystem.current);
+            eventData.position = LevelManager.pointer.GetComponent<RectTransform>().position;
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, results);
+            foreach (var result in results)
+            {
+                if (result.gameObject.TryGetComponent(out Button button))
+                {
+                    button.onClick.Invoke();
+                }
+            }
+        }
     }
 
     //Basic attack, to have rune breaking stuff added to
