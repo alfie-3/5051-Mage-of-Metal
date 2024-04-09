@@ -21,10 +21,10 @@ public class LevelManager : MonoBehaviour
 
     float duration;
     [Header("Object references for static values")]
-    [SerializeField] GameObject playerRef, splineRef, runeManagerRef, pointerRef;
+    [SerializeField] GameObject playerRef, splineRef, runeManagerRef, pointerRef, scoreSliderRef,scoreMultiplierTextRef;
     [SerializeField] float beatLeadUpRef, tempoRef;
 
-    static public GameObject player, spline, runeManager, pointer;
+    static public GameObject player, spline, runeManager, pointer,scoreSlider,scoreMultiplierText;
     static public float beatLeadUp, bpm;
 
     [Header("Controls")]
@@ -45,6 +45,8 @@ public class LevelManager : MonoBehaviour
         pointer = pointerRef;
         beatLeadUp = beatLeadUpRef;
         bpm = tempoRef;
+        scoreMultiplierText = scoreMultiplierTextRef;
+        scoreSlider = scoreSliderRef;
         _controlsKnm = new Controls();
     }
 
