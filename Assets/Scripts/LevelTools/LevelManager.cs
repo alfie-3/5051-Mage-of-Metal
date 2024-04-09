@@ -50,6 +50,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        pauseSettingsMenu.SetActive(false);
         if (splineInfo != null)
         {
             duration = splineInfo.Duration;
@@ -81,9 +82,10 @@ public class LevelManager : MonoBehaviour
             levelWinLoseQuad.material.SetFloat("_AlphaRange", maxAlpha);
             levelWinLoseQuad.material.SetColor("_Color", Color.green);
             AudioManager.managerInstance.MusicPause();
+            pauseSettingsMenu.SetActive(true);
             Time.timeScale = 0;
             foreach (Transform child in pointerRef.transform) {
-                child.gameObject.SetActive(false);
+                child.gameObject.SetActive(true);
             }
         }
         else if (isPaused && !isUnpausing)
@@ -93,6 +95,7 @@ public class LevelManager : MonoBehaviour
             {
                 child.gameObject.SetActive(true);
             }
+            pauseSettingsMenu.SetActive(false);
             StartCoroutine(ResumeGame(3));
         }
     }

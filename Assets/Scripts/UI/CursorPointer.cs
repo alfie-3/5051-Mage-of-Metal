@@ -115,20 +115,6 @@ public class CursorPointer : MonoBehaviour
     private void Attack(InputAction.CallbackContext obj)
     {
         Attack();
-        if (LevelManager.isPaused)
-        {
-            var eventData = new PointerEventData(EventSystem.current);
-            eventData.position = LevelManager.pointer.GetComponent<RectTransform>().position;
-            var results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, results);
-            foreach (var result in results)
-            {
-                if (result.gameObject.TryGetComponent(out Button button))
-                {
-                    button.onClick.Invoke();
-                }
-            }
-        }
     }
 
     //Basic attack, to have rune breaking stuff added to
@@ -145,6 +131,20 @@ public class CursorPointer : MonoBehaviour
 
         Debug.DrawRay(ray.origin, ray.direction * 50);
 
+        if (LevelManager.isPaused)
+        {
+            var eventData = new PointerEventData(EventSystem.current);
+            eventData.position = LevelManager.pointer.GetComponent<RectTransform>().position;
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, results);
+            foreach (var result in results)
+            {
+                if (result.gameObject.TryGetComponent(out Button button))
+                {
+                    button.onClick.Invoke();
+                }
+            }
+        }
         if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
         {
             if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))

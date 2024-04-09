@@ -9,8 +9,10 @@ public class SliderSettings : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance.MusicChange(musicSlider.value);
-        GameManager.Instance.SFXChange(sfxSlider.value);
+        GameManager.Instance.MusicChange(GameManager.musicVolume);
+        GameManager.Instance.SFXChange(GameManager.sfxVolume);
+        musicSlider.value = GameManager.musicVolume;
+        sfxSlider.value = GameManager.sfxVolume;
     }
 
     public void ChangeMusicVolume(float value)
