@@ -152,30 +152,33 @@ public class RuneTestPlayer : MonoBehaviour
         // Check key inputs for corresponding runes
         foreach (GameObject rune in runeManager.RunesInScene)
         {
-            char runeColor = rune.name[0]; // First character of rune name represents color
+            if (rune != null)
+            {
+                char runeColor = rune.name[0]; // First character of rune name represents color
 
-            if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.BLUE) && runeColor == 'B') 
-            {
-                StrumRunes.Add(rune);
-            }
-            else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.YELLOW) && runeColor == 'Y')
-            {
-                StrumRunes.Add(rune);
-            }
-            else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.ORANGE) && runeColor == 'O')
-            {
-                StrumRunes.Add(rune);
-            }
-            else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.GREEN) && runeColor == 'G')
-            {
-                StrumRunes.Add(rune);
-            }
-            else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.RED) && runeColor == 'R')
-            {
-                StrumRunes.Add(rune);
-            }
+                if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.BLUE) && runeColor == 'B')
+                {
+                    StrumRunes.Add(rune);
+                }
+                else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.YELLOW) && runeColor == 'Y')
+                {
+                    StrumRunes.Add(rune);
+                }
+                else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.ORANGE) && runeColor == 'O')
+                {
+                    StrumRunes.Add(rune);
+                }
+                else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.GREEN) && runeColor == 'G')
+                {
+                    StrumRunes.Add(rune);
+                }
+                else if (guitardata.ColorPressedThisFrame(GUITAR_COLORS.RED) && runeColor == 'R')
+                {
+                    StrumRunes.Add(rune);
+                }
 
-            UnRunerGuitar(rune);
+                UnRunerGuitar(rune);
+            }
         }
 
         if (guitardata.CheckStrummedThisFrame() && StrumRunes.Count > 0)

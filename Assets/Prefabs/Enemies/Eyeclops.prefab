@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 3627395096933722069}
   - component: {fileID: -5952490672432663120}
   - component: {fileID: 428108047968031919}
+  - component: {fileID: 1699767425653976972}
   m_Layer: 0
   m_Name: Eyeclops
   m_TagString: Untagged
@@ -179,6 +180,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60dc2c042c79da4487bd00769d7cdab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &1699767425653976972
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562985597246443796}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &4902551408827717025
 PrefabInstance:
   m_ObjectHideFlags: 0

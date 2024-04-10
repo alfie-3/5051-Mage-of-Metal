@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 2524195112442614933}
   - component: {fileID: 5802452068001565947}
   - component: {fileID: -9066651277363975256}
+  - component: {fileID: -8758540833838904163}
   m_Layer: 0
   m_Name: Gobblo
   m_TagString: Enemy
@@ -218,6 +219,27 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &-8758540833838904163
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024849901491464432}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &1147941437556208118
 PrefabInstance:
   m_ObjectHideFlags: 0

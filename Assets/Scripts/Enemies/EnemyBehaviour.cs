@@ -65,9 +65,27 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         //Debug.Log("Enemy Killed"); //debug log for testing
         Destroy(gameObject, 0.3f); //destroy enemy
     }
+    private IEnumerator DelayedKill()
+    {
+        yield return new WaitForSeconds(2);
+        Kill();
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name == "Player")
+        {
+            if (collision.gameObject.TryGetComponent(out IDamage dam))
+            {
+                dam.Damage(1);
+                StartCoroutine(DelayedKill());
+            }
+        }
+    }
 
 
-//function for testing healthbar
+    //function for testing healthbar
     /*
     IEnumerator DieEnemy() {
         while (EnemyHP != 0)

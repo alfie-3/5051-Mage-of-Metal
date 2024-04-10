@@ -99,7 +99,7 @@ public class EnemyRune : MonoBehaviour
         }
         else if (collision.name == "Rune Holder")
         {
-            Debug.Log("Yes");
+
             isActive = true;
         }
     }

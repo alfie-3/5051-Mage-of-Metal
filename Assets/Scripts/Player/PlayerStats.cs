@@ -1,26 +1,52 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UIElements;
 
 public class PlayerStats : MonoBehaviour, IDamage
 {
-    [SerializeField] int[] multiplierInts = { 1, 2, 4 };
-    [SerializeField] float[] multUpgradeNumbers = { 0f, 0.15f, 0.5f, 1f };
-    [SerializeField] float currentClampedScore = 0;
+    int[] multiplierInts = { 1, 2, 4 };
+    float[] multUpgradeNumbers = { 0f, 0.15f, 0.5f, 1f };
+    float currentClampedScore = 0;
 
-    public void Damage(int damage)
-    {
-
-    }
-
+    [SerializeField] Volume _volume;
+    [SerializeField] AnimationCurve damageAnim;
+    [SerializeField] Vignette _vignette;
     private void Start()
     {
         LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x1";
+        Debug.Log("SADJBSADSAHND");
         LevelManager.scoreSlider.GetComponent<Slider>().value = 0;
+        _volume.TryGetComponent<Vignette>(out _vignette);
+        if (_vignette != null)
+        {
+            Debug.Log("Success");
+        }
+        else
+        {
+            Debug.Log("Not success");
+        }
+    }
+
+    public void Damage(int damage)
+    {
+        StartCoroutine(DamageScreen());
+    }
+
+    private IEnumerator DamageScreen()
+    {
+        float time = 0;
+
+        while (time < 1)
+        {
+            time += (Time.unscaledDeltaTime*1.5f);
+            _vignette.intensity.value = damageAnim.Evaluate(time);
+        }
+        _vignette.intensity.value = damageAnim.Evaluate(0);
+        yield return null;
     }
 
     private void SetSliderScores(float addScore)
@@ -43,3 +69,21 @@ public class PlayerStats : MonoBehaviour, IDamage
 
     }
 }
+
+#if UNITY_EDITOR
+
+[CustomEditor(typeof(PlayerStats))]
+public class PlayerStatsEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        PlayerStats playerManager = (PlayerStats)target;
+        DrawDefaultInspector();
+
+        if (GUILayout.Button("Override"))
+        {
+            playerManager.Damage(1);
+        }
+    }
+}
+#endif
