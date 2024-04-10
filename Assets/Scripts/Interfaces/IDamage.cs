@@ -6,3 +6,7 @@ public interface IDamage
 {
     public void Damage(int damage);
 }
+public interface IScore
+{
+    public void Score(float score);
+}

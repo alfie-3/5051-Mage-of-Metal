@@ -36,6 +36,7 @@ Transform:
   m_LocalScale: {x: 0.67, y: 0.67, z: 0.67}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 8193214971043383150}
   - {fileID: 9109196511696663944}
   - {fileID: 6846606227152661455}
   - {fileID: 3837939444399389729}
@@ -200,13 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c104af9599802a74ead91f6297c345ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplierInts: 010000000200000004000000
-  multUpgradeNumbers:
-  - 0
-  - 0.5
-  - 1.5
-  - 3
-  currentClampedScore: 0
   _volume: {fileID: 0}
   damageAnim:
     serializedVersion: 2
@@ -214,6 +208,56 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _vignette: {fileID: 0}
+--- !u!1 &1098256986874413081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8193214971043383150}
+  - component: {fileID: 3242563880564033125}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8193214971043383150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098256986874413081}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000010173483, y: 0.133092, z: 0.0000000271349, w: 0.9911037}
+  m_LocalPosition: {x: 69.555824, y: 1.317906, z: 87.08689}
+  m_LocalScale: {x: 1.4925373, y: 1.4925373, z: 1.4925373}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9004723099025206711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3242563880564033125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098256986874413081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: a937ed0bcbd1a4c47b5168d3eddcd8aa, type: 2}
 --- !u!1 &1413993925822442171
 GameObject:
   m_ObjectHideFlags: 0

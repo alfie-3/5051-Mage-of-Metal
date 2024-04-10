@@ -666,9 +666,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2685964791969498827, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685964791969498827, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685964791969498827, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 746866894}
+      objectReference: {fileID: 752716312}
     - target: {fileID: 2685964791969498827, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: near clip plane
@@ -677,7 +687,7 @@ PrefabInstance:
     - target: {fileID: 2685964791969498827, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 479
+      value: 991
       objectReference: {fileID: 0}
     - target: {fileID: 2880871527608372577, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
@@ -718,12 +728,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _vol
       value: 
-      objectReference: {fileID: 415554952}
+      objectReference: {fileID: 0}
     - target: {fileID: 6226420594954135243, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: _volume
       value: 
-      objectReference: {fileID: 415554952}
+      objectReference: {fileID: 167158740}
     - target: {fileID: 6226420594954135243, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: damageAnim.m_Curve.Array.size
@@ -837,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 8862364314314404929, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: m_Radius
-      value: 1.46
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 9004723099025206711, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
@@ -891,13 +901,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9127486162970866510, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
+      propertyPath: m_StopNaN
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127486162970866510, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
+      propertyPath: m_Dithering
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127486162970866510, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
       propertyPath: m_CameraType
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9127486162970866510, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
+      propertyPath: m_RenderShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127486162970866510, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
+      propertyPath: m_RendererIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127486162970866510, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
+      propertyPath: m_VolumeTrigger
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127486162970866510, guid: e31a72bf4275f0749a0a27f1a641a678,
+        type: 3}
+      propertyPath: m_VolumeLayerMask.m_Bits
+      value: 513
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3242563880564033125, guid: e31a72bf4275f0749a0a27f1a641a678, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6618189219539094561, guid: e31a72bf4275f0749a0a27f1a641a678, type: 3}
     - {fileID: 8294224126539376325, guid: e31a72bf4275f0749a0a27f1a641a678, type: 3}
+    - {fileID: 1413993925822442171, guid: e31a72bf4275f0749a0a27f1a641a678, type: 3}
+    - {fileID: 1098256986874413081, guid: e31a72bf4275f0749a0a27f1a641a678, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e31a72bf4275f0749a0a27f1a641a678, type: 3}
@@ -907,18 +950,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 415554950}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &415554952 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1407359170073501772, guid: e31a72bf4275f0749a0a27f1a641a678,
-    type: 3}
-  m_PrefabInstance: {fileID: 415554950}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &439289829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2107,7 +2138,7 @@ Transform:
   - {fileID: 360291986201878797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &746866894
+--- !u!84 &752716312
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2121,8 +2152,8 @@ RenderTexture:
   m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
   serializedVersion: 5
-  m_Width: 391
-  m_Height: 236
+  m_Width: 553
+  m_Height: 307
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthStencilFormat: 94
@@ -3058,7 +3089,7 @@ PrefabInstance:
     - target: {fileID: 8465744076730403551, guid: f5425d018d035074f80e97d751881fc5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -7.322052
+      value: -7.3220215
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -3156,12 +3187,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!1 &1077878635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3044035644130116797, guid: f5425d018d035074f80e97d751881fc5,
+--- !u!114 &1077878637 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6868571979849733032, guid: f5425d018d035074f80e97d751881fc5,
     type: 3}
   m_PrefabInstance: {fileID: 1038229914}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1230099924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3589,8 +3626,8 @@ MonoBehaviour:
   splineRef: {fileID: 535178028}
   runeManagerRef: {fileID: 7789727820222893851}
   pointerRef: {fileID: 462855801}
-  scoreSliderRef: {fileID: 1077878635}
   scoreMultiplierTextRef: {fileID: 1704291424}
+  scoreSliderRef: {fileID: 1077878637}
   beatLeadUpRef: 2
   tempoRef: 160
   pauseSettingsMenu: {fileID: 1876115010}

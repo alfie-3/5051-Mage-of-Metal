@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 using TMPro;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -21,10 +23,12 @@ public class LevelManager : MonoBehaviour
 
     float duration;
     [Header("Object references for static values")]
-    [SerializeField] GameObject playerRef, splineRef, runeManagerRef, pointerRef, scoreSliderRef,scoreMultiplierTextRef;
+    [SerializeField] GameObject playerRef, splineRef, runeManagerRef, pointerRef, scoreMultiplierTextRef;
+    [SerializeField] UnityEngine.UI.Slider scoreSliderRef;
     [SerializeField] float beatLeadUpRef, tempoRef;
 
-    static public GameObject player, spline, runeManager, pointer,scoreSlider,scoreMultiplierText;
+    static public GameObject player, spline, runeManager, pointer,scoreMultiplierText;
+    static public UnityEngine.UI.Slider scoreSlider;
     static public float beatLeadUp, bpm;
 
     [Header("Controls")]
