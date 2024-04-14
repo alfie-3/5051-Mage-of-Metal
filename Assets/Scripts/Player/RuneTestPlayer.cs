@@ -11,6 +11,7 @@ using WiimoteApi;
 
 public class RuneTestPlayer : MonoBehaviour
 {
+/*
     //script for testing player implementation
 
     //public vars
@@ -35,7 +36,7 @@ public class RuneTestPlayer : MonoBehaviour
     private Transform currentEnemy;
     private EnemyBehaviour enemyScript;
     private bool canFire = false;
-    private List<GameObject> StrumRunes = new List<GameObject>();
+    private List<EnemyRune> StrumRunes = new List<EnemyRune>();
 
 
     GuitarRemoteInput guitardata;
@@ -150,7 +151,7 @@ public class RuneTestPlayer : MonoBehaviour
             return;
 
         // Check key inputs for corresponding runes
-        foreach (GameObject rune in runeManager.RunesInScene)
+        foreach (EnemyRune rune in runeManager.RunesInScene)
         {
             if (rune != null)
             {
@@ -187,7 +188,7 @@ public class RuneTestPlayer : MonoBehaviour
             FancyEffect("red");
             enemyScript.Damage(damage);
             Debug.Log(damage);
-            foreach(GameObject rune in StrumRunes)
+            foreach(EnemyRune rune in StrumRunes)
             {
                 runeManager.RemoveRune(rune);
             }
@@ -203,7 +204,7 @@ public class RuneTestPlayer : MonoBehaviour
             return;
 
         // Check key inputs for corresponding runes
-        foreach (GameObject rune in runeManager.RunesInScene)
+        foreach (EnemyRune rune in runeManager.RunesInScene)
         {
             char runeColor = rune.name[0]; // First character of rune name represents color
 
@@ -228,7 +229,7 @@ public class RuneTestPlayer : MonoBehaviour
                 StrumRunes.Add(rune);
             }
 
-            UnRunerKeyboard(rune);
+            UnRunerKeyboard(rune.gameObject);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && StrumRunes.Count > 0)
@@ -237,7 +238,7 @@ public class RuneTestPlayer : MonoBehaviour
             FancyEffect("red");
             enemyScript.Damage(damage);
             Debug.Log(damage);
-            foreach(GameObject rune in StrumRunes)
+            foreach(EnemyRune rune in StrumRunes)
             {
                 runeManager.RemoveRune(rune);
             }
@@ -245,7 +246,7 @@ public class RuneTestPlayer : MonoBehaviour
         }
     }
 
-void UnRunerGuitar(GameObject rune)
+void UnRunerGuitar(EnemyRune rune)
 {
     GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
 
@@ -330,7 +331,7 @@ void UnRunerKeyboard(GameObject rune)
             {
                 //for each rune in scene - not optimised
                 //goes through each rune in scene checking whether its playable
-                foreach (GameObject rune in runeManager.RunesInScene)
+                foreach (EnemyRune rune in runeManager.RunesInScene)
                 {
                     //get rune name
                     char[] runeName = rune.name.ToCharArray();

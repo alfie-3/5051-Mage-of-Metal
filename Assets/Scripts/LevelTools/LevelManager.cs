@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
@@ -27,7 +26,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] UnityEngine.UI.Slider scoreSliderRef;
     [SerializeField] float beatLeadUpRef, tempoRef;
 
-    static public GameObject player, spline, runeManager, pointer,scoreMultiplierText;
+    static public GameObject player, spline, runeManager, pointer, scoreMultiplierText;
     static public UnityEngine.UI.Slider scoreSlider;
     static public float beatLeadUp, bpm;
 

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 
 public class MusicManager : MonoBehaviour
 {
+    
     public static MusicManager instance;
 
     [SerializeField]
-    [EventRef]
-    private string music = null;
+    private EventReference music;
 
     public TimelineInfo timelineInfo = null;
     private GCHandle timelineHandle;
@@ -26,21 +26,20 @@ public class MusicManager : MonoBehaviour
         public FMOD.StringWrapper lastMarker = new FMOD.StringWrapper();
     }
 
-    private void Awake() {
-        if (music != null) {
-            musicInstance = RuntimeManager.CreateInstance(music);
-            musicInstance.start();
-        }
+    private void Awake()
+    {
+        musicInstance = RuntimeManager.CreateInstance(music);
+        musicInstance.start();
     }
 
-    private void Start() {
-        if (music != null) {
-            timelineInfo = new TimelineInfo();
-            beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
-            timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
-            musicInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
-            musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
-        }
+    private void Start()
+    {
+        timelineInfo = new TimelineInfo();
+        beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
+        timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
+        musicInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
+        musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+
     }
 
 #if UNITY_EDITOR

@@ -58,6 +58,13 @@ public class GuitarRemoteInput : RemoteInput
         return false;
     }
 
+    public static ColorCheck GetCurrentGuitarColors()
+    {
+        ColorCheck colorCheck = new ColorCheck();
+        colorCheck.Blue = WiiInputManager.GuitarWiiMote.previousBlueState; colorCheck.Green = WiiInputManager.GuitarWiiMote.previousGreenState; colorCheck.Red = WiiInputManager.GuitarWiiMote.previousRedState; colorCheck.Yellow = WiiInputManager.GuitarWiiMote.previousYellowState; colorCheck.Orange = WiiInputManager.GuitarWiiMote.previousOrangeState;
+        return colorCheck;
+    }
+
      // Checks if the requested color fret was released this frame
     public bool ColorReleasedThisFrame(GUITAR_COLORS color)
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     float screenWidth = Screen.width;
     float screenHeight = Screen.height;
 
+
     private void Start() {
         _playerInput = GetComponent<PlayerInput>();
         screenPointInput = _playerInput.actions["ScreenPoint"];
@@ -26,4 +28,5 @@ public class PlayerControl : MonoBehaviour
         screenPoint.y = ((screenPoint.y * 2 / screenHeight) - 1) * lookPower;
         gameObject.transform.localEulerAngles = new Vector3(-screenPoint.y, screenPoint.x, 0);
     }
+
 }

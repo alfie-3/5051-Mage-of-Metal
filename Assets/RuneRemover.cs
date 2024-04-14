@@ -22,7 +22,7 @@ public class RuneRemover : MonoBehaviour
     {
         if (other.gameObject.tag == "Rune")
         {
-            runeManager.RemoveRune(other.gameObject);
+            //runeManager.RemoveRune(other.gameObject);
         }
     }
 }

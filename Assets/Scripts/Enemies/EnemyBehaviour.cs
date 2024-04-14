@@ -50,9 +50,12 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
 //function that damages enemy when called
     public void Damage(int damage)
     {
+        Debug.Log("Before: "+EnemyHP);
         EnemyHP -= damage;
+        Debug.Log("After: "+EnemyHP);
         if (EnemyHP <= 0)
         {
+            Debug.Log("KILL!!!");
             Kill();
         }
     }

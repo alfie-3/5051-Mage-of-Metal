@@ -1,12 +1,15 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine.PlayerLoop;
 
 public class CursorPointer : MonoBehaviour
 {
+    public static CursorPointer Instance {  get; private set; }
+
     [SerializeField] RectTransform ir_pointer;
     [SerializeField] RuneTestPlayer _runeTestPlayer;
 
@@ -16,12 +19,22 @@ public class CursorPointer : MonoBehaviour
     Image image;
     [Space]
     [SerializeField] LayerMask layerMask;
+    [SerializeField] LayerMask enemyLayerMask;
     [Space]
     [SerializeField] Color idleColour;
     [SerializeField] Color activeColour;
 
+    //Shoot area adjustments
+    [Space]
+    [Header("Aiming options")]
+    [SerializeField] int checkXArea = 15;
+    [SerializeField] int checkYArea = 15;
+    [SerializeField] int intervalXArea = 5;
+    [SerializeField] int intervalYArea = 5;
+    [SerializeField] GameObject temp;
     private void Awake()
     {
+        Instance = this;
         image = ir_pointer.GetComponent<Image>();
         _controlsKnm = new Controls();
     }
@@ -129,7 +142,7 @@ public class CursorPointer : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
         RaycastHit hitInfo = new();
 
-        Debug.DrawRay(ray.origin, ray.direction * 50);
+        //Debug.DrawRay(ray.origin, ray.direction * 50);
 
         if (LevelManager.isPaused)
         {
@@ -149,15 +162,25 @@ public class CursorPointer : MonoBehaviour
         {
             if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))
             {
-                Debug.Log("Attack");
                 _button.onClick.Invoke();
 
                 return;
             }
+        }
+    }
+    public void Shoot(int power)
+    {
+        Debug.Log("SHOOT");
+        RaycastHit hitInfo = new();
+        Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
+        if (Physics.Raycast(ray, out hitInfo, 30, enemyLayerMask))
+        {
             if (hitInfo.transform.TryGetComponent(out IDamage damage))
             {
-                damage.Damage(1);
+                Debug.Log("Yes");
+                damage.Damage(power * 5);
             }
         }
     }
+    
 }

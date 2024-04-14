@@ -56,7 +56,6 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
     private void SetSliderScores(float addScore)
     {
         currentClampedScore = Mathf.Clamp01(currentClampedScore + addScore);
-        Debug.Log(currentClampedScore);
         if (currentClampedScore == 1)
         {
             LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x" + multiplierInts[multiplierInts.Length - 1];

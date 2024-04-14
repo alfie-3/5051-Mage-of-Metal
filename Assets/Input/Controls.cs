@@ -38,7 +38,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Note1"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""a5bce679-bf97-459b-a2d2-a1f12ab55071"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -47,12 +47,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Note2"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""3136b2dd-77d0-4864-89f3-52b5b4a9799a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Note3"",
@@ -65,7 +65,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Note4"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""31a4c2e9-e9ab-44e0-98f1-6b375e6ef42c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -74,7 +74,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Note5"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""b041df77-640f-474b-8083-e9e9d3654c35"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -134,8 +134,30 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""abf0d785-33f7-4748-b72d-64a1dc924306"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Note1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b430fdef-82db-4697-b96d-3e7508e773a8"",
                     ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Note2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1843d9a0-e20d-4adf-bb41-7d8448955dac"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -156,6 +178,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""bdd06b86-a7d1-439c-92be-6e64288cc031"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Note3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f728fe1e-5bdc-4757-bf20-bd703fe92fb8"",
                     ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
@@ -167,8 +200,30 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""05cfb224-458e-4d38-b3dc-168c39cb1cb9"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Note4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""24d8c848-8afb-477c-a7a7-0ac88680b857"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Note5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70a9946f-d1b3-477b-98b4-57476988a222"",
+                    ""path"": ""<Keyboard>/n"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
