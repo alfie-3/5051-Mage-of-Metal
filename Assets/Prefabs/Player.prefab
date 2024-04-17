@@ -177,18 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06860e02e954d06468211d26761c3811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 2685964791969498827}
-  lookSpeed: 2
-  lookLimitX: 45
-  runePlayed: 0
-  runeManager: {fileID: 0}
-  BlueEffect: {fileID: 0}
-  GreenEffect: {fileID: 0}
-  YellowEffect: {fileID: 0}
-  OrangeEffect: {fileID: 0}
-  RedEffect: {fileID: 0}
-  KeyboardInput: 0
-  GuitarInput: 1
 --- !u!114 &6226420594954135243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +379,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 40
   orthographic: 0
@@ -399,7 +387,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 95
+    m_Bits: 991
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

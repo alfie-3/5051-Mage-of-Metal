@@ -44,6 +44,7 @@ public class PixelatedCamera : MonoBehaviour
     {
         // Initialize the system
         Init();
+        renderCamera.allowHDR = true;
     }
 
     private void Update()
@@ -52,6 +53,7 @@ public class PixelatedCamera : MonoBehaviour
         if (CheckScreenResize()) Init();
     }
 
+    [ContextMenu("Init")]
     public void Init()
     {
 
@@ -72,6 +74,8 @@ public class PixelatedCamera : MonoBehaviour
         // Initialize the render texture
         renderTexture = new RenderTexture(width, height, 24)
         {
+            graphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R16G16B16A16_SFloat,
+            format = RenderTextureFormat.DefaultHDR,
             filterMode = FilterMode.Point,
             antiAliasing = 1
         };
