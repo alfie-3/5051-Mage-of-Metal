@@ -32,11 +32,18 @@ public class RuneFMODBridge : MonoBehaviour
     public float SpeedOfRune = 1.0f;
     public List<EnemyRune>  RunesInScene = new List<EnemyRune>();
 
-    Vector3 NorthSpawnpoint;
-    Vector3 EastSpawnpoint;
-    Vector3 WestSpawnpoint;
-    Vector3 SouthEastSpawnpoint;
-    Vector3 SouthWestSpawnpoint;
+    [Header("Holders")]
+    [SerializeField] GameObject BlueRuneHolder;
+    [SerializeField] GameObject OrangeRuneHolder;
+    [SerializeField] GameObject YellowRuneHolder;
+    [SerializeField] GameObject GreenRuneHolder;
+    [SerializeField] GameObject RedRuneHolder;
+
+    Vector3 GreenSpawnpoint;
+    Vector3 RedSpawnpoint;
+    Vector3 BlueSpawnpoint;
+    Vector3 YellowSpawnpoint;
+    Vector3 OrangeSpawnpoint;
     //centre = Vector3(7344.7998,3658.19995,0)
 
     //private
@@ -147,19 +154,19 @@ public class RuneFMODBridge : MonoBehaviour
         switch (noteName)
         {
             case "1":
-                RunesInScene.Add(Instantiate(GreenRunePrefab, NorthSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(Instantiate(GreenRunePrefab, GreenSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             case "2":
-                RunesInScene.Add(Instantiate(RedRunePrefab, EastSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(Instantiate(RedRunePrefab, RedSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             case "3":
-                RunesInScene.Add(Instantiate(YellowRunePrefab, SouthEastSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(Instantiate(YellowRunePrefab, YellowSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             case "4":
-                RunesInScene.Add(Instantiate(BlueRunePrefab, WestSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(Instantiate(BlueRunePrefab, BlueSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             case "5":
-                RunesInScene.Add(Instantiate(OrangeRunePrefab, SouthWestSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(Instantiate(OrangeRunePrefab, OrangeSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             default:
                 Debug.Log("Note Name Not Found!");
@@ -171,11 +178,13 @@ public class RuneFMODBridge : MonoBehaviour
 //gets spawn points of runes relative to centre
     void RuneLocations()
     {
-        NorthSpawnpoint = LevelManager.pointer.transform.position + new Vector3(0.0f, DistanceFromCentre, 0.0f);
-        EastSpawnpoint = LevelManager.pointer.transform.position + new Vector3(DistanceFromCentre, 0.0f, 0.0f);
-        WestSpawnpoint = LevelManager.pointer.transform.position + new Vector3(-DistanceFromCentre, 0.0f, 0.0f);
-        SouthEastSpawnpoint = LevelManager.pointer.transform.position + new Vector3(-DistanceFromCentre/2, -DistanceFromCentre, 0.0f);
-        SouthWestSpawnpoint = LevelManager.pointer.transform.position + new Vector3(DistanceFromCentre, -DistanceFromCentre, 0.0f);
+        Vector3 pointerLoc = LevelManager.pointer.transform.position;
+
+        GreenSpawnpoint = ((GreenRuneHolder.transform.position - pointerLoc).normalized * DistanceFromCentre) + pointerLoc;
+        RedSpawnpoint = ((RedRuneHolder.transform.position - pointerLoc).normalized * DistanceFromCentre) + pointerLoc;
+        YellowSpawnpoint = ((YellowRuneHolder.transform.position - pointerLoc).normalized * DistanceFromCentre) + pointerLoc;
+        BlueSpawnpoint = ((BlueRuneHolder.transform.position - pointerLoc).normalized * DistanceFromCentre) + pointerLoc;
+        OrangeSpawnpoint = ((OrangeRuneHolder.transform.position - pointerLoc).normalized * DistanceFromCentre) + pointerLoc;
     }
 
 ///remove rune 
