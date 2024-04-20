@@ -167,18 +167,22 @@ public class CursorPointer : MonoBehaviour
                 return;
             }
         }
+        if (RuneFMODBridge.Instance != null)
+        {
+            Shoot(RuneFMODBridge.Instance.RuneAttack());
+        }
     }
     public void Shoot(int power)
     {
-        Debug.Log("SHOOT");
         RaycastHit hitInfo = new();
         Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
-        if (Physics.Raycast(ray, out hitInfo, 30, enemyLayerMask))
+        if (Physics.Raycast(ray, out hitInfo, 30))
         {
             if (hitInfo.transform.TryGetComponent(out IDamage damage))
             {
-                Debug.Log("Yes");
+                Debug.Log("HIT");
                 damage.Damage(power * 5);
+                hitInfo.transform.gameObject.layer = enemyLayerMask;
             }
         }
     }
