@@ -7,7 +7,7 @@ using FMODUnity;
 
 public class SongProgress : MonoBehaviour
 {
-    [SerializeField] private Slider progressSlider;
+    private Slider progressSlider;
     public AudioManager audioManagerScript;
     private EventInstance musicEvent; 
     private int songLength; 
@@ -16,6 +16,8 @@ public class SongProgress : MonoBehaviour
 
     void Start()
     {
+        //yoink slider
+        progressSlider = GetComponent<Slider>();
         //yoink song from audio manager
         musicEvent = audioManagerScript.instance;
         //get description of event
