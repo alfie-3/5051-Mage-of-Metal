@@ -23,8 +23,8 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     [TextArea]
     public string UIInfo = "Make sure UILocation game object is linked in the field below";
     //serialized
-    [SerializeField] private GameObject DieEffect;
-    [SerializeField] private Transform UILocation;
+    //[SerializeField] private GameObject DieEffect; //currently not used
+    private Transform UILocation;
     private bool hasAttacked = false;
 
     void Awake() 
@@ -64,10 +64,9 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     private void Kill()
     {
         //special effect
-        //Debug.Log("Enemy Killed"); //debug log for testing
         Destroy(gameObject, 0.3f); //destroy enemy
-        GameObject effect = Instantiate(DieEffect, gameObject.transform);
-        Destroy(effect, 0.3f); //destroy effect
+        //GameObject effect = Instantiate(DieEffect, gameObject.transform);
+        //Destroy(effect, 0.3f); //destroy effect
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -83,17 +82,4 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         }
     }
 
-
-    //function for testing healthbar
-    /*
-    IEnumerator DieEnemy() {
-        while (EnemyHP != 0)
-        {
-            yield return new WaitForSeconds(1f);
-            EnemyHP = EnemyHP - 1; // testing healthbar 
-            print(EnemyHP);
-        }
-
-    }
-    */
 }
