@@ -58,15 +58,3 @@ public class EndScreenLeaderboard : MonoBehaviour
         SceneManager.LoadSceneAsync(1);
     }
 }
-
-public class ScoreEntry
-{
-    public int score;
-    public string name;
-
-    public ScoreEntry(string name, int score)
-    {
-        this.score = score;
-        this.name = name;
-    }
-}
