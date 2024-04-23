@@ -4711,8 +4711,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-<<<<<<< Updated upstream
-=======
 --- !u!1001 &3477893798461368816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4837,4 +4835,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3477893798461368816}
   m_PrefabAsset: {fileID: 0}
->>>>>>> Stashed changes
