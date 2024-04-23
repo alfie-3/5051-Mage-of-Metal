@@ -88,6 +88,7 @@ MonoBehaviour:
   Offset: {x: 0, y: 0, z: 0}
   UIInfo: Make sure to link UILocation game object into the field below
   DieEffect: {fileID: 0}
+  outlineComponent: {fileID: 5182364541189883907}
   UILocation: {fileID: 5979004823322221893}
 --- !u!136 &5318202595034375976
 CapsuleCollider:
@@ -312,6 +313,12 @@ PrefabInstance:
 --- !u!4 &4864984864781840970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c0056c06ecda1994791cda6c9af925ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 4902551408827717025}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5182364541189883907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 279831893324619170, guid: c0056c06ecda1994791cda6c9af925ea,
     type: 3}
   m_PrefabInstance: {fileID: 4902551408827717025}
   m_PrefabAsset: {fileID: 0}
