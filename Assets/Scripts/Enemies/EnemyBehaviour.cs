@@ -23,7 +23,8 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     [TextArea]
     public string UIInfo = "Make sure UILocation game object is linked in the field below";
     //serialized
-    [SerializeField] private GameObject DieEffect;
+    //[SerializeField] private GameObject DieEffect;
+    [SerializeField] private GameObject outlineComponent;
     [SerializeField] private Transform UILocation;
     private bool hasAttacked = false;
 
@@ -50,9 +51,8 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
 //function that damages enemy when called
     public void Damage(int damage)
     {
-        Debug.Log("Before: "+EnemyHP);
         EnemyHP -= damage;
-        Debug.Log("After: "+EnemyHP);
+        Debug.Log(EnemyHP);
         if (EnemyHP <= 0)
         {
             Debug.Log("KILL!!!");
@@ -66,13 +66,13 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         //special effect
         //Debug.Log("Enemy Killed"); //debug log for testing
         Destroy(gameObject, 0.3f); //destroy enemy
-        GameObject effect = Instantiate(DieEffect, gameObject.transform);
-        Destroy(effect, 0.3f); //destroy effect
+        //GameObject effect = Instantiate(DieEffect, gameObject.transform);
+        //Destroy(effect, 0.3f); //destroy effect
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "Player" && hasAttacked)
         {
             if (collision.gameObject.TryGetComponent(out IDamage dam))
             {

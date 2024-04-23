@@ -87,7 +87,7 @@ MonoBehaviour:
   EnemyMaxHP: 10
   Offset: {x: 0, y: 0, z: 0}
   UIInfo: Make sure UILocation game object is linked in the field below
-  DieEffect: {fileID: 0}
+  outlineComponent: {fileID: 8621885009181267572}
   UILocation: {fileID: 0}
 --- !u!136 &5318202595034375976
 CapsuleCollider:
@@ -317,6 +317,12 @@ PrefabInstance:
 --- !u!4 &647353172107063695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0ba92318c9135a4687f3fe999bd7eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1112781886026192484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8621885009181267572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -516098083770646512, guid: a0ba92318c9135a4687f3fe999bd7eb5,
     type: 3}
   m_PrefabInstance: {fileID: 1112781886026192484}
   m_PrefabAsset: {fileID: 0}

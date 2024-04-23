@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,11 +34,11 @@ public class RuneFMODBridge : MonoBehaviour
     public List<EnemyRune>  RunesInScene = new List<EnemyRune>();
 
     [Header("Holders")]
-    [SerializeField] GameObject BlueRuneHolder;
-    [SerializeField] GameObject OrangeRuneHolder;
-    [SerializeField] GameObject YellowRuneHolder;
     [SerializeField] GameObject GreenRuneHolder;
     [SerializeField] GameObject RedRuneHolder;
+    [SerializeField] GameObject YellowRuneHolder;
+    [SerializeField] GameObject BlueRuneHolder;
+    [SerializeField] GameObject OrangeRuneHolder;
 
     Vector3 GreenSpawnpoint;
     Vector3 RedSpawnpoint;
@@ -79,7 +80,6 @@ public class RuneFMODBridge : MonoBehaviour
         note3 = _controlsKnm.GuitarControls.Note3;
         note4 = _controlsKnm.GuitarControls.Note4;
         note5 = _controlsKnm.GuitarControls.Note5;
-        controls.performed += OnStrum;
         note1.performed += context => isNote1 = true;
         note2.performed += context => isNote2 = true;
         note3.performed += context => isNote3 = true;
@@ -96,18 +96,14 @@ public class RuneFMODBridge : MonoBehaviour
     }
     private void OnDisable()
     {
-        controls.performed -= OnStrum;
-        controls.Disable();
-        note2.Disable();
+        controls.Disable(); note1.Disable(); note2.Disable(); note3.Disable(); note4.Disable(); note5.Disable();
     }
 
-    private void OnStrum(InputAction.CallbackContext context)
+    public int RuneAttack()
     {
         //Debug.Log("Activated");
         ColorCheck runeColors = new ColorCheck();
         runeColors.Blue = false; runeColors.Green = false; runeColors.Red = false; runeColors.Yellow = false; runeColors.Orange = false;
-        ColorCheck guitarRunes = new ColorCheck();
-        runeColors.Green = isNote1; runeColors.Red = isNote2; runeColors.Yellow = isNote3; runeColors.Blue = isNote4; runeColors.Orange = isNote5;
 
         int power = 0;
         foreach (EnemyRune rune in RunesInScene)
@@ -131,15 +127,11 @@ public class RuneFMODBridge : MonoBehaviour
         if (isNote4 && !runeColors.Blue) { power--; }
         if (isNote5 && !runeColors.Orange) { power--; }
 
-        Debug.Log(power);
-
-        CursorPointer.Instance.Shoot(power);
-
+        return 1;
     }
 
     void SuccessfulRune(EnemyRune rune) {
-
-        Destroy(rune);
+        Destroy(rune.gameObject);
     }
 
     public void CleanList(EnemyRune rune)
@@ -207,6 +199,7 @@ public struct ColorCheck {
     public bool Blue;
     public bool Orange;
 
+    /*
     public static bool Compare(ColorCheck c1, ColorCheck c2)
     {
         if (c1.Green!=c2.Green) { return false; }
@@ -232,7 +225,7 @@ public struct ColorCheck {
         if (c1.Yellow == c2.Yellow) { Debug.Log(3); }
         if (c1.Blue == c2.Blue) { Debug.Log(4); }
         if (c1.Orange == c2.Orange) { Debug.Log(5); }
-        */
+        
 
         return Mathf.Clamp(success,0,5);
     }
@@ -240,5 +233,5 @@ public struct ColorCheck {
     public static bool HasColor(ColorCheck c1)
     {
         if (c1.Green || c1.Red || c1.Yellow || c1.Blue || c1.Orange) { return true; } else { return false; }
-    }
+    }*/
 }
