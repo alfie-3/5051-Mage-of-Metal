@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //enemy logic for health to test health display
@@ -19,6 +18,7 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     //public
     public int EnemyHP = 10;
     public int EnemyMaxHP = 10;
+    public float EnemyDeathTime = 1f;
     public Vector3 Offset;
     [TextArea]
     public string UIInfo = "Make sure UILocation game object is linked in the field below";
@@ -27,6 +27,21 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     [SerializeField] private GameObject outlineComponent;
     [SerializeField] private Transform UILocation;
     private bool hasAttacked = false;
+
+    [Header("Enemy Score Worth")]
+    [SerializeField] private int scoreWorth = 20;
+    [SerializeField] private float scoreMultWorth = 0.05f;
+    [SerializeField] private float damageMultScore = 0.1f;
+
+    [Header("Material values")]
+    float Dissolve;
+    Material mat;
+    [SerializeField] Shader dissolveShader;
+    Renderer rend;
+    string m_MatDissolveName = "_Alpha";
+    [SerializeField] Texture2D m_MatTexture;
+    string m_MatTextureName = "_BaseTexture";
+
 
     void Awake() 
     {
@@ -43,42 +58,55 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         //offset for ui
         Offset = UILocation.localPosition * 80;
     }
+
     void Start() {
         //set health to max
         EnemyHP = EnemyMaxHP;
+        rend = outlineComponent.GetComponent<Renderer>();
     }
-
-//function that damages enemy when called
+    //function that damages enemy when called
     public void Damage(int damage)
     {
         EnemyHP -= damage;
-        Debug.Log(EnemyHP);
         if (EnemyHP <= 0)
         {
-            Debug.Log("KILL!!!");
-            Kill();
+            StartCoroutine(Kill());
         }
     }
 
-//if enemy dies
-    private void Kill()
+    //If enemy dies
+    IEnumerator Kill()
     {
-        //special effect
-        //Debug.Log("Enemy Killed"); //debug log for testing
-        Destroy(gameObject, 0.3f); //destroy enemy
-        //GameObject effect = Instantiate(DieEffect, gameObject.transform);
-        //Destroy(effect, 0.3f); //destroy effect
+        LevelManager.player.GetComponent<IScore>().AddScore(scoreMultWorth, scoreWorth);
+        outlineComponent.layer = LayerMask.NameToLayer("Default");
+        mat = new Material(dissolveShader);
+        rend.material = mat;
+
+        rend.material.SetTexture(m_MatTextureName, m_MatTexture);
+        rend.material.SetFloat(m_MatDissolveName, 1);
+
+        float delta = EnemyDeathTime;
+        Debug.Log("Mat created");
+        while (delta > 0)
+
+        {
+            delta -= Time.deltaTime;
+            rend.material.SetFloat(m_MatDissolveName, delta / EnemyDeathTime);
+            yield return null;
+        }
+        Debug.Log("Will destroy");
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.name == "Player" && hasAttacked)
         {
-            if (collision.gameObject.TryGetComponent(out IDamage dam))
+            if (collision.gameObject.TryGetComponent(out IScore playerScore))
             {
-                dam.Damage(1);
+                playerScore.DamageScore(damageMultScore);
                 hasAttacked=true;
-                Kill();
+                Destroy(gameObject, 0.3f);
             }
         }
     }

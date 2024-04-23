@@ -121,11 +121,11 @@ public class RuneFMODBridge : MonoBehaviour
                 }
             }
         }
-        if (isNote1 && !runeColors.Green) { power--; }
-        if (isNote2 && !runeColors.Red) { power--; }
-        if (isNote3 && !runeColors.Yellow) { power--; }
-        if (isNote4 && !runeColors.Blue) { power--; }
-        if (isNote5 && !runeColors.Orange) { power--; }
+        if (isNote1 && !runeColors.Green) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
+        if (isNote2 && !runeColors.Red) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
+        if (isNote3 && !runeColors.Yellow) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
+        if (isNote4 && !runeColors.Blue) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
+        if (isNote5 && !runeColors.Orange) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
 
         return 1;
     }

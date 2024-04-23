@@ -10,7 +10,9 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
 {
     int[] multiplierInts = { 1, 2, 4, 8 };
     float[] multUpgradeNumbers = { 0f, 0.15f, 0.5f, 1f };
+    int scoreMultiplier = 1;
     float currentClampedScore = 0;
+    int playerScore = 0;
 
     [SerializeField] Volume _volume;
     [SerializeField] AnimationCurve damageAnim;
@@ -25,12 +27,23 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
 
     public void Damage(int damage)
     {
+        DamageScore(0.1f);
         StartCoroutine(DamageScreen());
-        Score(0.1f);
+
     }
-    public void Score(float score)
+    public void AddScore(float scoreMult, int score)
     {
-        SetSliderScores(score);
+        Debug.Log(scoreMult);
+        currentClampedScore = Mathf.Clamp01(currentClampedScore + scoreMult);
+        playerScore += (score * scoreMultiplier);
+        LevelManager.scoreSlider.transform.parent.GetComponent<TextMeshProUGUI>().text = "Score: " + playerScore;
+        SetSliderScores();
+    }
+    public void DamageScore(float scoreMult) {
+        currentClampedScore -= scoreMult; 
+        LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x" + 1;
+        LevelManager.scoreSlider.value = 0;
+        SetSliderScores() ;
     }
 
     public void SetIntensity()
@@ -53,11 +66,11 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
         yield return null;
     }
 
-    private void SetSliderScores(float addScore)
+    private void SetSliderScores()
     {
-        currentClampedScore = Mathf.Clamp01(currentClampedScore + addScore);
         if (currentClampedScore == 1)
         {
+            scoreMultiplier = multiplierInts[multiplierInts.Length - 1];
             LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x" + multiplierInts[multiplierInts.Length - 1];
             LevelManager.scoreSlider.value = 1;
         }
@@ -65,6 +78,7 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
         {
             if ((currentClampedScore > multUpgradeNumbers[i] && currentClampedScore < multUpgradeNumbers[i + 1]) || currentClampedScore == multUpgradeNumbers[i])
             {
+                scoreMultiplier = multiplierInts[i];
                 LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x" + multiplierInts[i];
                 LevelManager.scoreSlider.value = (currentClampedScore - multUpgradeNumbers[i]) / (multUpgradeNumbers[i + 1] - multUpgradeNumbers[i]);
                 break;
@@ -73,21 +87,3 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
 
     }
 }
-
-#if UNITY_EDITOR
-
-[CustomEditor(typeof(PlayerStats))]
-public class PlayerStatsEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        PlayerStats playerManager = (PlayerStats)target;
-        DrawDefaultInspector();
-
-        if (GUILayout.Button("Override"))
-        {
-            playerManager.SetIntensity();
-        }
-    }
-}
-#endif

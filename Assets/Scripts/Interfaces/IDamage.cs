@@ -8,5 +8,6 @@ public interface IDamage
 }
 public interface IScore
 {
-    public void Score(float score);
+    public void AddScore(float scoreMult, int score);
+    public void DamageScore(float scoreMult);
 }
