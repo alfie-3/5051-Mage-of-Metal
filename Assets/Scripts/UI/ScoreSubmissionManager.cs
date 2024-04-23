@@ -8,6 +8,8 @@ public class ScoreSubmissionManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TMP_InputField nameInput;
 
+    public static string submittedName;
+
     private void Start()
     {
         scoreText.text = PlayerStats.playerScore.ToString();
@@ -20,5 +22,6 @@ public class ScoreSubmissionManager : MonoBehaviour
 
         ScoreSaveManager.AddScore(name, PlayerStats.playerScore);
         PlayerStats.playerScore = 0;
+        submittedName = nameInput.text;
     }
 }
