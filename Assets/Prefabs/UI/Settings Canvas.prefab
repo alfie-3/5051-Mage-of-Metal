@@ -2116,7 +2116,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5706468098151678337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,6 +2146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81823bc4743699142abe169d53f7af82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!1 &7687538646666276218
 GameObject:
   m_ObjectHideFlags: 0
