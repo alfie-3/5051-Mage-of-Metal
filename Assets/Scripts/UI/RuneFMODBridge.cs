@@ -127,7 +127,7 @@ public class RuneFMODBridge : MonoBehaviour
         if (isNote4 && !runeColors.Blue) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
         if (isNote5 && !runeColors.Orange) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
 
-        return 1;
+        return power;
     }
 
     void SuccessfulRune(EnemyRune rune) {

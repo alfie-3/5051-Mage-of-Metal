@@ -30,6 +30,9 @@ public class LevelManager : MonoBehaviour
     static public UnityEngine.UI.Slider scoreSlider;
     static public float beatLeadUp, bpm;
 
+    [SerializeField] List<GameObject> spellsRef;
+    [SerializeField] static public List<GameObject> spells;
+
     [Header("Controls")]
     private Controls _controlsKnm;
     InputAction controls;
@@ -51,6 +54,7 @@ public class LevelManager : MonoBehaviour
         scoreMultiplierText = scoreMultiplierTextRef;
         scoreSlider = scoreSliderRef;
         _controlsKnm = new Controls();
+        spells = spellsRef;
     }
 
     private void Start()

@@ -90,7 +90,6 @@ MonoBehaviour:
   UIInfo: Make sure UILocation game object is linked in the field below
   outlineComponent: {fileID: 8621885009181267572}
   UILocation: {fileID: 0}
-  shaderMat: {fileID: 0}
   scoreWorth: 20
   scoreMultWorth: 0.05
   damageMultScore: 0.1
@@ -164,7 +163,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

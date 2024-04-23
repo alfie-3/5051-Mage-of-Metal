@@ -32,6 +32,7 @@ public class CursorPointer : MonoBehaviour
     [SerializeField] int intervalXArea = 5;
     [SerializeField] int intervalYArea = 5;
     [SerializeField] GameObject temp;
+    [SerializeField] GameObject spell;
     private void Awake()
     {
         Instance = this;
@@ -181,8 +182,9 @@ public class CursorPointer : MonoBehaviour
             if (hitInfo.transform.TryGetComponent(out IDamage damage))
             {
                 LevelManager.player.TryGetComponent(out IScore _Score); _Score.AddScore(0.05f, 20);
-                damage.Damage(power * 5);
                 hitInfo.transform.gameObject.layer = enemyLayerMask;
+                GameObject baseSpell = Instantiate(LevelManager.spells[(int)Random.Range(0,5)], LevelManager.player.transform.position, Quaternion.identity);
+                baseSpell.GetComponent<BaseSpell>().OnStart(hitInfo.transform,LevelManager.player.transform.position,power*4);
             }
         }
     }
