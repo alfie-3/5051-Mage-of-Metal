@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
     float[] multUpgradeNumbers = { 0f, 0.15f, 0.5f, 1f };
     int scoreMultiplier = 1;
     float currentClampedScore = 0;
-    int playerScore = 0;
+    public static int playerScore = 0;
 
     [SerializeField] Volume _volume;
     [SerializeField] AnimationCurve damageAnim;
