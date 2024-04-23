@@ -833,8 +833,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
+<<<<<<< Updated upstream
       objectReference: {fileID: 575793645}
     - target: {fileID: 2880871527608372577, guid: e31a72bf4275f0749a0a27f1a641a678,
+=======
+      objectReference: {fileID: 1729264716}
+    - target: {fileID: 2685964791969498827, guid: e31a72bf4275f0749a0a27f1a641a678,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_Layer
       value: 10
@@ -2069,6 +2074,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 551009038}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!84 &575793645
 RenderTexture:
   m_ObjectHideFlags: 0
@@ -2107,6 +2113,8 @@ RenderTexture:
   m_Dimension: 2
   m_VolumeDepth: 1
   m_ShadowSamplingMode: 2
+=======
+>>>>>>> Stashed changes
 --- !u!1 &683167924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,6 +3156,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4859088007613573318, guid: f5425d018d035074f80e97d751881fc5,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859088007613573318, guid: f5425d018d035074f80e97d751881fc5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859088007613573318, guid: f5425d018d035074f80e97d751881fc5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859088007613573318, guid: f5425d018d035074f80e97d751881fc5,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3297,6 +3320,7 @@ PrefabInstance:
       value: -7.3220215
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+<<<<<<< Updated upstream
     m_RemovedGameObjects:
     - {fileID: 1656548753221955730, guid: f5425d018d035074f80e97d751881fc5, type: 3}
     m_AddedGameObjects: []
@@ -3329,6 +3353,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2079839048}
+=======
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+>>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: f5425d018d035074f80e97d751881fc5, type: 3}
 --- !u!58 &1038229922
 CircleCollider2D:
@@ -3685,6 +3714,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1338366087}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1001 &1372705581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3779,6 +3809,8 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1372705581}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1438973829
 GameObject:
   m_ObjectHideFlags: 0
@@ -4148,11 +4180,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1699721866}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1 &1704291424 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3187725522455326386, guid: f5425d018d035074f80e97d751881fc5,
     type: 3}
   m_PrefabInstance: {fileID: 1038229914}
+=======
+--- !u!84 &1729264716
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+>>>>>>> Stashed changes
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1711576555 stripped
 MonoBehaviour:
@@ -4165,7 +4205,41 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
+<<<<<<< Updated upstream
   m_EditorClassIdentifier: 
+=======
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 960
+  m_Height: 540
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 0
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
+>>>>>>> Stashed changes
 --- !u!1001 &1743399230
 PrefabInstance:
   m_ObjectHideFlags: 0
