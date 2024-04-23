@@ -180,7 +180,7 @@ public class CursorPointer : MonoBehaviour
         {
             if (hitInfo.transform.TryGetComponent(out IDamage damage))
             {
-                Debug.Log("HIT");
+                LevelManager.player.TryGetComponent(out IScore _Score); _Score.AddScore(0.05f, 20);
                 damage.Damage(power * 5);
                 hitInfo.transform.gameObject.layer = enemyLayerMask;
             }

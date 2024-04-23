@@ -81,7 +81,7 @@ Material:
     - _BUILTIN_ZWriteControl: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SnowOpacity: 1.755
+    - _SnowOpacity: 1.089
     m_Colors:
     - _Direction: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
