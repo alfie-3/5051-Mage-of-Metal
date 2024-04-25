@@ -103,8 +103,9 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         {
             if (collision.gameObject.TryGetComponent(out IScore playerScore))
             {
-                playerScore.DamageScore(damageMultScore);
+                playerScore.DamageScore(damageMultScore,Color.red,0.6f);
                 hasAttacked=true;
+                Debug.Log("???");
                 Destroy(gameObject, 0.3f);
             }
         }

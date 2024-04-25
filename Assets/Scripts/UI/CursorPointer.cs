@@ -5,10 +5,11 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine.PlayerLoop;
+using UnityEditor.PackageManager;
 
 public class CursorPointer : MonoBehaviour
 {
-    public static CursorPointer Instance {  get; private set; }
+    public static CursorPointer Instance { get; private set; }
 
     [SerializeField] RectTransform ir_pointer;
     [SerializeField] RuneTestPlayer _runeTestPlayer;
@@ -159,34 +160,41 @@ public class CursorPointer : MonoBehaviour
                 }
             }
         }
-        if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
-        {
-            if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))
-            {
-                _button.onClick.Invoke();
-
-                return;
-            }
-        }
-        if (RuneFMODBridge.Instance != null)
+        else if (RuneFMODBridge.Instance != null)
         {
             Shoot(RuneFMODBridge.Instance.RuneAttack());
         }
-    }
-    public void Shoot(int power)
-    {
-        RaycastHit hitInfo = new();
-        Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
-        if (Physics.Raycast(ray, out hitInfo, 30))
+        else
         {
-            if (hitInfo.transform.TryGetComponent(out IDamage damage))
+            if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
             {
-                LevelManager.player.TryGetComponent(out IScore _Score); _Score.AddScore(0.05f, 20);
-                hitInfo.transform.gameObject.layer = enemyLayerMask;
-                GameObject baseSpell = Instantiate(LevelManager.spells[(int)Random.Range(0,5)], LevelManager.player.transform.position, Quaternion.identity);
-                baseSpell.GetComponent<BaseSpell>().OnStart(hitInfo.transform,LevelManager.player.transform.position,power*4);
+                if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))
+                {
+                    _button.onClick.Invoke();
+
+                    return;
+                }
             }
         }
     }
-    
+
+    public void Shoot(int power)
+    {
+        if (power > 0)
+        {
+            RaycastHit hitInfo = new();
+            Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
+            if (Physics.Raycast(ray, out hitInfo, 30))
+            {
+                if (hitInfo.transform.TryGetComponent(out IDamage iDamage))
+                {
+                    LevelManager.player.TryGetComponent(out IScore _Score); _Score.AddScore(0.05f, 20);
+                    hitInfo.transform.gameObject.layer = enemyLayerMask;
+                    GameObject baseSpell = Instantiate(LevelManager.spells[(int)Random.Range(0, 5)], LevelManager.player.transform.position, Quaternion.identity);
+                    baseSpell.GetComponent<BaseSpell>().OnStart(hitInfo.transform, LevelManager.player.transform.position, power * 4, iDamage);
+                }
+            }
+        }
+    }
+
 }

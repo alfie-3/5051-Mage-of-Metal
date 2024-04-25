@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UIElements;
 
-public class PlayerStats : MonoBehaviour, IDamage,IScore
+public class PlayerStats : MonoBehaviour, IScore
 {
     int[] multiplierInts = { 1, 2, 4, 8 };
     float[] multUpgradeNumbers = { 0f, 0.15f, 0.5f, 1f };
@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
 
     [SerializeField] Volume _volume;
     [SerializeField] AnimationCurve damageAnim;
-    [SerializeField] UnityEngine.Rendering.Universal.Vignette _vignette;
+    UnityEngine.Rendering.Universal.Vignette _vignette;
     private void Start()
     {
         AudioManager.managerInstance.instance.setParameterByName("InstrumentAudio", currentClampedScore);
@@ -25,24 +25,17 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
         _vignette.intensity.value = 0;
         LevelManager.scoreSlider.value = 0;
     }
-
-    public void Damage(int damage)
-    {
-        DamageScore(0.1f);
-        StartCoroutine(DamageScreen());
-
-    }
     public void AddScore(float scoreMult, int score)
     {
-        Debug.Log(scoreMult);
         currentClampedScore = Mathf.Clamp01(currentClampedScore + scoreMult);
         AudioManager.managerInstance.instance.setParameterByName("InstrumentAudio", currentClampedScore);
         playerScore += (score * scoreMultiplier);
         LevelManager.scoreSlider.transform.parent.GetComponent<TextMeshProUGUI>().text = "Score: " + playerScore;
         SetSliderScores();
     }
-    public void DamageScore(float scoreMult) {
+    public void DamageScore(float scoreMult, Color vignCol, float vignTime) {
         currentClampedScore -= scoreMult;
+        StartCoroutine(DamageScreen(vignTime,vignCol));
         AudioManager.managerInstance.instance.setParameterByName("InstrumentAudio", currentClampedScore);
         LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x" + 1;
         LevelManager.scoreSlider.value = 0;
@@ -55,14 +48,15 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
         _vignette.intensity.value = 1;
     }
 
-    private IEnumerator DamageScreen()
+    private IEnumerator DamageScreen(float screenTime, Color vignCol)
     {
         float time = 0;
+        _vignette.color.value = vignCol;
 
-        while (time < 1)
+        while (time < screenTime)
         {
-            time += (Time.unscaledDeltaTime*1.5f);
-            _vignette.intensity.value = damageAnim.Evaluate(time);
+            time += (Time.unscaledDeltaTime);
+            _vignette.intensity.value = damageAnim.Evaluate(time/screenTime);
             yield return null;
         }
         _vignette.intensity.value = damageAnim.Evaluate(0);

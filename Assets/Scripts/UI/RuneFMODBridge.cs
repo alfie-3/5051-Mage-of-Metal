@@ -64,13 +64,15 @@ public class RuneFMODBridge : MonoBehaviour
     bool isNote4;
     bool isNote5;
 
+    IScore playerScore;
+    
     void Awake()
     {
         Instance = this;
         //BoxCollider RuneLimitCollider = RuneLimit.GetComponent<BoxCollider>();
         //RuneLimitCollider.size = new Vector3(ColliderSize, ColliderSize, 3);
         _controlsKnm = new Controls();
-
+        playerScore = LevelManager.player.GetComponent<IScore>();
     }
     private void OnEnable()
     {
@@ -105,6 +107,15 @@ public class RuneFMODBridge : MonoBehaviour
         ColorCheck runeColors = new ColorCheck();
         runeColors.Blue = false; runeColors.Green = false; runeColors.Red = false; runeColors.Yellow = false; runeColors.Orange = false;
 
+        if (WiiInputManager.CursorWiiMote.HasRemote)
+        {
+            isNote1 = WiiInputManager.GuitarWiiMote.WiiMote.Guitar.green_fret;
+            isNote2 = WiiInputManager.GuitarWiiMote.WiiMote.Guitar.red_fret;
+            isNote3 = WiiInputManager.GuitarWiiMote.WiiMote.Guitar.yellow_fret;
+            isNote4 = WiiInputManager.GuitarWiiMote.WiiMote.Guitar.blue_fret;
+            isNote5 = WiiInputManager.GuitarWiiMote.WiiMote.Guitar.orange_fret;
+        }
+
         int power = 0;
         foreach (EnemyRune rune in RunesInScene)
         {
@@ -121,12 +132,12 @@ public class RuneFMODBridge : MonoBehaviour
                 }
             }
         }
-        if (isNote1 && !runeColors.Green) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
-        if (isNote2 && !runeColors.Red) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
-        if (isNote3 && !runeColors.Yellow) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
-        if (isNote4 && !runeColors.Blue) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
-        if (isNote5 && !runeColors.Orange) { power--; LevelManager.player.GetComponent<IScore>().DamageScore(0.03f); }
-
+        if (isNote1 && !runeColors.Green) { power--; playerScore.DamageScore(0.03f,UnityEngine.Color.gray,0.4f); }
+        if (isNote2 && !runeColors.Red) { power--; playerScore.DamageScore(0.03f, UnityEngine.Color.gray, 0.4f); }
+        if (isNote3 && !runeColors.Yellow) { power--; playerScore.DamageScore(0.03f, UnityEngine.Color.gray, 0.4f); }
+        if (isNote4 && !runeColors.Blue) { power--; playerScore.DamageScore(0.03f, UnityEngine.Color.gray, 0.4f); }
+        if (isNote5 && !runeColors.Orange) { power--; playerScore.DamageScore(0.03f, UnityEngine.Color.gray, 0.4f); }
+        if (power==0) { playerScore.DamageScore(0.03f, UnityEngine.Color.gray, 0.4f); }
         return power;
     }
 

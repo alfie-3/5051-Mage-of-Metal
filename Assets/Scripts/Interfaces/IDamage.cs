@@ -9,5 +9,5 @@ public interface IDamage
 public interface IScore
 {
     public void AddScore(float scoreMult, int score);
-    public void DamageScore(float scoreMult);
+    public void DamageScore(float scoreMult, Color vignCol, float vignTime);
 }
