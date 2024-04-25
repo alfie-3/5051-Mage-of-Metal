@@ -84,9 +84,9 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
 
         rend.material.SetTexture(m_MatTextureName, m_MatTexture);
         rend.material.SetFloat(m_MatDissolveName, 1);
+        rend.material.SetColor("_Color", new Color(Random.Range(0,255), Random.Range(0,255), Random.Range(0,255)));
 
         float delta = EnemyDeathTime;
-        Debug.Log("Mat created");
         while (delta > 0)
 
         {
@@ -94,13 +94,12 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
             rend.material.SetFloat(m_MatDissolveName, delta / EnemyDeathTime);
             yield return null;
         }
-        Debug.Log("Will destroy");
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.name == "Player" && hasAttacked)
+        if (collision.gameObject.name == "Player" && !hasAttacked)
         {
             if (collision.gameObject.TryGetComponent(out IScore playerScore))
             {

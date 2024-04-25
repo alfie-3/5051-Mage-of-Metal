@@ -23,7 +23,8 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 5890316994461576865}
   MinDistance: 1
   MaxDistance: 20
   Length: 99806
@@ -42,7 +43,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Badgers.bank
   Name: Badgers
   StudioPath: bank:/Badgers
-  lastModified: 638495427508903169
+  lastModified: 638495033075972864
   FileSizes: []
   Exists: 1
 --- !u!114 &-7424879941090773520
@@ -60,7 +61,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/MageOfMelodies.bank
   Name: MageOfMelodies
   StudioPath: bank:/MageOfMelodies
-  lastModified: 638495427510557110
+  lastModified: 638496642811212937
   FileSizes: []
   Exists: 1
 --- !u!114 &-7067886867853178366
@@ -78,7 +79,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638495427511471231
+  lastModified: 638495033151652425
   FileSizes:
   - Name: 
     Value: 1338
@@ -98,7 +99,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638495427511462383
+  lastModified: 638496642811282752
   FileSizes: []
   Exists: 1
 --- !u!114 &-4086606447808561957
@@ -183,7 +184,7 @@ MonoBehaviour:
   - {fileID: -4234454804968402356}
   StringsBanks:
   - {fileID: -7067886867853178366}
-  cacheTime: 638495427511471231
+  cacheTime: 638496642811282752
   cacheVersion: 131608
 --- !u!114 &635613063070166417
 MonoBehaviour:
@@ -200,7 +201,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank B.bank
   Name: Bank B
   StudioPath: bank:/Music/Bank B
-  lastModified: 638495427509444712
+  lastModified: 638496642810584341
   FileSizes: []
   Exists: 1
 --- !u!114 &3568968472121339264
@@ -311,6 +312,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &5890316994461576865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Mage_of_Melodies_tut/InstrumentAudio
+  m_EditorClassIdentifier: 
+  Name: InstrumentAudio
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2901348385
+    data2: 1336069231
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &6690806665454711924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,7 +351,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Weather/Bank A
-  lastModified: 638452720360026023
+  lastModified: 638495033176672762
   FileSizes: []
   Exists: 1
 --- !u!114 &7991679617171780696

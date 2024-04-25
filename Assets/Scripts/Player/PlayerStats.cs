@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
     [SerializeField] UnityEngine.Rendering.Universal.Vignette _vignette;
     private void Start()
     {
+        AudioManager.managerInstance.instance.setParameterByName("InstrumentAudio", currentClampedScore);
         LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x1";
         _volume.profile.TryGet(out _vignette);
         _vignette.intensity.value = 0;
@@ -35,12 +36,14 @@ public class PlayerStats : MonoBehaviour, IDamage,IScore
     {
         Debug.Log(scoreMult);
         currentClampedScore = Mathf.Clamp01(currentClampedScore + scoreMult);
+        AudioManager.managerInstance.instance.setParameterByName("InstrumentAudio", currentClampedScore);
         playerScore += (score * scoreMultiplier);
         LevelManager.scoreSlider.transform.parent.GetComponent<TextMeshProUGUI>().text = "Score: " + playerScore;
         SetSliderScores();
     }
     public void DamageScore(float scoreMult) {
-        currentClampedScore -= scoreMult; 
+        currentClampedScore -= scoreMult;
+        AudioManager.managerInstance.instance.setParameterByName("InstrumentAudio", currentClampedScore);
         LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x" + 1;
         LevelManager.scoreSlider.value = 0;
         SetSliderScores() ;
