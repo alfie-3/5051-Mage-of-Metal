@@ -84,16 +84,18 @@ public class LevelManager : MonoBehaviour
         _controlsKnm.GuitarControls.WinDie.Disable();
     }
 
-    private void PauseGame(InputAction.CallbackContext obj)
+    public void PauseGame()
     {
-        if (!isPaused && !isUnpausing) {
+        if (!isPaused && !isUnpausing)
+        {
             isPaused = true;
             levelWinLoseQuad.material.SetFloat("_AlphaRange", maxAlpha);
             levelWinLoseQuad.material.SetColor("_Color", Color.green);
             AudioManager.managerInstance.MusicPause();
             pauseSettingsMenu.SetActive(true);
             Time.timeScale = 0;
-            foreach (Transform child in pointerRef.transform) {
+            foreach (Transform child in pointerRef.transform)
+            {
                 child.gameObject.SetActive(true);
             }
         }
@@ -107,6 +109,11 @@ public class LevelManager : MonoBehaviour
             pauseSettingsMenu.SetActive(false);
             StartCoroutine(ResumeGame(3));
         }
+    }
+
+    private void PauseGame(InputAction.CallbackContext obj)
+    {
+        PauseGame();   
     }
 
     private void WinLossState(InputAction.CallbackContext obj)
@@ -241,6 +248,8 @@ public class LevelManager : MonoBehaviour
     private IEnumerator SceneEnd()
     {
         yield return ChangeAlpha(0.5f, 0, transitionerQuad.material, 1);
+        AudioManager.managerInstance.MusicStop();
+        yield return new WaitForSeconds(1);
         SceneManager.LoadSceneAsync(1);
     }
 }
