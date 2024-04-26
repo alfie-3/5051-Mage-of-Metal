@@ -1,6 +1,5 @@
 //Script for respawning the same objects over and over such as runes and fireballs
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +11,7 @@ public class ObjectPooler : MonoBehaviour
     public Dictionary<string, Queue<GameObject>> poolDictionary;
     List<string> objectsOfType;
 
+    //Setup pooling
     private void Start()
     {
         Instance = this;
@@ -43,6 +43,8 @@ public class ObjectPooler : MonoBehaviour
             }
         }
     }
+
+    #region Object Pooling
     public GameObject SpawnRandomFromType(PoolType type, Vector3 position)
     {
         objectsOfType = new List<string>();
@@ -78,8 +80,10 @@ public class ObjectPooler : MonoBehaviour
         poolDictionary[name].Enqueue(spawned);
         return spawned;
     }
+    #endregion
 }
 
+//Pooling structs to spawn in and use pooled objects
 [System.Serializable]
 public class Pools
 {
@@ -89,6 +93,7 @@ public class Pools
     public int size;
 }
 
+//Types of objects in pools used for differet behaviours
 [System.Serializable]
 public enum PoolType
 {

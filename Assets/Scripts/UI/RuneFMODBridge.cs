@@ -1,10 +1,10 @@
+//A bridge script between CursorPointer, AudioManager and EnemyRune for dealing with interaction
+//of runes and recieving damage feedback
+
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
 
 public class RuneFMODBridge : MonoBehaviour
 {
@@ -19,13 +19,6 @@ public class RuneFMODBridge : MonoBehaviour
     [TextArea]
     public string Rune_Sprites_Info = "These are temporary placeholders, to be replaced when rune sprites designed";
 
-//serialized
-    [SerializeField] EnemyRune BlueRunePrefab;
-    [SerializeField] EnemyRune OrangeRunePrefab;
-    [SerializeField] EnemyRune YellowRunePrefab;
-    [SerializeField] EnemyRune GreenRunePrefab;
-    [SerializeField] EnemyRune RedRunePrefab;
-
     //[SerializeField] GameObject RuneLimit;
     [SerializeField] int ColliderSize;
     [SerializeField] float DistanceFromCentre = 50.0f;
@@ -39,17 +32,13 @@ public class RuneFMODBridge : MonoBehaviour
     [SerializeField] GameObject YellowRuneHolder;
     [SerializeField] GameObject BlueRuneHolder;
     [SerializeField] GameObject OrangeRuneHolder;
-
     Vector3 GreenSpawnpoint;
     Vector3 RedSpawnpoint;
     Vector3 BlueSpawnpoint;
     Vector3 YellowSpawnpoint;
     Vector3 OrangeSpawnpoint;
-    //centre = Vector3(7344.7998,3658.19995,0)
 
-    //private
-    //int currentDirection = 0;
-
+    [Header("Rune button controls")]
     private Controls _controlsKnm;
     InputAction controls;
     InputAction note1;
@@ -57,13 +46,13 @@ public class RuneFMODBridge : MonoBehaviour
     InputAction note3;
     InputAction note4;
     InputAction note5;
-
     bool isNote1;
     bool isNote2;
     bool isNote3;
     bool isNote4;
     bool isNote5;
 
+    [Header("Player score component")]
     IScore playerScore;
     
     void Awake()

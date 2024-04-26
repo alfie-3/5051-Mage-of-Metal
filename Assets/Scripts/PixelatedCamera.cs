@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+//Creates pixilated footage of the player's POV
+
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 [ExecuteInEditMode]
 public class PixelatedCamera : MonoBehaviour
@@ -27,7 +25,6 @@ public class PixelatedCamera : MonoBehaviour
     [Header("Screen scaling settings")]
     public PixelScreenMode mode;
     public ScreenSize targetScreenSize = new ScreenSize { width = 256, height = 144 };  // Only used with PixelScreenMode.Resize
-
     public uint screenScaleFactor = 1;  // Only used with PixelScreenMode.Scale
 
     [Header("Display")]
