@@ -1,3 +1,5 @@
+//Older test script for managing FMOD events
+
 using UnityEngine;
 using FMODUnity;
 using System;
@@ -5,7 +7,7 @@ using System.Runtime.InteropServices;
 
 public class MusicManager : MonoBehaviour
 {
-    
+    /*
     public static MusicManager instance;
 
     [SerializeField]
@@ -84,5 +86,5 @@ public class MusicManager : MonoBehaviour
             
         }
         return FMOD.RESULT.OK;
-    }
+    }*/
 }

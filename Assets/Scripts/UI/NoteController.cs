@@ -1,12 +1,13 @@
+//Older test script for seeing if FMOD would spawn runes into the level
+
 using System.Collections.Generic;
 using UnityEngine;
-using FMOD.Studio;
 using FMODUnity;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
 
 public class NoteController : MonoBehaviour
 {
+    /*
     [Header("Song values")]
     [SerializeField] float SongBPM;
     [SerializeField] float heightSpawn; //Height that note spawns
@@ -259,5 +260,5 @@ public class NoteController : MonoBehaviour
         }
         successfulNotes = false;
         return false;
-    }
+    }*/
 }

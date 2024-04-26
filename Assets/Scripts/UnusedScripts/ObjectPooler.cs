@@ -1,3 +1,5 @@
+//Script for respawning the same objects over and over such as runes and fireballs
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

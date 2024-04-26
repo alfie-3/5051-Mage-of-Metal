@@ -1,22 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+//Base inheritance script for spells that target and damage enemies
+
 using UnityEngine;
 
 public class BaseSpell : MonoBehaviour
 {
+    [Header("Spell properties")]
     private Vector3 startPos;
-    private Transform target;
     private int spellDamage;
-    private float delta01=0;
-    [SerializeField] float speed=1;
-    private bool start=false;
+    private float delta01 = 0;
+    [SerializeField] float speed = 1;
+    private bool hasStarted = false;
+
+    [Header("Enemy links")]
+    private Transform target;
     IDamage enemyIDamage;
 
-    public virtual void OnStart(Transform enemy, Vector3 position, int damage, IDamage iDam) { target = enemy; start = true; startPos = position; spellDamage = damage; enemyIDamage = iDam; }
-    public virtual void OnHit() { if (target != null) { enemyIDamage.Damage(spellDamage); }; }
+
+    //Spawned spell targets enemy and gets initial start position
+    public virtual void OnStart(Transform enemy, Vector3 position, int damage, IDamage iDam) { target = enemy; hasStarted = true; startPos = position; spellDamage = damage; enemyIDamage = iDam; }
+
+    //Events that happens when enemy is struck, gameobject is then destroyed
+    public virtual void OnHit() { if (target != null) { enemyIDamage.Damage(spellDamage); } Destroy(gameObject); }
+
+    //Tracking spell behaviour
     public virtual void Update() {
-        if (start)
+        if (hasStarted)
         {
             if (target == null)
             {

@@ -15,18 +15,19 @@ using UnityEngine;
 
 
 public class EnemyBehaviour : MonoBehaviour, IDamage {
-    //public
+
+    [Header("Enemy stats")]
     public int EnemyHP = 10;
     public int EnemyMaxHP = 10;
     public float EnemyDeathTime = 1f;
+
+    [Header("Enemy Object information")]
     public Vector3 Offset;
     [TextArea]
     public string UIInfo = "Make sure UILocation game object is linked in the field below";
-    //serialized
-    //[SerializeField] private GameObject DieEffect;
-    [SerializeField] private GameObject outlineComponent;
     [SerializeField] private Transform UILocation;
-    private bool hasAttacked = false;
+    [SerializeField] private GameObject outlineComponent;
+    private bool canAttack = false;
 
     [Header("Enemy Score Worth")]
     [SerializeField] private int scoreWorth = 20;
@@ -34,13 +35,12 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     [SerializeField] private float damageMultScore = 0.1f;
 
     [Header("Material values")]
-    float Dissolve;
     Material mat;
     [SerializeField] Shader dissolveShader;
     Renderer rend;
-    string m_MatDissolveName = "_Alpha";
-    [SerializeField] Texture2D m_MatTexture;
-    string m_MatTextureName = "_BaseTexture";
+    string dissolveMatName = "_Alpha";
+    [SerializeField] Texture2D mainMaterialTexture;
+    string mainMaterialTextureName = "_BaseTexture";
 
 
     void Awake() 
@@ -70,42 +70,51 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         EnemyHP -= damage;
         if (EnemyHP <= 0)
         {
-            StartCoroutine(Kill());
+            StartCoroutine(KilledByPlayer());
         }
     }
 
-    //If enemy dies
-    IEnumerator Kill()
+    //When enemy is killed by player
+    IEnumerator KilledByPlayer()
     {
+        canAttack = false;
+
+        //Add score to player
         LevelManager.player.GetComponent<IScore>().AddScore(scoreMultWorth, scoreWorth);
+
+        //Change enemy layer so outline disappears
         outlineComponent.layer = LayerMask.NameToLayer("Default");
+
+        //Create and set new materials
         mat = new Material(dissolveShader);
         rend.material = mat;
-
-        rend.material.SetTexture(m_MatTextureName, m_MatTexture);
-        rend.material.SetFloat(m_MatDissolveName, 1);
+        rend.material.SetTexture(mainMaterialTextureName, mainMaterialTexture);
+        rend.material.SetFloat(dissolveMatName, 1);
         rend.material.SetColor("_Color", new Color(Random.Range(0,255), Random.Range(0,255), Random.Range(0,255)));
 
+        //Set the enemy dissolve amount over time until the enemy disappears
         float delta = EnemyDeathTime;
         while (delta > 0)
-
         {
             delta -= Time.deltaTime;
-            rend.material.SetFloat(m_MatDissolveName, delta / EnemyDeathTime);
+            rend.material.SetFloat(dissolveMatName, delta / EnemyDeathTime);
             yield return null;
         }
+
+        //Defeat enemy
         Destroy(gameObject);
     }
 
+    //Triggers attack on player if within reach and hasn't attacked yet
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.name == "Player" && !hasAttacked)
+        if (collision.gameObject.name == "Player" && !canAttack)
         {
             if (collision.gameObject.TryGetComponent(out IScore playerScore))
             {
+                //Damage player score and affect vignette
                 playerScore.DamageScore(damageMultScore,Color.red,0.6f);
-                hasAttacked=true;
-                Debug.Log("???");
+                canAttack=true;
                 Destroy(gameObject, 0.3f);
             }
         }

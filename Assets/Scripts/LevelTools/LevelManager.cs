@@ -1,3 +1,5 @@
+//List of operations for level management (Play/Pause/Win-Loss conditions)
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +8,6 @@ using UnityEngine.Splines;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Runtime.InteropServices;
-using Unity.VisualScripting;
-using UnityEngine.UIElements;
-using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -19,23 +18,30 @@ public class LevelManager : MonoBehaviour
     [SerializeField] float maxAlpha;
     bool showingResults=false;
     bool isTransitioning=false;
-
     float duration;
+
+    #region Static reference variables
     [Header("Object references for static values")]
-    [SerializeField] GameObject playerRef, splineRef, runeManagerRef, pointerRef, scoreMultiplierTextRef;
+    [SerializeField] GameObject playerRef;
+    [SerializeField] GameObject splineRef;
+    [SerializeField] GameObject runeManagerRef;
+    [SerializeField] GameObject pointerRef;
+    [SerializeField] GameObject scoreMultiplierTextRef;
     [SerializeField] UnityEngine.UI.Slider scoreSliderRef;
-    [SerializeField] float beatLeadUpRef, tempoRef;
-
-    static public GameObject player, spline, runeManager, pointer, scoreMultiplierText;
-    static public UnityEngine.UI.Slider scoreSlider;
-    static public float beatLeadUp, bpm;
-
     [SerializeField] List<GameObject> spellsRef;
-    [SerializeField] static public List<GameObject> spells;
+
+    [Header("Static values")]
+    static public GameObject player;
+    static public GameObject spline;
+    static public GameObject runeManager;
+    static public GameObject pointer;
+    static public GameObject scoreMultiplierText;
+    static public UnityEngine.UI.Slider scoreSlider;
+    static public List<GameObject> spells;
+    #endregion
 
     [Header("Controls")]
     private Controls _controlsKnm;
-    InputAction controls;
     static public bool isPaused=false;
     private bool isUnpausing=false;
 
@@ -43,20 +49,20 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject pauseSettingsMenu;
     [SerializeField] TextMeshProUGUI pauseTimer;
 
+    //Set static values
     private void Awake()
     {
         player = playerRef;
         spline = splineRef;
         runeManager = runeManagerRef;
         pointer = pointerRef;
-        beatLeadUp = beatLeadUpRef;
-        bpm = tempoRef;
         scoreMultiplierText = scoreMultiplierTextRef;
         scoreSlider = scoreSliderRef;
         _controlsKnm = new Controls();
         spells = spellsRef;
     }
 
+    //Level start
     private void Start()
     {
         pauseSettingsMenu.SetActive(false);
@@ -84,6 +90,7 @@ public class LevelManager : MonoBehaviour
         _controlsKnm.GuitarControls.WinDie.Disable();
     }
 
+    #region Play Pause funtions
     public void PauseGame()
     {
         if (!isPaused && !isUnpausing)
@@ -121,7 +128,7 @@ public class LevelManager : MonoBehaviour
         if (showingResults && !isTransitioning && !isPaused)
         {
             Debug.Log("LERP1");
-            AudioManager.managerInstance.instance.getPitch(out float thing);
+            AudioManager.managerInstance.musicInstance.getPitch(out float thing);
             Debug.Log(thing);
             StartCoroutine(GameSpeedLerp(true,1));
         }
@@ -156,6 +163,14 @@ public class LevelManager : MonoBehaviour
         isUnpausing = false;
         Time.timeScale = 1;
     }
+    private IEnumerator SceneEnd()
+    {
+        yield return ChangeAlpha(0.5f, 0, transitionerQuad.material, 1);
+        AudioManager.managerInstance.MusicStop();
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadSceneAsync(1);
+    }
+    #endregion
 
     IEnumerator CheckSpline()
     {
@@ -186,7 +201,7 @@ public class LevelManager : MonoBehaviour
                 time = Mathf.Clamp(time + Time.unscaledDeltaTime, 0, 1);
                 Time.timeScale = time;
                 levelWinLoseQuad.material.SetFloat("_AlphaRange", maxAlpha - (time * maxAlpha));
-                AudioManager.managerInstance.instance.setPitch(time);
+                AudioManager.managerInstance.musicInstance.setPitch(time);
                 yield return null;
             }
         }
@@ -198,7 +213,7 @@ public class LevelManager : MonoBehaviour
                 time = Mathf.Clamp(time - Time.unscaledDeltaTime, 0, 1);
                 Time.timeScale = time;
                 levelWinLoseQuad.material.SetFloat("_AlphaRange", maxAlpha - (time * maxAlpha));
-                AudioManager.managerInstance.instance.setPitch(time);
+                AudioManager.managerInstance.musicInstance.setPitch(time);
                 yield return null;
             }
         }
@@ -206,14 +221,14 @@ public class LevelManager : MonoBehaviour
         {
             levelWinLoseQuad.material.SetFloat("_AlphaRange", 0);
             Time.timeScale = 1;
-            AudioManager.managerInstance.instance.setPitch(1);
+            AudioManager.managerInstance.musicInstance.setPitch(1);
             showingResults = false;
         }
         else
         {
             levelWinLoseQuad.material.SetFloat("_AlphaRange", maxAlpha);
             Time.timeScale = 0;
-            AudioManager.managerInstance.instance.setPitch(0);
+            AudioManager.managerInstance.musicInstance.setPitch(0);
             AudioManager.managerInstance.MusicPause();
             showingResults = true;
         }
@@ -243,14 +258,6 @@ public class LevelManager : MonoBehaviour
                 yield return null;
             }
         }
-    }
-
-    private IEnumerator SceneEnd()
-    {
-        yield return ChangeAlpha(0.5f, 0, transitionerQuad.material, 1);
-        AudioManager.managerInstance.MusicStop();
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadSceneAsync(1);
     }
 }
 //

@@ -19,7 +19,7 @@ public class SongProgress : MonoBehaviour
         //yoink slider
         progressSlider = GetComponent<Slider>();
         //yoink song from audio manager
-        musicEvent = audioManagerScript.instance;
+        musicEvent = audioManagerScript.musicInstance;
         //get description of event
         musicEvent.getDescription(out eventDesc);
         //get length from desc

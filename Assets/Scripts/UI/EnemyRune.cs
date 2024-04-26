@@ -1,39 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
+//Script of runes that appear in game
+
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class EnemyRune : MonoBehaviour
 {
-
-    //script of runes that appear in game
-
-    //variables
-    private RuneFMODBridge runeManager;
+    //Base rune characteristics
     private Vector3 velocity;
     private Vector3 direction;
     public bool isPlayable = false;
     public char color;
 
-    void Awake()
-    {
-        //get manager script
-        runeManager = LevelManager.runeManager.GetComponent<RuneFMODBridge>();
-
-        //get player script
-        GameObject playerObject = LevelManager.player;
-    }
-
-    // Start is called before the first frame update
+    //Set the direction and velocity towards the cursor centre
     void Start()
     {
         direction = LevelManager.pointer.transform.position - transform.position;
-        velocity = (direction - (direction.normalized*105) * ((60 / LevelManager.bpm) * LevelManager.beatLeadUp));
+        velocity = (direction - (direction.normalized*105) * ((60 / AudioManager.bpm) * AudioManager.beatLeadUp));
     }
 
-    // Update is called once per frame
+    //Rune updated position towards cursor centre
     void Update()
     {
         transform.position += velocity * Time.deltaTime;
@@ -41,16 +25,18 @@ public class EnemyRune : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Rune self destructs when it hits the cursor centre
         if (collision.name == "Pointer")
         {
+            //Destroy rune and hurt score if it's missed
+            LevelManager.player.GetComponent<IScore>().DamageScore(0.03f, Color.gray, 0.3f);
             Destroy(gameObject);
         }
-        else if (collision.name == "Rune Holder")
-        {
-            isPlayable = true;
-        }
+        //Rune becomes active when it's played
+        else if (collision.name == "Rune Holder") { isPlayable = true; }
     }
 
+    //Rune removes itself from the runeFMODBridge script when destroyed
     private void OnDestroy()
     {
         RuneFMODBridge.Instance.CleanList(this);

@@ -1,33 +1,34 @@
+//Audio manager takes FMOD song inputs and sends rune messages to RuneFMODBridge script
+//Control centre for music-related functions
+
 using FMOD.Studio;
 using FMODUnity;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Runtime.InteropServices;
 using System;
-using Unity.VisualScripting;
 using System.Threading.Tasks;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour {
-
-    [SerializeField] public RuneFMODBridge _runeFMODBridge;
-
-    public static AudioManager managerInstance { get; private set; }
+    
+    [Header("FMOD song reference")]
     [SerializeField] EventReference audioRef;
-    public EventInstance instance;
+    public static AudioManager managerInstance { get; private set; }
+    [HideInInspector] public EventInstance musicInstance;
 
-    //Time stuff
+    [Header("FMOD values")]
     TimelineInfo timelineInfo;
     GCHandle timelineHandle;
     FMOD.Studio.EVENT_CALLBACK beatCallback;
-
     string lastMarker;
 
-    [SerializeField]
-    [Range(0f, 1f)]
-    private float musicPercentage;
+    [Header("Music track values")]
     [SerializeField] int musicStartDelay=2000;
+    [SerializeField] float beatLeadUpRef=2, tempoRef=160;
+    static public float beatLeadUp, bpm;
+
+    [Header("Safe playtime quit button")]
     [SerializeField] GameObject UIButton;
 
     private void Awake()
@@ -37,6 +38,8 @@ public class AudioManager : MonoBehaviour {
 #else
         UIButton.SetActive(false);
 #endif
+        beatLeadUp = beatLeadUpRef;
+        bpm = tempoRef;
         if (managerInstance == null)
         {
             managerInstance = this;
@@ -46,62 +49,60 @@ public class AudioManager : MonoBehaviour {
 
     private void Start()
     {
-        //MusicPlayWait(musicStartDelay);
+        //StartCoroutine(MusicPlayWait(musicStartDelay));
     }
 
-    async void MusicPlayWait(int milliseconds)
+    #region Music instance interactions
+    //Plays music at start of level after wait time
+    IEnumerator MusicPlayWait(int seconds)
     {
-        await Task.Delay(milliseconds);
+        yield return new WaitForSeconds(seconds);
         MusicPlay();
-    }
-
-    public void SetMusicSettings(float volume)
-    {
-        instance.setVolume(volume);
     }
 
     public void MusicPlay()
     {
-        instance = FMODUnity.RuntimeManager.CreateInstance(audioRef);
-        instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        musicInstance = FMODUnity.RuntimeManager.CreateInstance(audioRef);
+        musicInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
 
-        //Time stuff
+        //Retrieve FMOD track info
         timelineInfo = new TimelineInfo();
         beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
         timelineHandle = GCHandle.Alloc(timelineInfo);
-        instance.setUserData(GCHandle.ToIntPtr(timelineHandle));
-        instance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
-        //EndTimestuff
-        SetMusicSettings(GameManager.musicVolume);
-        instance.start();
+        musicInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
+        musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
         lastMarker = (string)timelineInfo.LastMarker;
+
+        //Setup track to play
+        musicInstance.setVolume(GameManager.musicVolume);
+        musicInstance.start();
     }
+
     public void MusicStop()
     {
-        instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        musicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
     public void MusicPause()
     {
-        instance.setPaused(true);
+        musicInstance.setPaused(true);
     }
     public void MusicResume()
     {
-        instance.setPaused(false);
+        musicInstance.setPaused(false);
     }
-
-    public void AddScore()
+    public async void Quit()
     {
-        musicPercentage += 0.1f;
-        instance.setParameterByName("InstrumentAudio", musicPercentage);
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        //Debug.Log("I have quitted");
+        MusicStop();
+        await Task.Delay(1000);
+        Application.Quit();
     }
-    public void RemoveScore()
-    {
-        musicPercentage -= 0.1f;
-        instance.setParameterByName("InstrumentAudio", musicPercentage);
-    }
+    #endregion
 
-
-    //Fmod website code that gives code thing
+    //Fmod website code that interprets FMOD track events
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
     FMOD.RESULT BeatEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr parameterPtr)
     {
@@ -120,6 +121,7 @@ public class AudioManager : MonoBehaviour {
             GCHandle timelineHandle = GCHandle.FromIntPtr(timelineInfoPtr);
             TimelineInfo timelineInfo = (TimelineInfo)timelineHandle.Target;
 
+            //Code performed based off of type of event retrieved
             switch (type)
             {
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT:
@@ -132,7 +134,7 @@ public class AudioManager : MonoBehaviour {
                     {
                         var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
                         timelineInfo.LastMarker = parameter.name;
-                        _runeFMODBridge.SpawnNote((string)timelineInfo.LastMarker); //
+                        RuneFMODBridge.Instance.SpawnNote((string)timelineInfo.LastMarker); //
                         break;
                     }
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.DESTROYED:
@@ -145,27 +147,17 @@ public class AudioManager : MonoBehaviour {
         }
         return FMOD.RESULT.OK;
     }
-
-    public async void Quit()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        //Debug.Log("I have quitted");
-        MusicStop();
-        await Task.Delay(1000);
-        Application.Quit();
-    }
 }
 
+//Information holder for events of FMOD instance
 class TimelineInfo
 {
     public int CurrentMusicBar = 0;
     public FMOD.StringWrapper LastMarker = new FMOD.StringWrapper();
 }
 
+//Added buttons to editor window for more control in edit mode
 #if UNITY_EDITOR
-
 [CustomEditor(typeof(AudioManager))]
 public class AudioManagerEditor : Editor
 {
@@ -181,14 +173,6 @@ public class AudioManagerEditor : Editor
         if (GUILayout.Button("Stop Music"))
         {
             audioManager.MusicStop();
-        }
-        if (GUILayout.Button("Add Score"))
-        {
-            audioManager.AddScore();
-        }
-        if (GUILayout.Button("Remove Score"))
-        {
-            audioManager.RemoveScore();
         }
         if (GUILayout.Button("Stop PlayTime"))
         {

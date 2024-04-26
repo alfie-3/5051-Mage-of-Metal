@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+//Interfaces for both damage and score systems
+
 using UnityEngine;
 
 public interface IDamage
 {
+    GameObject gameObject { get; }
     public void Damage(int damage);
 }
 public interface IScore

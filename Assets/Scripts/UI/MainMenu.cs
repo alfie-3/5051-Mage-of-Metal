@@ -1,15 +1,23 @@
+//Script for operating Main menu
+
 using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] Vector3 menuPos, menuRot, settingsPos, settingsRot;
-    [SerializeField] GameObject player;
+    [Header("Menu positioning settings")]
+    [SerializeField] Vector3 menuPos;
+    [SerializeField] Vector3 menuRot;
+    [SerializeField] Vector3 settingsPos;
+    [SerializeField] Vector3 settingsRot;
+
+    [Space]
+    [Header("Player and screen settings")]
     [SerializeField] float alphaRate;
     [SerializeField] Renderer quadTransition;
+    GameObject player; //Don't replace with LevelManager.player
 
     private AsyncOperation loadedScene;
 
@@ -19,11 +27,14 @@ public class MainMenu : MonoBehaviour
     Vector3 movingPos;
     Vector3 movingRot;
 
+    //Load in screen
     private void Start()
     {
+        player = GameObject.Find("Main Camera");
         StartCoroutine(LevelManager.ChangeAlpha(0, 0.5f, quadTransition.material, 0.5f));
     }
 
+    #region On-screen button functions
     public void Play()
     {
         if (!isLeaving)
@@ -45,23 +56,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    IEnumerator SettingsLerp(Vector3 startPos, Vector3 startRot, Vector3 endPos, Vector3 endRot)
-    {
-        alpha = 0;
-        while (alpha < 1.0f)
-        {
-            alpha = Mathf.Clamp(alpha + (Time.deltaTime * alphaRate),0,1);
-            movingPos = Lerp.EaseInOutSine(startPos, endPos, alpha);
-            movingRot = Lerp.EaseInOutSine(startRot,endRot, alpha);
-
-            player.transform.position = movingPos;
-            player.transform.eulerAngles = movingRot;
-            yield return null;
-        }
-        isTransitioning = false;
-        yield return null;
-    }
-
     public void MenuLerp()
     {
         if (!isTransitioning)
@@ -79,6 +73,26 @@ public class MainMenu : MonoBehaviour
             StartCoroutine(ExitGame());
         }
     }
+    #endregion
+
+    #region Load in-out functionality
+    IEnumerator SettingsLerp(Vector3 startPos, Vector3 startRot, Vector3 endPos, Vector3 endRot)
+    {
+        alpha = 0;
+        while (alpha < 1.0f)
+        {
+            alpha = Mathf.Clamp(alpha + (Time.deltaTime * alphaRate), 0, 1);
+            movingPos = Lerp.EaseInOutSine(startPos, endPos, alpha);
+            movingRot = Lerp.EaseInOutSine(startRot, endRot, alpha);
+
+            player.transform.position = movingPos;
+            player.transform.eulerAngles = movingRot;
+            yield return null;
+        }
+        isTransitioning = false;
+        yield return null;
+    }
+
     IEnumerator ExitScene(int nextLevel)
     {
         yield return LevelManager.ChangeAlpha(0.5f, 0, quadTransition.material, 0.5f);
@@ -90,8 +104,10 @@ public class MainMenu : MonoBehaviour
         yield return LevelManager.ChangeAlpha(0.5f, 0, quadTransition.material, 0.5f);
         Application.Quit();
     }
+    #endregion
 }
 
+//Custom lerp class for camera movements
 public class Lerp
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

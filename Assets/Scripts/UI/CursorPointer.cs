@@ -1,11 +1,11 @@
+//Controls the custom cursor for guitar and computer mouse
+//This is an adapted version for the pixilated screen created off the camera footage of the player
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine.PlayerLoop;
-using UnityEditor.PackageManager;
 
 public class CursorPointer : MonoBehaviour
 {
@@ -63,6 +63,7 @@ public class CursorPointer : MonoBehaviour
         UpdateCursorColor();
     }
 
+    #region Cursor functions
     //Changes cursor colour to see if the raycasting works and add some visual feedback
     private void UpdateCursorColor()
     {
@@ -107,6 +108,7 @@ public class CursorPointer : MonoBehaviour
 
         ir_pointer.anchoredPosition = Vector2.zero;
     }
+    #endregion
 
     //Checks for enemy by raycasting below the cursor to the world.
     public IDamage CheckForEnemy()
@@ -127,45 +129,44 @@ public class CursorPointer : MonoBehaviour
         return null;
     }
 
+    #region Strum behaviour
+    //Computer strum input, calls guitar strum input function when testing
     private void Attack(InputAction.CallbackContext obj)
     {
         Attack();
     }
 
-    //Basic attack, to have rune breaking stuff added to
+    //Basic interaction, called from guitar strum input
     private void Attack()
     {
-        //WiimoteApi.GuitarData guitardata = WiiInputManager.GuitarWiiMote.WiiMote.Guitar;
-        if (_runeTestPlayer != null)
-        {
-            //_runeTestPlayer.Strummed();
-        }
 
-        Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
-        RaycastHit hitInfo = new();
-
-        //Debug.DrawRay(ray.origin, ray.direction * 50);
-
+        //Checks to see if the level is paused so the enemies in pause state can't be attacked
         if (LevelManager.isPaused)
         {
+            //Trigger mouse click at cursor location if game is paused
             var eventData = new PointerEventData(EventSystem.current);
             eventData.position = LevelManager.pointer.GetComponent<RectTransform>().position;
             var results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(eventData, results);
             foreach (var result in results)
             {
+                //Click button if part of PointerEventData results
                 if (result.gameObject.TryGetComponent(out Button button))
                 {
                     button.onClick.Invoke();
                 }
             }
         }
+        //If RuneFMODBridge exists, trigger rune interactions for power check then shoot enemy
         else if (RuneFMODBridge.Instance != null)
         {
             Shoot(RuneFMODBridge.Instance.RuneAttack());
         }
         else
         {
+            // Get ray from cursor to world point on strum
+            Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
+            RaycastHit hitInfo = new();
             if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
             {
                 if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))
@@ -178,23 +179,24 @@ public class CursorPointer : MonoBehaviour
         }
     }
 
+    //Spell launched at enemy at random if power is not less than 1
     public void Shoot(int power)
     {
         if (power > 0)
         {
-            RaycastHit hitInfo = new();
-            Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
-            if (Physics.Raycast(ray, out hitInfo, 30))
+            //Add score for successful rune play
+            LevelManager.player.TryGetComponent(out IScore _Score); _Score.AddScore(0.05f, 20*power);
+
+            IDamage hitItem = CheckForEnemy();
+
+            if (hitItem != null)
             {
-                if (hitInfo.transform.TryGetComponent(out IDamage iDamage))
-                {
-                    LevelManager.player.TryGetComponent(out IScore _Score); _Score.AddScore(0.05f, 20);
-                    hitInfo.transform.gameObject.layer = enemyLayerMask;
-                    GameObject baseSpell = Instantiate(LevelManager.spells[(int)Random.Range(0, 5)], LevelManager.player.transform.position, Quaternion.identity);
-                    baseSpell.GetComponent<BaseSpell>().OnStart(hitInfo.transform, LevelManager.player.transform.position, power * 4, iDamage);
-                }
+                //Launch spell at target if it's damageable
+                GameObject baseSpell = Instantiate(LevelManager.spells[(int)Random.Range(0, 5)], LevelManager.player.transform.position, Quaternion.identity);
+                baseSpell.GetComponent<BaseSpell>().OnStart(hitItem.gameObject.transform, LevelManager.player.transform.position, power * 4, hitItem);
             }
         }
     }
+    #endregion
 
 }

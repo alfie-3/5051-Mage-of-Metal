@@ -957,7 +957,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1845319911}
+      objectReference: {fileID: 854747393}
     - target: {fileID: 2685964791969498827, guid: e31a72bf4275f0749a0a27f1a641a678,
         type: 3}
       propertyPath: near clip plane
@@ -2635,6 +2635,44 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 842421830}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &854747393
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 512
+  m_Height: 269
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 48
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 0
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1001 &864380817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4254,8 +4292,6 @@ MonoBehaviour:
   pointerRef: {fileID: 462855801}
   scoreMultiplierTextRef: {fileID: 1704291424}
   scoreSliderRef: {fileID: 1077878637}
-  beatLeadUpRef: 2
-  tempoRef: 160
   spellsRef:
   - {fileID: 1035547759910673439, guid: 15a20375388743d4b9565d17b7b22253, type: 3}
   - {fileID: 2186610575370282234, guid: a6b9e8d8d814e584c9fab63720f9c5aa, type: 3}
@@ -4968,44 +5004,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 718087158}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1845319911
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 514
-  m_Height: 269
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 0
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &1871808852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6144,7 +6142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30ce9ff0cbae8b489a8d8db89b861fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _runeFMODBridge: {fileID: 307115425937485792}
   audioRef:
     Guid:
       Data1: -75255457
@@ -6152,8 +6149,9 @@ MonoBehaviour:
       Data3: 479125666
       Data4: -450499350
     Path: event:/MageOfMelodies/Mage_of_Melodies_tut
-  musicPercentage: 0
-  musicStartDelay: 2000
+  musicStartDelay: 2
+  beatLeadUpRef: 2
+  tempoRef: 160
   UIButton: {fileID: 1267116763}
 --- !u!1 &895385524887627723
 GameObject:
