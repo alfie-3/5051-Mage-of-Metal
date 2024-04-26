@@ -125,7 +125,7 @@ public class CustomRendererFeature : ScriptableRendererFeature
         }
     }
 
-    // Exposed Settings
+    // Exposed SettingsLerp
 
     [System.Serializable]
     public class Settings

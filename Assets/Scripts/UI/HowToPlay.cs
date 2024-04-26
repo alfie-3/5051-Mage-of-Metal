@@ -17,7 +17,7 @@ public class HowToPlay : MonoBehaviour
     }
     public void SwitchCanvi()
     {
-        //animator.Play("animate");
+        //animator.LevelSelectLerp("animate");
         StartCoroutine(Reset(1.0f, 1));
     }
 
@@ -90,7 +90,7 @@ public void SwitchDisplayRight()
     {
         float currentSpeed = 1.0f;//animator.speed;
         //animator.speed = -1f;
-        //animator.Play("animate");
+        //animator.LevelSelectLerp("animate");
         StartCoroutine(Reset(currentSpeed, 2));
 
     }

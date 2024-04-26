@@ -12,14 +12,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Vector3 menuRot;
     [SerializeField] Vector3 settingsPos;
     [SerializeField] Vector3 settingsRot;
+    [SerializeField] Vector3 levelSelPos;
+    [SerializeField] Vector3 levelSelRot;
 
     [Space]
     [Header("Player and screen settings")]
     [SerializeField] float alphaRate;
     [SerializeField] Renderer quadTransition;
     GameObject player; //Don't replace with LevelManager.player
-
-    private AsyncOperation loadedScene;
 
     bool isTransitioning = false;
     bool isLeaving = false;
@@ -31,43 +31,60 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Main Camera");
+        player.transform.position = menuPos;
+        player.transform.eulerAngles = menuRot;
         StartCoroutine(LevelManager.ChangeAlpha(0, 0.5f, quadTransition.material, 0.5f));
     }
 
     #region On-screen button functions
-    public void Play()
+    public void LevelSelectLerp()
     {
-        if (!isLeaving)
-        {
-            isLeaving = true;
-            StartCoroutine(ExitScene(2));
-        }
-    }
-
-    public void Settings()
-    {
-        if (!isLeaving)
-        {
-            if (!isTransitioning)
-            {
-                isTransitioning = true;
-                StartCoroutine(SettingsLerp(menuPos, menuRot, settingsPos, settingsRot));
-            }
-        }
-    }
-
-    public void MenuLerp()
-    {
-        if (!isTransitioning)
+        if (!isLeaving && !isTransitioning)
         {
             isTransitioning = true;
-            StartCoroutine(SettingsLerp(settingsPos, settingsRot, menuPos, menuRot));
+            StartCoroutine(CameraLerp(menuPos, menuRot, levelSelPos, levelSelRot));
+        }
+    }
+
+    public void LevelOpen(int levelNum) //int Level1 = 2
+    {
+        if (!isLeaving && !isTransitioning)
+        {
+            isLeaving = true;
+            StartCoroutine(ExitScene(levelNum));
+        }
+    }
+
+    public void SettingsLerp()
+    {
+        if (!isLeaving && !isTransitioning)
+        {
+            isTransitioning = true;
+            StartCoroutine(CameraLerp(menuPos, menuRot, settingsPos, settingsRot));
+        }
+    }
+
+
+    public void SettingsToMainMenu()
+    {
+        if (!isLeaving && !isTransitioning)
+        {
+            isTransitioning = true;
+            StartCoroutine(CameraLerp(settingsPos, settingsRot, menuPos, menuRot));
+        }
+    }
+    public void LevelSelectToMainMenu()
+    {
+        if (!isLeaving && !isTransitioning)
+        {
+            isTransitioning = true;
+            StartCoroutine(CameraLerp(levelSelPos, levelSelRot, menuPos, menuRot));
         }
     }
 
     public void Quit()
     {
-        if (!isLeaving)
+        if (!isLeaving && !isTransitioning)
         {
             isLeaving = true;
             StartCoroutine(ExitGame());
@@ -76,7 +93,7 @@ public class MainMenu : MonoBehaviour
     #endregion
 
     #region Load in-out functionality
-    IEnumerator SettingsLerp(Vector3 startPos, Vector3 startRot, Vector3 endPos, Vector3 endRot)
+    IEnumerator CameraLerp(Vector3 startPos, Vector3 startRot, Vector3 endPos, Vector3 endRot)
     {
         alpha = 0;
         while (alpha < 1.0f)
@@ -96,7 +113,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator ExitScene(int nextLevel)
     {
         yield return LevelManager.ChangeAlpha(0.5f, 0, quadTransition.material, 0.5f);
-        loadedScene = SceneManager.LoadSceneAsync(nextLevel);
+        yield return SceneManager.LoadSceneAsync(nextLevel);
     }
 
     IEnumerator ExitGame()

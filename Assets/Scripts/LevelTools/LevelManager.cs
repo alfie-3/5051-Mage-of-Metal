@@ -1,4 +1,4 @@
-//List of operations for level management (Play/Pause/Win-Loss conditions)
+//List of operations for level management (LevelSelectLerp/Pause/Win-Loss conditions)
 
 using System.Collections;
 using System.Collections.Generic;
