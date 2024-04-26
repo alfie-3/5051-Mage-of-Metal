@@ -1,5 +1,6 @@
 //Script of runes that appear in game
 
+using System.Data;
 using UnityEngine;
 
 public class EnemyRune : MonoBehaviour
@@ -25,20 +26,14 @@ public class EnemyRune : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Rune self destructs when it hits the cursor centre
+        //Rune hides when it hits the cursor centre
         if (collision.name == "Pointer")
         {
-            //Destroy rune and hurt score if it's missed
+            //Hide rune and hurt score if it's missed
             LevelManager.player.GetComponent<IScore>().DamageScore(0.03f, Color.gray, 0.3f);
-            Destroy(gameObject);
+            StartCoroutine(RuneFMODBridge.Instance.CleanList(this));
         }
         //Rune becomes active when it's played
         else if (collision.name == "Rune Holder") { isPlayable = true; }
-    }
-
-    //Rune removes itself from the runeFMODBridge script when destroyed
-    private void OnDestroy()
-    {
-        RuneFMODBridge.Instance.CleanList(this);
     }
 }

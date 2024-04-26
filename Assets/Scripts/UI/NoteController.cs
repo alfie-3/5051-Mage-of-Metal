@@ -87,19 +87,19 @@ public class NoteController : MonoBehaviour
         switch (eventTitle)
         {
             case "1":
-                noteList1.Add(_objectPooler.SpawnNewNote("Note1", notePlace1.transform.position + new Vector3(0, heightSpawn, 0)));
+                noteList1.Add(_objectPooler.SpawnPooledObject("Note1", notePlace1.transform.position + new Vector3(0, heightSpawn, 0)));
                 break;
             case "2":
-                noteList2.Add(_objectPooler.SpawnNewNote("Note2", notePlace2.transform.position + new Vector3(0, heightSpawn, 0)));
+                noteList2.Add(_objectPooler.SpawnPooledObject("Note2", notePlace2.transform.position + new Vector3(0, heightSpawn, 0)));
                 break;
             case "3":
-                noteList3.Add(_objectPooler.SpawnNewNote("Note3", notePlace3.transform.position + new Vector3(0, heightSpawn, 0)));
+                noteList3.Add(_objectPooler.SpawnPooledObject("Note3", notePlace3.transform.position + new Vector3(0, heightSpawn, 0)));
                 break;
             case "4":
-                noteList4.Add(_objectPooler.SpawnNewNote("Note4", notePlace4.transform.position + new Vector3(0, heightSpawn, 0)));
+                noteList4.Add(_objectPooler.SpawnPooledObject("Note4", notePlace4.transform.position + new Vector3(0, heightSpawn, 0)));
                 break;
             case "5":
-                noteList5.Add(_objectPooler.SpawnNewNote("Note5", notePlace5.transform.position + new Vector3(0, heightSpawn, 0)));
+                noteList5.Add(_objectPooler.SpawnPooledObject("Note5", notePlace5.transform.position + new Vector3(0, heightSpawn, 0)));
                 break;
         }
         

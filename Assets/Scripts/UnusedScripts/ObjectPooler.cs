@@ -6,33 +6,17 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    [SerializeField] GameObject UIPoolParent;
-    [SerializeField] GameObject SceneObjectPoolParent;
+    static public ObjectPooler Instance { get; private set; }
 
     [SerializeField] List<Pools> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
-
-    public GameObject SpawnNewNote(string name, Vector3 position)
-    {
-        //Debug.Log("Spawn note thing of name "+name);
-        if (!poolDictionary.ContainsKey(name))
-        {
-            Debug.Log("Obj doesn't exist");
-            return null;
-        }
-        GameObject spawned = poolDictionary[name].Dequeue();
-
-        spawned.SetActive(true);
-        spawned.GetComponent<RectTransform>().position = position;
-
-        poolDictionary[name].Enqueue(spawned);
-        return spawned;
-    }
+    List<string> objectsOfType;
 
     private void Start()
     {
+        Instance = this;
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
-        
+
         foreach (Pools p in pools)
         {
             if (p.size > 0)
@@ -44,9 +28,14 @@ public class ObjectPooler : MonoBehaviour
                     GameObject obj = Instantiate(p.pooledObject);
                     obj.SetActive(false);
                     q.Enqueue(obj);
-                    if (p.type == PoolType.UI)
+                    if (p.type == PoolType.Rune)
                     {
-                        obj.transform.SetParent(UIPoolParent.transform);
+                        obj.transform.SetParent(LevelManager.pointer.transform);
+                        obj.transform.localScale = Vector3.one;
+                    }
+                    else
+                    {
+                        obj.transform.SetParent(transform);
                     }
                 }
 
@@ -54,13 +43,48 @@ public class ObjectPooler : MonoBehaviour
             }
         }
     }
+    public GameObject SpawnRandomFromType(PoolType type, Vector3 position)
+    {
+        objectsOfType = new List<string>();
+        foreach (Pools p in pools) {
+            if (p.type == type) { objectsOfType.Add(p.name); }
+        }
+        return SpawnPooledObject(objectsOfType[Random.Range(0, objectsOfType.Count - 1)], position);
+    }
+
+    public GameObject SpawnPooledObject(string name, Vector3 position)
+    {
+        //Check to see if item exists
+        if (!poolDictionary.ContainsKey(name))
+        {
+            Debug.LogWarning("Pooled object "+name+" doesn't exist!");
+            return null;
+        }
+
+        //Spawn in object from pool
+        GameObject spawned = poolDictionary[name].Dequeue();
+        spawned.SetActive(true);
+
+        if (spawned.GetComponent<RectTransform>() != null)
+        {
+            spawned.GetComponent<RectTransform>().position = position;
+        }
+        else
+        {
+            spawned.transform.position = position;
+        }
+
+        //Re-queue object
+        poolDictionary[name].Enqueue(spawned);
+        return spawned;
+    }
 }
 
 [System.Serializable]
 public class Pools
 {
     public string name;
-    public PoolType type = PoolType.SceneObject;
+    public PoolType type = PoolType.PhysicalObject;
     public GameObject pooledObject;
     public int size;
 }
@@ -68,6 +92,7 @@ public class Pools
 [System.Serializable]
 public enum PoolType
 {
-    UI,
-    SceneObject
+    Rune,
+    Spell,
+    PhysicalObject
 }

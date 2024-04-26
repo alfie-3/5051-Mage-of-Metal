@@ -103,7 +103,6 @@ public class RuneFMODBridge : MonoBehaviour
 
     public int RuneAttack()
     {
-        //Debug.Log("Activated");
         ColorCheck runeColors = new ColorCheck();
         runeColors.Blue = false; runeColors.Green = false; runeColors.Red = false; runeColors.Yellow = false; runeColors.Orange = false;
 
@@ -124,11 +123,11 @@ public class RuneFMODBridge : MonoBehaviour
             {
                 switch (er.color)
                 {
-                    case 'g': if (isNote1) { runeColors.Green = true; SuccessfulRune(rune); power++; } break;
-                    case 'r': if (isNote2) { runeColors.Red = true; SuccessfulRune(rune); power++; } break;
-                    case 'y': if (isNote3) { runeColors.Yellow = true; SuccessfulRune(rune); power++; } break;
-                    case 'b': if (isNote4) { runeColors.Blue = true; SuccessfulRune(rune); power++; } break;
-                    case 'o': if (isNote5) { runeColors.Orange = true; SuccessfulRune(rune); power++; } break;
+                    case 'g': if (isNote1) { runeColors.Green = true; StartCoroutine(CleanList(rune)); power++; } break;
+                    case 'r': if (isNote2) { runeColors.Red = true; StartCoroutine(CleanList(rune)); power++; } break;
+                    case 'y': if (isNote3) { runeColors.Yellow = true; StartCoroutine(CleanList(rune)); power++; } break;
+                    case 'b': if (isNote4) { runeColors.Blue = true; StartCoroutine(CleanList(rune)); power++; } break;
+                    case 'o': if (isNote5) { runeColors.Orange = true; StartCoroutine(CleanList(rune)); power++; } break;
                 }
             }
         }
@@ -141,14 +140,12 @@ public class RuneFMODBridge : MonoBehaviour
         return power;
     }
 
-    void SuccessfulRune(EnemyRune rune) {
-        Destroy(rune.gameObject);
-    }
-
-    public void CleanList(EnemyRune rune)
+    public IEnumerator CleanList(EnemyRune rune)
     {
+        yield return null;
         RunesInScene.Remove(rune);
-        Destroy(rune.gameObject);
+        rune.gameObject.SetActive(false);
+        rune.isPlayable = false;
     }
 
     public void SpawnNote(string noteName)
@@ -157,19 +154,20 @@ public class RuneFMODBridge : MonoBehaviour
         switch (noteName)
         {
             case "1":
-                RunesInScene.Add(Instantiate(GreenRunePrefab, GreenSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(ObjectPooler.Instance.SpawnPooledObject("Note1", GreenSpawnpoint).GetComponent<EnemyRune>());
                 break;
             case "2":
-                RunesInScene.Add(Instantiate(RedRunePrefab, RedSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(ObjectPooler.Instance.SpawnPooledObject("Note2", RedSpawnpoint).GetComponent<EnemyRune>());
+                //RunesInScene.Add(Instantiate(RedRunePrefab, RedSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
                 break;
             case "3":
-                RunesInScene.Add(Instantiate(YellowRunePrefab, YellowSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(ObjectPooler.Instance.SpawnPooledObject("Note3", YellowSpawnpoint).GetComponent<EnemyRune>());
                 break;
             case "4":
-                RunesInScene.Add(Instantiate(BlueRunePrefab, BlueSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(ObjectPooler.Instance.SpawnPooledObject("Note4", BlueSpawnpoint).GetComponent<EnemyRune>());
                 break;
             case "5":
-                RunesInScene.Add(Instantiate(OrangeRunePrefab, OrangeSpawnpoint, Quaternion.identity, LevelManager.pointer.transform));
+                RunesInScene.Add(ObjectPooler.Instance.SpawnPooledObject("Note5", OrangeSpawnpoint).GetComponent<EnemyRune>());
                 break;
             default:
                 Debug.Log("Note Name Not Found!");
@@ -189,17 +187,6 @@ public class RuneFMODBridge : MonoBehaviour
         BlueSpawnpoint = ((BlueRuneHolder.transform.position - pointerLoc).normalized * DistanceFromCentre) + pointerLoc;
         OrangeSpawnpoint = ((OrangeRuneHolder.transform.position - pointerLoc).normalized * DistanceFromCentre) + pointerLoc;
     }
-
-///remove rune 
-    public void RemoveRune(EnemyRune rune)
-    {
-        if(rune)
-        {
-            RunesInScene.Remove(rune);
-            Destroy(rune);
-        }
-    }
-
 }
 
 

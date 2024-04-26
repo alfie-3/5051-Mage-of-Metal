@@ -17,10 +17,10 @@ public class BaseSpell : MonoBehaviour
 
 
     //Spawned spell targets enemy and gets initial start position
-    public virtual void OnStart(Transform enemy, Vector3 position, int damage, IDamage iDam) { target = enemy; hasStarted = true; startPos = position; spellDamage = damage; enemyIDamage = iDam; }
+    public virtual void OnStart(Transform enemy, Vector3 position, int damage, IDamage iDam) { target = enemy; enemyIDamage = iDam; hasStarted = true; startPos = position; spellDamage = damage; }
 
     //Events that happens when enemy is struck, gameobject is then destroyed
-    public virtual void OnHit() { if (target != null) { enemyIDamage.Damage(spellDamage); } Destroy(gameObject); }
+    public virtual void OnHit() { if (target != null) { enemyIDamage.Damage(spellDamage); hasStarted = false; delta01 = 0; gameObject.SetActive(false); }  }
 
     //Tracking spell behaviour
     public virtual void Update() {

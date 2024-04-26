@@ -192,7 +192,8 @@ public class CursorPointer : MonoBehaviour
             if (hitItem != null)
             {
                 //Launch spell at target if it's damageable
-                GameObject baseSpell = Instantiate(LevelManager.spells[(int)Random.Range(0, 5)], LevelManager.player.transform.position, Quaternion.identity);
+                GameObject baseSpell = ObjectPooler.Instance.SpawnRandomFromType(PoolType.Spell, LevelManager.player.transform.position);
+                Debug.Log(baseSpell.name);
                 baseSpell.GetComponent<BaseSpell>().OnStart(hitItem.gameObject.transform, LevelManager.player.transform.position, power * 4, hitItem);
             }
         }
