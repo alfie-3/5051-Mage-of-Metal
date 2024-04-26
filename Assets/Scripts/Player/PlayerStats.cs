@@ -1,31 +1,24 @@
 //Contains info for the player's score and score multiplier
 //The score multiplier affects many other aspects of the game (music texture, vignette visuals)
 
-using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class PlayerStats : MonoBehaviour, IScore
 {
-    [Header("Score variables")]
+    [Header("Score multiplier variables")]
     int[] multiplierInts = { 1, 2, 4, 8 };
     float[] multUpgradeNumbers = { 0f, 0.15f, 0.5f, 1f };
     int scoreMultiplier = 1;
     float currentClampedScore = 0;
-    public static int playerScore = 0;
 
-    [Header("Visual effects variables")]
-    [SerializeField] Volume _volume;
-    [SerializeField] AnimationCurve damageAnim;
-    UnityEngine.Rendering.Universal.Vignette _vignette;
+    [Header("Score variables")]
+    public static int playerScore = 0;
 
     private void Start()
     {
         AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", currentClampedScore);
         LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x1";
-        _volume.profile.TryGet(out _vignette);
-        _vignette.intensity.value = 0;
         LevelManager.scoreSlider.value = 0;
     }
 
@@ -43,7 +36,7 @@ public class PlayerStats : MonoBehaviour, IScore
     //Removes from score multiplier and activates vignette effect
     public void DamageScore(float scoreMult, Color vignCol, float vignTime) {
         currentClampedScore -= scoreMult;
-        StartCoroutine(DamageScreen(vignTime,vignCol));
+        StartCoroutine(GlobalVolumeManager.Instance.PlayerVignetteEffect(vignTime,vignCol));
         AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", currentClampedScore);
         LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x" + 1;
         LevelManager.scoreSlider.value = 0;
@@ -71,21 +64,4 @@ public class PlayerStats : MonoBehaviour, IScore
         }
     }
     #endregion
-
-    //Screen effect
-    private IEnumerator DamageScreen(float screenTime, Color vignCol)
-    {
-        float time = 0;
-        _vignette.color.value = vignCol;
-
-        while (time < screenTime)
-        {
-            time += (Time.unscaledDeltaTime);
-            _vignette.intensity.value = damageAnim.Evaluate(time/screenTime);
-            yield return null;
-        }
-        _vignette.intensity.value = damageAnim.Evaluate(0);
-        yield return null;
-    }
-
 }
