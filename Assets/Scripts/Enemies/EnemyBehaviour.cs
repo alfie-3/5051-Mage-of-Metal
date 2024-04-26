@@ -34,13 +34,7 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     [SerializeField] private float scoreMultWorth = 0.05f;
     [SerializeField] private float damageMultScore = 0.1f;
 
-    [Header("Material values")]
-    Material mat;
-    [SerializeField] Shader dissolveShader;
-    Renderer rend;
-    string dissolveMatName = "_Alpha";
-    [SerializeField] Texture2D mainMaterialTexture;
-    string mainMaterialTextureName = "_BaseTexture";
+    [SerializeField] Texture2D baseTexture;
 
 
     void Awake() 
@@ -62,7 +56,6 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
     void Start() {
         //set health to max
         EnemyHP = EnemyMaxHP;
-        rend = outlineComponent.GetComponent<Renderer>();
     }
     //function that damages enemy when called
     public void Damage(int damage)
@@ -85,24 +78,10 @@ public class EnemyBehaviour : MonoBehaviour, IDamage {
         //Change enemy layer so outline disappears
         outlineComponent.layer = LayerMask.NameToLayer("Default");
 
-        //Create and set new materials
-        mat = new Material(dissolveShader);
-        rend.material = mat;
-        rend.material.SetTexture(mainMaterialTextureName, mainMaterialTexture);
-        rend.material.SetFloat(dissolveMatName, 1);
-        rend.material.SetColor("_Color", new Color(Random.Range(0,255), Random.Range(0,255), Random.Range(0,255)));
+        //Dissolve effect on enemy
+        StartCoroutine(ShaderManager.Instance.DissolveObject(outlineComponent, baseTexture, EnemyDeathTime, false, sourceObj:gameObject));
 
-        //Set the enemy dissolve amount over time until the enemy disappears
-        float delta = EnemyDeathTime;
-        while (delta > 0)
-        {
-            delta -= Time.deltaTime;
-            rend.material.SetFloat(dissolveMatName, delta / EnemyDeathTime);
-            yield return null;
-        }
-
-        //Defeat enemy
-        Destroy(gameObject);
+        yield return null;
     }
 
     //Triggers attack on player if within reach and hasn't attacked yet

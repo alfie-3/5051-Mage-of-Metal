@@ -88,14 +88,12 @@ MonoBehaviour:
   EnemyDeathTime: 0.3
   Offset: {x: 0, y: 0, z: 0}
   UIInfo: Make sure UILocation game object is linked in the field below
-  outlineComponent: {fileID: 8621885009181267572}
   UILocation: {fileID: 0}
+  outlineComponent: {fileID: 8621885009181267572}
   scoreWorth: 20
   scoreMultWorth: 0.05
   damageMultScore: 0.1
-  dissolveShader: {fileID: -6465566751694194690, guid: 899ae0267ded33542897a60cdfd2f869,
-    type: 3}
-  m_MatTexture: {fileID: 2800000, guid: fe6280acae0aad14e9bc249327cac2e5, type: 3}
+  baseTexture: {fileID: 2800000, guid: fe6280acae0aad14e9bc249327cac2e5, type: 3}
 --- !u!136 &5318202595034375976
 CapsuleCollider:
   m_ObjectHideFlags: 0
