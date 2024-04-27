@@ -7,6 +7,10 @@ public class ObjectPooler : MonoBehaviour
 {
     static public ObjectPooler Instance { get; private set; }
 
+    [Header("Object-type parents")]
+    [SerializeField] Transform spellParent;
+
+    [Header("Pooled objects")]
     [SerializeField] List<Pools> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
     List<string> objectsOfType;
@@ -31,7 +35,7 @@ public class ObjectPooler : MonoBehaviour
                     if (p.type == PoolType.Rune)
                     {
                         obj.transform.SetParent(LevelManager.pointer.transform);
-                        obj.transform.localScale = Vector3.one;
+                        obj.transform.localEulerAngles = new Vector3(5, 5, 5);
                     }
                     else
                     {
@@ -44,7 +48,7 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    #region Object Pooling
+    #region Retrieve from Object Pooling
     public GameObject SpawnRandomFromType(PoolType type, Vector3 position)
     {
         objectsOfType = new List<string>();
