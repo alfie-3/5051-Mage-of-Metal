@@ -11,15 +11,6 @@ public class RuneFMODBridge : MonoBehaviour
 {
     public static RuneFMODBridge Instance { get; private set; }
 
-    //inspector display stuff
-    [Header("Rune Order")]
-    [TextArea]
-    public string Rune_Instructions = "Type in the Runes Text box the order of which the runes should appear, B (Blue), O ( Orange), Y (Yellow), G (Green), R (Red) ";
-
-    [Header("Rune Sprites")]
-    [TextArea]
-    public string Rune_Sprites_Info = "These are temporary placeholders, to be replaced when rune sprites designed";
-
     //[SerializeField] GameObject RuneLimit;
     [SerializeField] int ColliderSize;
     [SerializeField] float DistanceFromCentre = 50.0f;
