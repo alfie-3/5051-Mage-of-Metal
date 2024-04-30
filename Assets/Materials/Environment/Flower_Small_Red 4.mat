@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Flower_Small_Pink
+  m_Name: Flower_Small_Red 4
   m_Shader: {fileID: -6465566751694194690, guid: 688394db7428dde44b8e522632732dc4,
     type: 3}
   m_Parent: {fileID: 0}
@@ -140,11 +140,11 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 0.9417844, g: 0.6273585, b: 1, a: 1}
-    - _Color: {r: 0.9417844, g: 0.6273585, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 0.34509802, b: 0.46042487, a: 1}
+    - _Color: {r: 1, g: 0.345098, b: 0.46042484, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tint: {r: 0.8921072, g: 0.627451, b: 1, a: 0}
+    - _Tint: {r: 0.32691142, g: 0.7529412, b: 0.101960756, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8197303771192904399
 MonoBehaviour:

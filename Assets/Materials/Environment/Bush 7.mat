@@ -7,14 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Flower_Small_Pink
+  m_Name: Bush 7
   m_Shader: {fileID: -6465566751694194690, guid: 688394db7428dde44b8e522632732dc4,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ALPHATEST_ON
-  - _RECEIVE_SHADOWS_OFF
   - _SPECULAR_SETUP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -29,11 +28,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColour:
-        m_Texture: {fileID: 2800000, guid: c2818c3591625664495b931650e5076f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7437ce0ffa6b6a442b6e09ce626c271d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: c2818c3591625664495b931650e5076f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7437ce0ffa6b6a442b6e09ce626c271d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -57,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c2818c3591625664495b931650e5076f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7437ce0ffa6b6a442b6e09ce626c271d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metalic:
@@ -125,7 +124,7 @@ Material:
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 0
+    - _ReceiveShadows: 1
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -134,17 +133,17 @@ Material:
     - _Surface: 0
     - _Wind_Density: 0.75
     - _Wind_Movement: 0.36
-    - _Wind_Strength: 0.67
+    - _Wind_Strength: 0.37
     - _WorkflowMode: 0
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 0.9417844, g: 0.6273585, b: 1, a: 1}
-    - _Color: {r: 0.9417844, g: 0.6273585, b: 1, a: 1}
+    - _BaseColor: {r: 0.715863, g: 1, b: 0.495283, a: 1}
+    - _Color: {r: 0.715863, g: 1, b: 0.495283, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tint: {r: 0.8921072, g: 0.627451, b: 1, a: 0}
+    - _Tint: {r: 0.9386792, g: 0.99632585, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8197303771192904399
 MonoBehaviour:
