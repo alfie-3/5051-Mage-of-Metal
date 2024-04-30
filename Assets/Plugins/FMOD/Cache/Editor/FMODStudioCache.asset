@@ -43,7 +43,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Badgers.bank
   Name: Badgers
   StudioPath: bank:/Badgers
-  lastModified: 638494888410167875
+  lastModified: 638500941913145051
   FileSizes: []
   Exists: 1
 --- !u!114 &-7424879941090773520
@@ -61,7 +61,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/MageOfMelodies.bank
   Name: MageOfMelodies
   StudioPath: bank:/MageOfMelodies
-  lastModified: 638500861632186050
+  lastModified: 638500942468425607
   FileSizes: []
   Exists: 1
 --- !u!114 &-7067886867853178366
@@ -79,10 +79,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638494888451688046
+  lastModified: 638500942468637083
   FileSizes:
   - Name: 
-    Value: 1338
+    Value: 1378
   Exists: 1
 --- !u!114 &-4234454804968402356
 MonoBehaviour:
@@ -99,7 +99,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638500861632264854
+  lastModified: 638500942468632087
   FileSizes: []
   Exists: 1
 --- !u!114 &-4086606447808561957
@@ -179,12 +179,13 @@ MonoBehaviour:
   - {fileID: 4405729266716193895}
   - {fileID: 7991679617171780696}
   - {fileID: -8071314931675004281}
+  - {fileID: 1858079217735831703}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4234454804968402356}
   StringsBanks:
   - {fileID: -7067886867853178366}
-  cacheTime: 638500861632264854
+  cacheTime: 638500942468637083
   cacheVersion: 131608
 --- !u!114 &635613063070166417
 MonoBehaviour:
@@ -201,9 +202,37 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank B.bank
   Name: Bank B
   StudioPath: bank:/Music/Bank B
-  lastModified: 638500861631500943
+  lastModified: 638500941915296785
   FileSizes: []
   Exists: 1
+--- !u!114 &1858079217735831703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MageOfMelodies/Cold_Snap
+  m_EditorClassIdentifier: 
+  Path: event:/MageOfMelodies/Cold_Snap
+  Guid:
+    Data1: -1532555691
+    Data2: 1324866747
+    Data3: -861376378
+    Data4: 445595894
+  Banks:
+  - {fileID: -7424879941090773520}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 5035453702119512647}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 141662
 --- !u!114 &3568968472121339264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +317,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 18857
+--- !u!114 &5035453702119512647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Cold_Snap/InstrumentAudio
+  m_EditorClassIdentifier: 
+  Name: InstrumentAudio
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2901348385
+    data2: 1336069231
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &5393328273258006741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +404,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Weather/Bank A
-  lastModified: 638494888466454945
+  lastModified: 638500941915547773
   FileSizes: []
   Exists: 1
 --- !u!114 &7991679617171780696
