@@ -12,6 +12,11 @@ public class ShaderManager : MonoBehaviour
     string dissolveMatName = "_Alpha";
     string mainMaterialTextureName = "_BaseTexture";
 
+    [Space]
+    [Header("Rune material values")]
+    [SerializeField] public Shader runeShader;
+    [SerializeField] float runeEffectSpeed = 1.6f;
+
     private void Awake() { Instance = this; }
 
     public IEnumerator DissolveObject(GameObject dissolveObj, Texture2D mainMaterialTexture, float enemyDeathTime, bool isPooled, GameObject sourceObj = null)
@@ -38,5 +43,36 @@ public class ShaderManager : MonoBehaviour
         //Deactivate object
         if (isPooled) { sourceObj.SetActive(false); }
         else { Destroy(sourceObj); }
+    }
+
+    public IEnumerator RuneEffect(GameObject rune, Vector3 position)
+    {
+        float delta = 0.01f;
+        Material mat = rune.GetComponent<UnityEngine.UI.Image>().material;
+        rune.transform.position = position;
+        while (delta < 1)
+        { 
+            delta += Time.deltaTime * runeEffectSpeed;
+            mat.SetFloat("_Progress01", delta);
+            yield return null;
+        }
+        rune.SetActive(false);
+        mat.SetFloat("_Progress01", 0.01f);
+    }
+
+    public IEnumerator BadRuneEffect(GameObject rune, Vector3 position)
+    {
+        float delta = 0.01f;
+        Material mat = rune.GetComponent<UnityEngine.UI.Image>().material;
+        rune.transform.position = position;
+        while (delta < 1)
+        {
+            delta += Time.deltaTime * runeEffectSpeed;
+            mat.SetFloat("_MissProgress01", delta);
+            yield return null;
+        }
+        rune.SetActive(false);
+        mat.SetFloat("_MissProgress01", 0.01f);
+        yield return null;
     }
 }

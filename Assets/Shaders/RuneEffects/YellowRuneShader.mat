@@ -57,7 +57,7 @@ Material:
     - _alpha_prop: 0
     m_Colors:
     - _Color: {r: 0, g: 0.5707793, b: 1, a: 0}
-    - _RuneColor: {r: 1, g: 0.95137084, b: 0, a: 0}
+    - _RuneColor: {r: 1, g: 0.94731724, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8919180378387800453
 MonoBehaviour:

@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject scoreMultiplierTextRef;
     [SerializeField] UnityEngine.UI.Slider scoreSliderRef;
     [SerializeField] List<GameObject> spellsRef;
+    [SerializeField] Camera shaderOverlayCameraRef;
+    [SerializeField] GameObject shaderCanvasRef;
 
     [Header("Static values")]
     static public GameObject player;
@@ -38,6 +40,8 @@ public class LevelManager : MonoBehaviour
     static public GameObject scoreMultiplierText;
     static public UnityEngine.UI.Slider scoreSlider;
     static public List<GameObject> spells;
+    static public Camera shaderOverlayCamera;
+    static public GameObject shaderCanvas;
     #endregion
 
     [Header("Controls")]
@@ -60,6 +64,8 @@ public class LevelManager : MonoBehaviour
         scoreSlider = scoreSliderRef;
         _controlsKnm = new Controls();
         spells = spellsRef;
+        shaderOverlayCamera = shaderOverlayCameraRef;
+        shaderCanvas = shaderCanvasRef;
     }
 
     //Level start

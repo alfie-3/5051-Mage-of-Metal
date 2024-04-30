@@ -17,7 +17,7 @@ public class PlayerStats : MonoBehaviour, IScore
 
     private void Start()
     {
-        AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", currentClampedScore);
+        AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", 1);
         LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x1";
         LevelManager.scoreSlider.value = 0;
     }
@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour, IScore
     public void AddScore(float scoreMult, int score)
     {
         currentClampedScore = Mathf.Clamp01(currentClampedScore + scoreMult);
-        AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", currentClampedScore);
+        //AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", currentClampedScore);
         playerScore += (score * scoreMultiplier);
         LevelManager.scoreSlider.transform.parent.GetComponent<TextMeshProUGUI>().text = "Score: " + playerScore;
         SetSliderScores();
@@ -37,10 +37,18 @@ public class PlayerStats : MonoBehaviour, IScore
     public void DamageScore(float scoreMult, Color vignCol, float vignTime) {
         currentClampedScore -= scoreMult;
         StartCoroutine(GlobalVolumeManager.Instance.PlayerVignetteEffect(vignTime,vignCol));
-        AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", currentClampedScore);
+        //AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", currentClampedScore);
         LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x" + 1;
         LevelManager.scoreSlider.value = 0;
         SetSliderScores() ;
+    }
+    public void DamageScore(float scoreMult)
+    {
+        currentClampedScore -= scoreMult;
+        //AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", currentClampedScore);
+        LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x" + 1;
+        LevelManager.scoreSlider.value = 0;
+        SetSliderScores();
     }
 
     //Sets onscreen sliders and text current scores

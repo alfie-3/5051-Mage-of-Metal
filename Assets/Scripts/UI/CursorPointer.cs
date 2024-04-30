@@ -12,7 +12,6 @@ public class CursorPointer : MonoBehaviour
     public static CursorPointer Instance { get; private set; }
 
     [SerializeField] RectTransform ir_pointer;
-    [SerializeField] RuneTestPlayer _runeTestPlayer;
 
     Controls _controlsKnm;
     InputAction controls;
@@ -25,15 +24,8 @@ public class CursorPointer : MonoBehaviour
     [SerializeField] Color idleColour;
     [SerializeField] Color activeColour;
 
-    //Shoot area adjustments
-    [Space]
-    [Header("Aiming options")]
-    [SerializeField] int checkXArea = 15;
-    [SerializeField] int checkYArea = 15;
-    [SerializeField] int intervalXArea = 5;
-    [SerializeField] int intervalYArea = 5;
-    [SerializeField] GameObject temp;
-    [SerializeField] GameObject spell;
+    Vector2 screenPos;
+
     private void Awake()
     {
         Instance = this;
@@ -82,13 +74,15 @@ public class CursorPointer : MonoBehaviour
         //Sets the position of the cursor to where the wii remote is pointing.
         if (WiiInputManager.CursorWiiMote.HasRemote)
         {
-            ir_pointer.transform.SetParent(transform.GetChild(0));
+            //ir_pointer.transform.SetParent(transform.GetChild(0));
 
 
             Vector2 pointerPos = WiiInputManager.CursorWiiMote.IRPointScreenPos();
+            screenPos = pointerPos;
 
             if (pointerPos.x != -1 && pointerPos.y != -1)
             {
+
                 ir_pointer.anchorMin = pointerPos;
                 ir_pointer.anchorMax = pointerPos;
 
@@ -99,12 +93,14 @@ public class CursorPointer : MonoBehaviour
 
         //Hacky but the canvas used for the IR cursor is bigger than the screen and 4:3 because that works better for pointing
         //But when the mouse takes over it doesnt map properly so I have to change it back to the root canvas
-        ir_pointer.transform.SetParent(transform);
+        //ir_pointer.transform.SetParent(transform);
 
-        Vector2 mappedCusor = new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height);
+        Vector3 mappedCursor = new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height);
 
-        ir_pointer.anchorMin = mappedCusor;
-        ir_pointer.anchorMax = mappedCusor;
+        screenPos = mappedCursor;
+
+        ir_pointer.anchorMin = mappedCursor;
+        ir_pointer.anchorMax = mappedCursor;
 
         ir_pointer.anchoredPosition = Vector2.zero;
     }
@@ -113,12 +109,12 @@ public class CursorPointer : MonoBehaviour
     //Checks for enemy by raycasting below the cursor to the world.
     public IDamage CheckForEnemy()
     {
-        Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
+        //Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
+
+        Ray ray = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? WiiInputManager.CursorWiiMote.IRPointScreenPos() : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
         RaycastHit hitInfo = new();
 
-        Debug.DrawRay(ray.origin, ray.direction * 50);
-
-        if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
+        if (Physics.Raycast(ray, out hitInfo, 100, layerMask))
         {
             if (hitInfo.transform.TryGetComponent(out IDamage damageable))
             {
@@ -139,6 +135,8 @@ public class CursorPointer : MonoBehaviour
     //Basic interaction, called from guitar strum input
     private void Attack()
     {
+        Ray cursorRay = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? WiiInputManager.CursorWiiMote.IRPointScreenPos() : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
+        RaycastHit hit = new();
 
         //Checks to see if the level is paused so the enemies in pause state can't be attacked
         if (LevelManager.isPaused)
@@ -165,9 +163,8 @@ public class CursorPointer : MonoBehaviour
         else
         {
             // Get ray from cursor to world point on strum
-            Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
             RaycastHit hitInfo = new();
-            if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
+            if (Physics.Raycast(cursorRay, out hitInfo, 30, layerMask))
             {
                 if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))
                 {
@@ -193,7 +190,6 @@ public class CursorPointer : MonoBehaviour
             {
                 //Launch spell at target if it's damageable
                 GameObject baseSpell = ObjectPooler.Instance.SpawnRandomFromType(PoolType.Spell, LevelManager.player.transform.position);
-                Debug.Log(baseSpell.name);
                 baseSpell.GetComponent<BaseSpell>().OnStart(hitItem.gameObject.transform, LevelManager.player.transform.position, power * 4, hitItem);
             }
         }

@@ -2,6 +2,8 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class ObjectPooler : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class ObjectPooler : MonoBehaviour
     [Header("Pooled objects")]
     [SerializeField] List<Pools> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
-    List<string> objectsOfType;
+    List<string> objectsOfType;    
 
     //Setup pooling
     private void Start()
@@ -35,7 +37,10 @@ public class ObjectPooler : MonoBehaviour
                     if (p.type == PoolType.Rune)
                     {
                         obj.transform.SetParent(LevelManager.pointer.transform);
-                        obj.transform.localEulerAngles = new Vector3(5, 5, 5);
+                        obj.transform.localScale = new Vector3(4, 4, 0.01f);//Create and set new material
+
+                        //Material mat = 
+                        obj.transform.GetComponent<UnityEngine.UI.Image>().material = Material.Instantiate(p.material);
                     }
                     else
                     {
@@ -79,6 +84,10 @@ public class ObjectPooler : MonoBehaviour
         {
             spawned.transform.position = position;
         }
+        if (spawned.GetComponent<EnemyRune>() != null)
+        {
+            spawned.GetComponent<EnemyRune>().OnStart();
+        }
 
         //Re-queue object
         poolDictionary[name].Enqueue(spawned);
@@ -95,6 +104,7 @@ public class Pools
     public PoolType type = PoolType.PhysicalObject;
     public GameObject pooledObject;
     public int size;
+    public Material material;
 }
 
 //Types of objects in pools used for differet behaviours

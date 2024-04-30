@@ -10,18 +10,25 @@ public class EnemyRune : MonoBehaviour
     private Vector3 direction;
     public bool isPlayable = false;
     public char color;
+    public bool travel = true;
 
     //Set the direction and velocity towards the cursor centre
-    void Start()
+    public void OnStart()
     {
         direction = LevelManager.pointer.transform.position - transform.position;
-        velocity = (direction - (direction.normalized*105) * ((60 / AudioManager.bpm) * AudioManager.beatLeadUp));
+        float time = (60 / AudioManager.bpm) * AudioManager.beatLeadUp;
+        velocity = direction * time;
+        travel = true;
+        isPlayable = false;
     }
 
     //Rune updated position towards cursor centre
     void Update()
     {
-        transform.position += velocity * Time.deltaTime;
+        if (travel)
+        {
+            transform.position += velocity * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,8 +37,10 @@ public class EnemyRune : MonoBehaviour
         if (collision.name == "Pointer")
         {
             //Hide rune and hurt score if it's missed
-            LevelManager.player.GetComponent<IScore>().DamageScore(0.03f, Color.gray, 0.3f);
-            StartCoroutine(RuneFMODBridge.Instance.CleanList(this));
+            LevelManager.player.GetComponent<IScore>().DamageScore(0.03f);
+            StartCoroutine(ShaderManager.Instance.BadRuneEffect(this.gameObject, LevelManager.pointer.transform.position));
+            travel = false;
+            isPlayable = false;
         }
         //Rune becomes active when it's played
         else if (collision.name == "Rune Holder") { isPlayable = true; }
