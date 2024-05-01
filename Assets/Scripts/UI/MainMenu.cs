@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public static MainMenu Instance { get; set; }
+
     [Header("Menu positioning settings")]
     [SerializeField] Vector3 menuPos;
     [SerializeField] Vector3 menuRot;
@@ -14,6 +16,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Vector3 settingsRot;
     [SerializeField] Vector3 levelSelPos;
     [SerializeField] Vector3 levelSelRot;
+    [SerializeField] Vector3 nameInputPos;
+    [SerializeField] Vector3 nameInputRot;
+    [SerializeField] Vector3 leaderboardPos;
+    [SerializeField] Vector3 leaderboardRot;
 
     [Space]
     [Header("Player and screen settings")]
@@ -21,18 +27,35 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Renderer quadTransition;
     GameObject player; //Don't replace with LevelManager.player
 
-    bool isTransitioning = false;
-    bool isLeaving = false;
+    public bool isTransitioning = false;
+    public bool isLeaving = false;
     float alpha;
     Vector3 movingPos;
     Vector3 movingRot;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     //Load in screen
     private void Start()
     {
+        Screen.SetResolution(1920, 1080, true);
+
         player = GameObject.Find("Main Camera");
-        player.transform.position = menuPos;
-        player.transform.eulerAngles = menuRot;
+
+        if (GameManager.isLeaderboard)
+        {
+            player.transform.position = nameInputPos;
+            player.transform.eulerAngles = nameInputRot;
+            GameManager.isLeaderboard = false;
+        }
+        else
+        {
+            player.transform.position = menuPos;
+            player.transform.eulerAngles = menuRot;
+        }
         StartCoroutine(LevelManager.ChangeAlpha(0, 0.5f, quadTransition.material, 0.5f));
     }
 
@@ -43,6 +66,24 @@ public class MainMenu : MonoBehaviour
         {
             isTransitioning = true;
             StartCoroutine(CameraLerp(menuPos, menuRot, levelSelPos, levelSelRot));
+        }
+    }
+    public void NameInputToLeaderboardLerp()
+    {
+        if (!isLeaving && !isTransitioning)
+        {
+            isTransitioning = true;
+            GameManager.isLeaderboard = false;
+            StartCoroutine(CameraLerp(nameInputPos, nameInputRot, leaderboardPos, leaderboardRot));
+        }
+    }
+    public void LeaderboardToMainMenuLerp()
+    {
+        if (!isLeaving && !isTransitioning)
+        {
+            isTransitioning = true;
+            GameManager.isLeaderboard = false;
+            StartCoroutine(CameraLerp(leaderboardPos, leaderboardRot, menuPos, menuRot));
         }
     }
 

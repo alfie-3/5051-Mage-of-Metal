@@ -189,14 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c104af9599802a74ead91f6297c345ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volume: {fileID: 0}
-  damageAnim:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _vignette: {fileID: 0}
 --- !u!1 &1098256986874413081
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +379,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 991
+    m_Bits: 5119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

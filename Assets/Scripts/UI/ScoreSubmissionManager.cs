@@ -17,11 +17,14 @@ public class ScoreSubmissionManager : MonoBehaviour
 
     public void SubmitScore(string name)
     {
-        if (name == string.Empty)
-            return;
+        if (!MainMenu.Instance.isLeaving && !MainMenu.Instance.isTransitioning)
+        {
+            if (name == string.Empty)
+                return;
 
-        ScoreSaveManager.AddScore(name, PlayerStats.playerScore);
-        PlayerStats.playerScore = 0;
-        submittedName = nameInput.text;
+            ScoreSaveManager.AddScore(name, GameManager.finalScore);
+            //PlayerStats.playerScore = 0;
+            submittedName = nameInput.text;
+        }
     }
 }
