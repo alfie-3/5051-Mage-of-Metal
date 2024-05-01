@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000028CFE689738 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000021947E2F5B8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -18,56 +18,7 @@
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] SoundI::release                          : MOM_04 (0000028C09F57328)
-[LOG] SoundI::release                          :     MOM_04 (0000028CFE9B7D98)
-[LOG] SoundI::release                          :     MOM_04 (0000028CDC4A59B8)
-[LOG] SoundI::release                          : MOM_09 (0000028C09F55828)
-[LOG] SoundI::release                          :     MOM_09 (0000028CF2AB31D8)
-[LOG] SoundI::release                          :     MOM_09 (0000028CDC4A54A8)
-[LOG] SoundI::release                          : MOM_02 (0000028C09F53818)
-[LOG] SoundI::release                          :     MOM_02 (0000028CF2AB2B58)
-[LOG] SoundI::release                          :     MOM_02 (0000028CDC4A4DE8)
-[LOG] SoundI::release                          : MOM_01 (0000028C09F59F08)
-[LOG] SoundI::release                          :     MOM_01 (0000028CF2AB2CF8)
-[LOG] SoundI::release                          :     MOM_01 (0000028CDC4A7158)
-[LOG] SoundI::release                          : MOM_10 (0000028C09F594E8)
-[LOG] SoundI::release                          :     MOM_10 (0000028CF2AB29B8)
-[LOG] SoundI::release                          :     MOM_10 (0000028CDC4A8FB8)
-[LOG] SoundI::release                          : MOM_03 (0000028C09F59338)
-[LOG] SoundI::release                          :     MOM_03 (0000028CF2AB36B8)
-[LOG] SoundI::release                          :     MOM_03 (0000028C0C950B58)
-[LOG] SoundI::release                          : MOM_11 (0000028C09F599F8)
-[LOG] SoundI::release                          :     MOM_11 (0000028BB0120618)
-[LOG] SoundI::release                          :     MOM_11 (0000028C0C9507F8)
-[LOG] SoundI::release                          : MOM_08 (0000028C09F58E28)
-[LOG] SoundI::release                          :     MOM_08 (0000028BB01202D8)
-[LOG] SoundI::release                          :     MOM_08 (0000028C0C94B8A8)
-[LOG] SoundI::release                          : MOM_05 (0000028C0BFCDD88)
-[LOG] SoundI::release                          :     MOM_05 (0000028BB0120138)
-[LOG] SoundI::release                          :     MOM_05 (0000028C0C94B038)
-[LOG] SoundI::release                          : Mage_of_Melodies (0000028C0BFC9A08)
-[LOG] SoundI::release                          :     Mage_of_Melodies (0000028BB01207B8)
-[LOG] SoundI::release                          :     Mage_of_Melodies (0000028C0C949898)
-[LOG] SoundI::release                          : MOM_06 (0000028C0BFC4AB8)
-[LOG] SoundI::release                          :     MOM_06 (0000028C0CE8B598)
-[LOG] SoundI::release                          :     MOM_06 (0000028C0C94A618)
-[LOG] SoundI::release                          : MOM_07 (0000028C0BFD0E78)
-[LOG] SoundI::release                          :     MOM_07 (0000028C0CE8B3F8)
-[LOG] SoundI::release                          :     MOM_07 (0000028C09F580A8)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -75,5 +26,3 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
-[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
-[LOG] Thread::callback                         : FMOD file thread finished.

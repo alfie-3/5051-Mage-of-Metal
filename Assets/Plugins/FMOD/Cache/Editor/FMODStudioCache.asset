@@ -61,7 +61,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/MageOfMelodies.bank
   Name: MageOfMelodies
   StudioPath: bank:/MageOfMelodies
-  lastModified: 638501657009755341
+  lastModified: 638501678278417281
   FileSizes: []
   Exists: 1
 --- !u!114 &-7067886867853178366
@@ -185,7 +185,7 @@ MonoBehaviour:
   - {fileID: -4234454804968402356}
   StringsBanks:
   - {fileID: -7067886867853178366}
-  cacheTime: 638501657009815324
+  cacheTime: 638501678278417281
   cacheVersion: 131608
 --- !u!114 &635613063070166417
 MonoBehaviour:
@@ -284,7 +284,7 @@ MonoBehaviour:
   - {fileID: 1973243770833880766}
   MinDistance: 1
   MaxDistance: 20
-  Length: 141662
+  Length: 142862
 --- !u!114 &3568968472121339264
 MonoBehaviour:
   m_ObjectHideFlags: 0
