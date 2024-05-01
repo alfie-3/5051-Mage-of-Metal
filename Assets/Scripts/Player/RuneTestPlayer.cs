@@ -16,12 +16,14 @@ public class RuneTestPlayer : MonoBehaviour
 /*
     //script for testing player implementation
 
+    [Header("Cam Details)]
     //public vars
     public Camera playerCam;
     public float lookSpeed = 2.0f;
     public float lookLimitX = 45.0f;
     public bool runePlayed = false;
 
+    [Header("Rune Details)]
     //serialized
     [SerializeField] private RuneFMODBridge runeManager;
 
@@ -45,8 +47,6 @@ public class RuneTestPlayer : MonoBehaviour
 
     void Start()
     {
-        guitardata = WiiInputManager.GuitarWiiMote;
-
         //gets camera + rune manager
         playerCam = Camera.main;
         GameObject managerObject = GameObject.FindGameObjectWithTag("Manager");
@@ -100,6 +100,7 @@ public class RuneTestPlayer : MonoBehaviour
             }
         }
 
+        //check what input player wants to run and run code needed for those inputs to work
         if(KeyboardInput)
         {
             StrumGunKeyboard();
@@ -111,7 +112,7 @@ public class RuneTestPlayer : MonoBehaviour
     }
 
 
-    //special effects function
+    //special effects function - play funky effect depending on string inputted
     void FancyEffect(string effectType)
     {
         //depending on string inputted - spawns effect on enemy
@@ -127,7 +128,7 @@ public class RuneTestPlayer : MonoBehaviour
         else if(effectType == "orange"){
             Instantiate(OrangeEffect, currentEnemy);
         }
-         else if(effectType == "red"){
+        else if(effectType == "red"){
             Instantiate(RedEffect, currentEnemy);
         }
         //destroy after a little
@@ -135,24 +136,17 @@ public class RuneTestPlayer : MonoBehaviour
 
     }
 
-    //function for input (for now with keyboard for testing)
-    //for strumming:
-    //player needs to hold buttons of runes they want to play 
-    //when strum is pressed runes that are pressed are released
-    //when keys are held, runes are added to array/list
-    //when keys are let go of those runes are removed from the list - separate function
-    //when strum key is pressed and the keys are still being pressed those runes disappear from screen and attack is fired
-    //runes that are pressed and let go get destroyed
-
-   public void StrumGunGuitar()
+    //guitar input code
+    public void StrumGunGuitar()
     {
+        //get wii input script
         GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
 
-        // If there are no runes in the scene or player can't fire, exit
+        // if there are no runes in the scene or player can't fire, exit
         if (runeManager.RunesInScene.Count == 0 || !canFire)
             return;
 
-        // Check key inputs for corresponding runes
+        // check key inputs for corresponding runes
         foreach (EnemyRune rune in runeManager.RunesInScene)
         {
             if (rune != null)
@@ -180,19 +174,21 @@ public class RuneTestPlayer : MonoBehaviour
                     StrumRunes.Add(rune);
                 }
 
-                UnRunerGuitar(rune);
+                UnRunerGuitar(rune); //get rid of rune if its no longer pressed
             }
         }
 
+        //if the player strummed and has pressed runes
         if (guitardata.CheckStrummedThisFrame() && StrumRunes.Count > 0)
         {
+            //calculate amount of damage from amount of runes pressed
             int damage = StrumRunes.Count;
             FancyEffect("red");
             enemyScript.Damage(damage);
             Debug.Log(damage);
             foreach(EnemyRune rune in StrumRunes)
             {
-                runeManager.RemoveRune(rune);
+                runeManager.RemoveRune(rune); //get rid of rune once it has been played
             }
             StrumRunes.Clear();
         }
@@ -200,12 +196,12 @@ public class RuneTestPlayer : MonoBehaviour
 
     public void StrumGunKeyboard()
     {
-
-        // If there are no runes in the scene or player can't fire, exit
+        // if there are no runes in the scene or player can't fire, exit
+        //same thing as guitar just for keyboard
         if (runeManager.RunesInScene.Count == 0 || !canFire)
             return;
 
-        // Check key inputs for corresponding runes
+        // check key inputs for corresponding runes
         foreach (EnemyRune rune in runeManager.RunesInScene)
         {
             char runeColor = rune.name[0]; // First character of rune name represents color
@@ -250,6 +246,7 @@ public class RuneTestPlayer : MonoBehaviour
 
 void UnRunerGuitar(EnemyRune rune)
 {
+    //function that checks if the player let go of a key  and then gets rid of it
     GuitarRemoteInput guitardata = WiiInputManager.GuitarWiiMote;
 
     char runeColor = rune.name[0]; // First character of rune name represents color
@@ -286,7 +283,7 @@ void UnRunerGuitar(EnemyRune rune)
 
 void UnRunerKeyboard(GameObject rune)
 {
-
+    //same thing as guitar just for keyboard
     char runeColor = rune.name[0]; // First character of rune name represents color
 
     if (Input.GetKeyUp(KeyCode.B) && runeColor == 'B') 
@@ -320,7 +317,7 @@ void UnRunerKeyboard(GameObject rune)
 }
 
 
-//functions for ui buttons    
+//functions for ui buttons (when testing used to have ui buttons for interacting with runes)
     public void Gun(string buttonColor)
     {
         //function to play for attacking enemies
