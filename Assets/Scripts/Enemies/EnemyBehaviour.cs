@@ -3,17 +3,6 @@ using UnityEngine;
 
 //enemy logic for health to test health display
 
-
-//system that randomly generates points along the spline
-//same script gets enemies within range and shoves em into a list inside a dictionary
-//enemy script movement towards player set on a bool
-// if player reaches point(trigger) script sets all enemies grouped in the list to true and they start running at the player 
-//not sure if this is what we need though
-
-//alternatively - enemies set to always be running at player 
-//spawn points set within level and when player gets to certain points on spline enemies spawn in from spawn points - enemies have navmeshes to navigate surroundings
-
-
 public class EnemyBehaviour : MonoBehaviour, IDamage {
 
     [Header("Enemy stats")]

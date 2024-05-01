@@ -11,9 +11,10 @@ public class RuneFMODBridge : MonoBehaviour
     public static RuneFMODBridge Instance { get; private set; }
 
     //[SerializeField] GameObject RuneLimit;
+
+    [Header("Rune Details")]
     [SerializeField] int ColliderSize;
     [SerializeField] float DistanceFromCentre = 50.0f;
-//public
     public float SpeedOfRune = 1.0f;
     public List<EnemyRune>  RunesInScene = new List<EnemyRune>();
 
@@ -23,6 +24,8 @@ public class RuneFMODBridge : MonoBehaviour
     [SerializeField] GameObject YellowRuneHolder;
     [SerializeField] GameObject BlueRuneHolder;
     [SerializeField] GameObject OrangeRuneHolder;
+
+    //Rune SpawnPoints
     Vector3 GreenSpawnpoint;
     Vector3 RedSpawnpoint;
     Vector3 BlueSpawnpoint;

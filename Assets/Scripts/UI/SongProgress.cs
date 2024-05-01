@@ -7,6 +7,9 @@ using FMODUnity;
 
 public class SongProgress : MonoBehaviour
 {
+
+    //script that displays players current progress along level/song
+
     private Slider progressSlider;
     public AudioManager audioManagerScript;
     private EventInstance musicEvent; 
