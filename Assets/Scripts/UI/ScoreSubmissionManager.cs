@@ -22,7 +22,7 @@ public class ScoreSubmissionManager : MonoBehaviour
             if (name == string.Empty)
                 return;
 
-            ScoreSaveManager.AddScore(name, PlayerStats.playerScore);
+            ScoreSaveManager.AddScore(name, GameManager.finalScore);
             //PlayerStats.playerScore = 0;
             submittedName = nameInput.text;
         }
