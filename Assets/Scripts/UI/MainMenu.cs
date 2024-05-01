@@ -41,6 +41,8 @@ public class MainMenu : MonoBehaviour
     //Load in screen
     private void Start()
     {
+        Screen.SetResolution(1920, 1080, true);
+
         player = GameObject.Find("Main Camera");
 
         if (GameManager.isLeaderboard)
