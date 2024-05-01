@@ -111,7 +111,7 @@ public class CursorPointer : MonoBehaviour
     {
         //Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
 
-        Ray ray = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? WiiInputManager.CursorWiiMote.IRPointScreenPos() : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
+        Ray ray = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? Remap(WiiInputManager.CursorWiiMote.IRPointScreenPos()) : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
         RaycastHit hitInfo = new();
 
 
@@ -127,6 +127,14 @@ public class CursorPointer : MonoBehaviour
         return null;
     }
 
+    Vector2 Remap(Vector2 irO)
+    {
+        Vector2 ir = irO;
+        ir.x = (ir.x + 1) / 2; ir.x *= Screen.width / PixelatedCamera.main.screenScaleFactor;
+        ir.y = (ir.y + 1) / 2; ir.y *= Screen.height / PixelatedCamera.main.screenScaleFactor;
+        return ir;
+    }
+
     #region Strum behaviour
     //Computer strum input, calls guitar strum input function when testing
     private void Attack(InputAction.CallbackContext obj)
@@ -137,7 +145,7 @@ public class CursorPointer : MonoBehaviour
     //Basic interaction, called from guitar strum input
     private void Attack()
     {
-        Ray cursorRay = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? WiiInputManager.CursorWiiMote.IRPointScreenPos() : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
+        Ray cursorRay = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? Remap(WiiInputManager.CursorWiiMote.IRPointScreenPos()) : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
         RaycastHit hit = new();
 
         //Checks to see if the level is paused so the enemies in pause state can't be attacked
