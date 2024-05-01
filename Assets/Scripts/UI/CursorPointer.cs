@@ -111,13 +111,13 @@ public class CursorPointer : MonoBehaviour
     {
         //Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
 
-        Ray ray = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? Remap(WiiInputManager.CursorWiiMote.IRPointScreenPos()) : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
+        Ray ray = Camera.main.ScreenPointToRay(transform.parent.GetComponentInChildren<Camera>().WorldToScreenPoint(ir_pointer.position));
         RaycastHit hitInfo = new();
 
 
         if (Physics.Raycast(ray, out hitInfo, 999, layerMask))
         {
-            Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.blue, Time.deltaTime);
+            Debug.DrawRay(Camera.main.transform.position, ray.direction * 200, Color.blue, Time.deltaTime);
             if (hitInfo.transform.TryGetComponent(out IDamage damageable))
             {
                 return damageable;
@@ -145,7 +145,7 @@ public class CursorPointer : MonoBehaviour
     //Basic interaction, called from guitar strum input
     private void Attack()
     {
-        Ray cursorRay = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? Remap(WiiInputManager.CursorWiiMote.IRPointScreenPos()) : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
+        Ray ray = Camera.main.ScreenPointToRay(transform.parent.GetComponentInChildren<Camera>().WorldToScreenPoint(ir_pointer.position));
         RaycastHit hit = new();
 
         //Checks to see if the level is paused so the enemies in pause state can't be attacked
@@ -174,7 +174,7 @@ public class CursorPointer : MonoBehaviour
         {
             // Get ray from cursor to world point on strum
             RaycastHit hitInfo = new();
-            if (Physics.Raycast(cursorRay, out hitInfo, 30, layerMask))
+            if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
             {
                 if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))
                 {

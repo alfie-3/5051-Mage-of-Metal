@@ -14,17 +14,17 @@ public class WiiRemoteGuitarTest : MonoBehaviour
 
         if (guitarWiiMote.GetWhammy() > 0)
         {
-            Debug.Log(guitarWiiMote.GetWhammy());
+            //Debug.Log(guitarWiiMote.GetWhammy());
         }
 
         if (guitarWiiMote.GetPlus())
         {
-            Debug.Log("Plus");
+            //Debug.Log("Plus");
         }
 
         if (guitarWiiMote.GetStar())
         {
-            Debug.Log("FUUUUUCK!!!");
+            //Debug.Log("FUUUUUCK!!!");
         }
     }
 }
