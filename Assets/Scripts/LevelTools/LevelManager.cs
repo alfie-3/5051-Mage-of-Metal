@@ -11,6 +11,8 @@ using System.Runtime.InteropServices;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance { get;set; }
+
     [Header("Spline and quads")]
     [SerializeField] private SplineAnimate splineInfo;
     [SerializeField] Renderer transitionerQuad;
@@ -56,6 +58,7 @@ public class LevelManager : MonoBehaviour
     //Set static values
     private void Awake()
     {
+        Instance = this;
         player = playerRef;
         spline = splineRef;
         runeManager = runeManagerRef;

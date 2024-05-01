@@ -10,7 +10,7 @@ public class SliderSettings : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
 
-    private void Awake()
+    private void Start()
     {
         GameManager.Instance.MusicChange(GameManager.musicVolume);
         GameManager.Instance.SFXChange(GameManager.sfxVolume);

@@ -30,11 +30,11 @@ public class CursorPointer : MonoBehaviour
     {
         Instance = this;
         image = ir_pointer.GetComponent<Image>();
-        _controlsKnm = new Controls();
     }
 
     private void OnEnable()
     {
+        _controlsKnm = new Controls();
         WiiInputManager.GuitarWiiMote.Strummed += Attack;
 
         controls = _controlsKnm.GuitarControls.Strum;
@@ -114,8 +114,10 @@ public class CursorPointer : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? WiiInputManager.CursorWiiMote.IRPointScreenPos() : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
         RaycastHit hitInfo = new();
 
-        if (Physics.Raycast(ray, out hitInfo, 100, layerMask))
+
+        if (Physics.Raycast(ray, out hitInfo, 999, layerMask))
         {
+            Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.blue, Time.deltaTime);
             if (hitInfo.transform.TryGetComponent(out IDamage damageable))
             {
                 return damageable;

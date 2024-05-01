@@ -17,9 +17,12 @@ public class PlayerStats : MonoBehaviour, IScore
 
     private void Start()
     {
-        AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", 1);
-        LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x1";
-        LevelManager.scoreSlider.value = 0;
+        if (LevelManager.Instance != null && AudioManager.managerInstance != null)
+        {
+            AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", 1);
+            LevelManager.scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = "x1";
+            LevelManager.scoreSlider.value = 0;
+        }
     }
 
     #region Score functions

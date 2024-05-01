@@ -3,7 +3,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -47,16 +46,16 @@ public class RuneFMODBridge : MonoBehaviour
     [Header("Player score component")]
     IScore playerScore;
     
-    void Awake()
+    void Start()
     {
         Instance = this;
         //BoxCollider RuneLimitCollider = RuneLimit.GetComponent<BoxCollider>();
         //RuneLimitCollider.size = new Vector3(ColliderSize, ColliderSize, 3);
-        _controlsKnm = new Controls();
         playerScore = LevelManager.player.GetComponent<IScore>();
     }
     private void OnEnable()
     {
+        _controlsKnm = new Controls();
         controls = _controlsKnm.GuitarControls.Strum;
         note1 = _controlsKnm.GuitarControls.Note1;
         note2 = _controlsKnm.GuitarControls.Note2;
@@ -84,6 +83,7 @@ public class RuneFMODBridge : MonoBehaviour
 
     public int RuneAttack()
     {
+        Debug.Log("Strum start");
         ColorCheck runeColors = new ColorCheck();
         runeColors.Blue = false; runeColors.Green = false; runeColors.Red = false; runeColors.Yellow = false; runeColors.Orange = false;
 
@@ -111,6 +111,11 @@ public class RuneFMODBridge : MonoBehaviour
                 }
             }
         }
+        Debug.Log(isNote1);
+        Debug.Log(isNote2);
+        Debug.Log(isNote3);
+        Debug.Log(isNote4);
+        Debug.Log(isNote5);
         if (isNote1 && !runeColors.Green) { power--; playerScore.DamageScore(0.03f); }
         if (isNote2 && !runeColors.Red) { power--; playerScore.DamageScore(0.03f); }
         if (isNote3 && !runeColors.Yellow) { power--; playerScore.DamageScore(0.03f); }

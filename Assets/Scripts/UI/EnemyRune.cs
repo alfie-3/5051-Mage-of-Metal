@@ -38,8 +38,7 @@ public class EnemyRune : MonoBehaviour
         {
             //Hide rune and hurt score if it's missed
             LevelManager.player.GetComponent<IScore>().DamageScore(0.03f);
-            StartCoroutine(ShaderManager.Instance.BadRuneEffect(this.gameObject, LevelManager.pointer.transform.position));
-            travel = false;
+            StartCoroutine(ShaderManager.Instance.BadRuneEffect(this.gameObject));
             isPlayable = false;
         }
         //Rune becomes active when it's played

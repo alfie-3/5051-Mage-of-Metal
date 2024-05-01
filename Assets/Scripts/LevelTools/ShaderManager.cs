@@ -22,7 +22,6 @@ public class ShaderManager : MonoBehaviour
     public IEnumerator DissolveObject(GameObject dissolveObj, Texture2D mainMaterialTexture, float enemyDeathTime, bool isPooled, GameObject sourceObj = null)
     {
         if (sourceObj == null) { sourceObj = dissolveObj; }
-
         //Create and set new materials
         Material mat = new Material(dissolveShader);
         Renderer rend = dissolveObj.GetComponent<Renderer>();
@@ -69,6 +68,21 @@ public class ShaderManager : MonoBehaviour
         {
             delta += Time.deltaTime * runeEffectSpeed;
             mat.SetFloat("_MissProgress01", delta);
+            yield return null;
+        }
+        rune.SetActive(false);
+        mat.SetFloat("_MissProgress01", 0.01f);
+        yield return null;
+    }
+    public IEnumerator BadRuneEffect(GameObject rune)
+    {
+        float delta = 0.01f;
+        Material mat = rune.GetComponent<UnityEngine.UI.Image>().material;
+        while (delta < 1)
+        {
+            delta += Time.deltaTime * runeEffectSpeed * 3;
+            mat.SetFloat("_MissProgress01", delta);
+            rune.GetComponent<EnemyRune>().isPlayable = false;
             yield return null;
         }
         rune.SetActive(false);
