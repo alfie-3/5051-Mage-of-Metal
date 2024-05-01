@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Vector3 settingsRot;
     [SerializeField] Vector3 levelSelPos;
     [SerializeField] Vector3 levelSelRot;
+    [SerializeField] Vector3 nameInputPos;
+    [SerializeField] Vector3 nameInputRot;
 
     [Space]
     [Header("Player and screen settings")]
@@ -31,8 +33,18 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Main Camera");
-        player.transform.position = menuPos;
-        player.transform.eulerAngles = menuRot;
+
+        if (GameManager.isLeaderboard)
+        {
+            player.transform.position = nameInputPos;
+            player.transform.eulerAngles = nameInputRot;
+            GameManager.isLeaderboard = false;
+        }
+        else
+        {
+            player.transform.position = menuPos;
+            player.transform.eulerAngles = menuRot;
+        }
         StartCoroutine(LevelManager.ChangeAlpha(0, 0.5f, quadTransition.material, 0.5f));
     }
 
@@ -43,6 +55,15 @@ public class MainMenu : MonoBehaviour
         {
             isTransitioning = true;
             StartCoroutine(CameraLerp(menuPos, menuRot, levelSelPos, levelSelRot));
+        }
+    }
+    public void NameInputToMainMenuLerp()
+    {
+        if (!isLeaving && !isTransitioning)
+        {
+            isTransitioning = true;
+            GameManager.isLeaderboard = false;
+            StartCoroutine(CameraLerp(nameInputPos, nameInputRot, menuPos, menuRot));
         }
     }
 

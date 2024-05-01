@@ -65,7 +65,6 @@ public class LevelManager : MonoBehaviour
         pointer = pointerRef;
         scoreMultiplierText = scoreMultiplierTextRef;
         scoreSlider = scoreSliderRef;
-        _controlsKnm = new Controls();
         spells = spellsRef;
         shaderOverlayCamera = shaderOverlayCameraRef;
         shaderCanvas = shaderCanvasRef;
@@ -84,6 +83,7 @@ public class LevelManager : MonoBehaviour
     }
     private void OnEnable()
     {
+        _controlsKnm = new Controls();
         _controlsKnm.GuitarControls.Pause.performed += PauseGame;
         _controlsKnm.GuitarControls.Pause.Enable();
 
@@ -177,7 +177,7 @@ public class LevelManager : MonoBehaviour
         yield return ChangeAlpha(0.5f, 0, transitionerQuad.material, 1);
         AudioManager.managerInstance.MusicStop();
         yield return new WaitForSeconds(1);
-        SceneManager.LoadSceneAsync(1);
+        yield return SceneManager.LoadSceneAsync(0);
     }
     #endregion
 
@@ -185,6 +185,8 @@ public class LevelManager : MonoBehaviour
     {
         while (splineInfo.ElapsedTime < duration)
         {
+            GameManager.isLeaderboard = true;
+            GameManager.finalScore = PlayerStats.playerScore;
             yield return null;
         }
         StartCoroutine(SceneEnd());

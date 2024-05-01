@@ -21,7 +21,7 @@ public class ScoreSubmissionManager : MonoBehaviour
             return;
 
         ScoreSaveManager.AddScore(name, PlayerStats.playerScore);
-        PlayerStats.playerScore = 0;
+        //PlayerStats.playerScore = 0;
         submittedName = nameInput.text;
     }
 }
