@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public static int difficulty = 0;
 
     public static int finalScore = 0;
-    public static bool isLeaderboard = false;
+    public static bool isLeaderboard = true;
 
     [Header("Instance checker")]
     private bool isLoaded=false;
