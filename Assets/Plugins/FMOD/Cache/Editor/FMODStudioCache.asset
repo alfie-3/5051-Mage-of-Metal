@@ -43,7 +43,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Badgers.bank
   Name: Badgers
   StudioPath: bank:/Badgers
-  lastModified: 638495427508903169
+  lastModified: 638501565365594096
   FileSizes: []
   Exists: 1
 --- !u!114 &-7424879941090773520
@@ -61,7 +61,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/MageOfMelodies.bank
   Name: MageOfMelodies
   StudioPath: bank:/MageOfMelodies
-  lastModified: 638501187669536647
+  lastModified: 638501565366434357
   FileSizes: []
   Exists: 1
 --- !u!114 &-7067886867853178366
@@ -79,7 +79,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638501187669936543
+  lastModified: 638501565366504337
   FileSizes:
   - Name: 
     Value: 1378
@@ -99,7 +99,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638501187669886583
+  lastModified: 638501565366504337
   FileSizes: []
   Exists: 1
 --- !u!114 &-4086606447808561957
@@ -185,7 +185,7 @@ MonoBehaviour:
   - {fileID: -4234454804968402356}
   StringsBanks:
   - {fileID: -7067886867853178366}
-  cacheTime: 638501187669936543
+  cacheTime: 638501565366504337
   cacheVersion: 131608
 --- !u!114 &635613063070166417
 MonoBehaviour:
@@ -202,7 +202,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank B.bank
   Name: Bank B
   StudioPath: bank:/Music/Bank B
-  lastModified: 638501187668266636
+  lastModified: 638501565365774363
   FileSizes: []
   Exists: 1
 --- !u!114 &1858079217735831703
@@ -456,7 +456,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Weather/Bank A
-  lastModified: 638452720360026023
+  lastModified: 638501556999935192
   FileSizes: []
   Exists: 1
 --- !u!114 &7991679617171780696

@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class RuneManager : MonoBehaviour
 {
+    [Header("Runes In Scene")]
     public List<GameObject> Runes = new List<GameObject>();
     [Header("Rune Order")]
     [TextArea]
@@ -24,6 +25,7 @@ public class RuneManager : MonoBehaviour
     [SerializeField] GameObject GreenRune;
     [SerializeField] GameObject RedRune; 
 
+    //Rune Spawnpoints
     Vector3 NorthSpawnpoint;
     Vector3 EastSpawnpoint;
     Vector3 WestSpawnpoint;
@@ -31,8 +33,10 @@ public class RuneManager : MonoBehaviour
     Vector3 SouthWestSpawnpoint;
     //centre = Vector3(7344.7998,3658.19995,0)
     
+    //where runes are headed towards
     private GameObject centre;
     
+    //Player canvas
     [SerializeField] GameObject HUDCanvas;
     public GameObject CurrentRune;
     public float SpeedOfRune = 1.0f;
@@ -43,6 +47,7 @@ public class RuneManager : MonoBehaviour
 
     void Awake()
     {
+        //check the string and add runes in string to the runes that should be played
         for(int i = 0; i < RunesText.Length; i++)
         {
             char CurrentChar = RunesText[i];
@@ -67,9 +72,11 @@ public class RuneManager : MonoBehaviour
                     break;
             }
         }
+        //if centre isn't found try to find it
         if (!centre) {
-           centre = GameObject.FindGameObjectWithTag("Centre");
+            centre = GameObject.FindGameObjectWithTag("Centre");
         }
+        //if it's still not found display error
         if (!centre) {
             Debug.Log("Centre not found");
         }
@@ -93,11 +100,13 @@ public class RuneManager : MonoBehaviour
 
     public void UpdateRune()
     {
-
+        //if there is runes
         if(Runes.Count > 0)
         {
+            //temporarily the direction is random from where the rune spawns
             currentDirection = Random.Range(0, 4);
-            CurrentRune = Runes[0];
+            CurrentRune = Runes[0]; //current rune is always first rune in list
+            //instantiate depending on direction
             switch(currentDirection) {
                 case 0:
                     Instantiate(CurrentRune,NorthSpawnpoint, Quaternion.identity, centre.transform);
@@ -123,6 +132,7 @@ public class RuneManager : MonoBehaviour
                     Debug.Log("Path literally doesn't exist");
                     break;
             }
+            //remove rune once it's been instantiated
             Runes.RemoveAt(0);
         }
         
@@ -130,6 +140,7 @@ public class RuneManager : MonoBehaviour
     }
 
     void RuneLocations() {
+        //calculate rune spawnpoint depending on centre pos
         NorthSpawnpoint  = centre.transform.position + new Vector3(0.0f, 50.0f, 0.0f);
         EastSpawnpoint = centre.transform.position + new Vector3(50.0f, 0.0f, 0.0f);
         WestSpawnpoint = centre.transform.position + new Vector3(50.0f, 0.0f, 0.0f);

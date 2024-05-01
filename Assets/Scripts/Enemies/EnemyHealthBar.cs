@@ -6,17 +6,19 @@ using UnityEngine.UI;
 
 
 public class EnemyHealthBar : MonoBehaviour {
+
+    //Script for the Healthbars on the enemies - script is on slider
+    [Header("Slider Assets")]
     [SerializeField] private Slider bar;
     [SerializeField] private Image barImage;
     //[SerializeField] private GameObject barObject;
     private GameObject Enemy; 
-    private Vector3 Offset;
 
+    //other needed objects
+    private Vector3 Offset;
     private Camera cam;
     private RectTransform rectTransform;
-
     private Transform UILocation;
-
     private EnemyBehaviour enemyScript;
 
     private void Start() {
@@ -30,17 +32,21 @@ public class EnemyHealthBar : MonoBehaviour {
         }
         else
         {
-            Debug.Log("The parent needs to be the enemy, the current parent is: " + gameObject.transform.parent.parent.name);
+            Debug.Log("The parent of the parent needs to be the enemy, the current parent of the parent is: " + gameObject.transform.parent.parent.name);
         }
 
+        //get the other needed things
         enemyScript = Enemy.GetComponent<EnemyBehaviour>();
         rectTransform = GetComponent<RectTransform>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
-        Offset = enemyScript.Offset;
+        Offset = enemyScript.Offset; //set offset to  whatever its set in the enemies script
+
+        //if slider bar and enemy script are present, set value
         if(bar && enemyScript)
         {
             bar.maxValue = enemyScript.EnemyHP;
         }
+        //otherwise return error
         else if(!bar)
         {
             Debug.Log("bar not found");
@@ -49,16 +55,16 @@ public class EnemyHealthBar : MonoBehaviour {
         {
             Debug.Log("script not found");
         }
-         
+        
     }
 
     // Update is called once per frame
     void Update() {
         
-		// Convert the in-game object's position to screen coordinates
+		// convert game to screen pos
         Vector3 screenPosition = cam.WorldToScreenPoint(Enemy.transform.position)+ Offset;
 
-        // Set the UI object's position to the screen coordinates
+        // set the sliders position
         rectTransform.position = screenPosition;
 
         //if health below a certain point change its color
