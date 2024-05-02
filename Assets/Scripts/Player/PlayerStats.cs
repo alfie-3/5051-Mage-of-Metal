@@ -12,12 +12,11 @@ public class PlayerStats : MonoBehaviour, IScore
     int scoreMultiplier = 1;
     float currentClampedScore = 0;
 
-    //[Header("Score variables")]
-    public static int playerScore { get; private set; }
+    [Header("Score variables")]
+    public static int playerScore = 0;
 
     private void Start()
     {
-        playerScore = 0;
         if (LevelManager.Instance != null && AudioManager.managerInstance != null)
         {
             AudioManager.managerInstance.musicInstance.setParameterByName("InstrumentAudio", 1);

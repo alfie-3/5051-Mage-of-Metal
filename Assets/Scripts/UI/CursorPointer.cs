@@ -111,13 +111,13 @@ public class CursorPointer : MonoBehaviour
     {
         //Ray ray = Camera.main.ScreenPointToRay(ir_pointer.position / PixelatedCamera.main.screenScaleFactor);
 
-        Ray ray = Camera.main.ScreenPointToRay(transform.parent.GetComponentInChildren<Camera>().WorldToScreenPoint(ir_pointer.position));
+        Ray ray = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? WiiInputManager.CursorWiiMote.IRPointScreenPos() : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
         RaycastHit hitInfo = new();
 
 
         if (Physics.Raycast(ray, out hitInfo, 999, layerMask))
         {
-            Debug.DrawRay(Camera.main.transform.position, ray.direction * 200, Color.blue, Time.deltaTime);
+            Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.blue, Time.deltaTime);
             if (hitInfo.transform.TryGetComponent(out IDamage damageable))
             {
                 return damageable;
@@ -125,14 +125,6 @@ public class CursorPointer : MonoBehaviour
         }
 
         return null;
-    }
-
-    Vector2 Remap(Vector2 irO)
-    {
-        Vector2 ir = irO;
-        ir.x = (ir.x + 1) / 2; ir.x *= Screen.width / PixelatedCamera.main.screenScaleFactor;
-        ir.y = (ir.y + 1) / 2; ir.y *= Screen.height / PixelatedCamera.main.screenScaleFactor;
-        return ir;
     }
 
     #region Strum behaviour
@@ -145,7 +137,7 @@ public class CursorPointer : MonoBehaviour
     //Basic interaction, called from guitar strum input
     private void Attack()
     {
-        Ray ray = Camera.main.ScreenPointToRay(transform.parent.GetComponentInChildren<Camera>().WorldToScreenPoint(ir_pointer.position));
+        Ray cursorRay = Camera.main.ScreenPointToRay((WiiInputManager.CursorWiiMote.HasRemote ? WiiInputManager.CursorWiiMote.IRPointScreenPos() : (Vector2)Input.mousePosition) / PixelatedCamera.main.screenScaleFactor);
         RaycastHit hit = new();
 
         //Checks to see if the level is paused so the enemies in pause state can't be attacked
@@ -174,7 +166,7 @@ public class CursorPointer : MonoBehaviour
         {
             // Get ray from cursor to world point on strum
             RaycastHit hitInfo = new();
-            if (Physics.Raycast(ray, out hitInfo, 30, layerMask))
+            if (Physics.Raycast(cursorRay, out hitInfo, 30, layerMask))
             {
                 if (hitInfo.transform.TryGetComponent(out UnityEngine.UI.Button _button))
                 {

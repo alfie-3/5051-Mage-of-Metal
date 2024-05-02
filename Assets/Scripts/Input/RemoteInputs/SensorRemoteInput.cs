@@ -16,7 +16,7 @@ public class SensorRemoteInput : RemoteInput
     //Absolutely black magic, idk what this shit does
     //If anyone wants to fuck around with it to make it more accurate be my guest.
     //It works tho so maybe just leave it alone!
-    //Returns current location of the cursor on the screen mapped to -1-1
+    //Returns current location of the cursor on the screen mapped to 0-1
     public Vector2 IRPointScreenPos() {
         WiiMote.ReadWiimoteData();
 

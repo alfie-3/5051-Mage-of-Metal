@@ -1,6 +1,5 @@
 //Control script for game settings and 
 
-using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,9 +11,6 @@ public class GameManager : MonoBehaviour
     public static float musicVolume = 0.5f;
     public static float sfxVolume = 0.5f;
     public static int difficulty = 0;
-
-    public static int finalScore = 0;
-    public static bool isLeaderboard = false;
 
     [Header("Instance checker")]
     private bool isLoaded=false;

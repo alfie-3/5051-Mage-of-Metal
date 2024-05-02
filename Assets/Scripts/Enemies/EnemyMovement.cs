@@ -25,27 +25,24 @@ public class EnemyMovement : MonoBehaviour
     //Enemy movement update
     private void Update()
     {
-        if (agent != null)
+        //Stop update function if enemy is too far from player
+        if (Vector3.Distance(LevelManager.player.transform.position, transform.position) > minAttackDistance) { return; }
+
+        //Get nearest spline point
+        SplineUtility.GetNearestPoint(spline, new float3(transform.position.x, transform.position.y, transform.position.z), out float3 nearest, out float t);
+        Vector3 point = new Vector3(nearest.x, nearest.y, nearest.z);
+
+        //If spline distance is small enough, chase player instead
+        splineDistance = Vector3.Distance(transform.position, point);
+        if (splineDistance < 2)
         {
-            //Stop update function if enemy is too far from player
-            if (Vector3.Distance(LevelManager.player.transform.position, transform.position) > minAttackDistance) { return; }
-
-            //Get nearest spline point
-            SplineUtility.GetNearestPoint(spline, new float3(transform.position.x, transform.position.y, transform.position.z), out float3 nearest, out float t);
-            Vector3 point = new Vector3(nearest.x, nearest.y, nearest.z);
-
-            //If spline distance is small enough, chase player instead
-            splineDistance = Vector3.Distance(transform.position, point);
-            if (splineDistance < 2)
-            {
-                //Head towards player
-                agent.SetDestination(LevelManager.player.transform.position);
-            }
-            else
-            {
-                //Head towards spline point
-                agent.SetDestination(point);
-            }
+            //Head towards player
+            agent.SetDestination(LevelManager.player.transform.position);
+        }
+        else
+        {
+            //Head towards spline point
+            agent.SetDestination(point);
         }
     }
 }

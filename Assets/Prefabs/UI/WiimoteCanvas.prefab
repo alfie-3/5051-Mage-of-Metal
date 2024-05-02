@@ -937,6 +937,7 @@ GameObject:
   - component: {fileID: 4224821968499520422}
   - component: {fileID: 5688944021605359057}
   - component: {fileID: 8421899241682478724}
+  - component: {fileID: 7906756365769267574}
   m_Layer: 5
   m_Name: WiimoteCanvas
   m_TagString: Untagged
@@ -1029,6 +1030,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 2043
+--- !u!114 &7906756365769267574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959043914422940523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3c2e5306a93874f9fcbf609ec0f0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ir_pointer: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 89
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  idleColour: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0.79607844}
+  activeColour: {r: 0.9150943, g: 0.40143287, b: 0.40143287, a: 0.8156863}
 --- !u!1 &2109695938545004306
 GameObject:
   m_ObjectHideFlags: 0
